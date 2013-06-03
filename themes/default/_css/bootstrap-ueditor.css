@@ -1,0 +1,55 @@
+/*bootstrap ueditor 补丁样式
+*/
+
+/*text toolbar*/
+.navbar-inner{
+    border: none;
+    box-shadow: none;
+    padding:5px 10px;
+    border-bottom: 1px solid #d4d4d4;
+    min-height: 30px;
+}
+.navbar-inner a{
+    color:#333;
+}
+.nav{
+    margin-bottom: 0;
+}
+
+
+/*tool toolbar
+*/
+.btn-toolbar{
+    margin: 0;
+    padding:5px 10px;
+    border-bottom: 1px solid #d4d4d4;
+
+    background-color: #f0f0f0;
+    background-image: -moz-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fdfdfd),to(#ddd));
+    background-image: -webkit-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: -o-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: linear-gradient(to bottom,#fdfdfd,#ddd);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdfdfd',endColorstr='#ffdddddd',GradientType=0);
+    zoom: 1;
+}
+.btn-toolbar .btn-group{
+    margin: 5px;
+}
+
+
+/*bottombar
+*/
+.breadcrumb{
+    margin-bottom: 0;
+    padding:0;
+    background-color: transparent;
+    color: #333;
+}
+.table{
+    margin-bottom: 0;
+}
+.table td.text-right{
+    text-align: right;
+}

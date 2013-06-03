@@ -1,0 +1,21 @@
+.edui-combobox-menu {
+    text-align: left;
+    text-shadow: none;
+}
+
+.edui-combobox-checkbox {
+    display: inline-block;
+    *zoom: 1;
+    width: 25px;
+    height: 20px;
+    line-height: 20px;
+    visibility: hidden;
+}
+
+.edui-combobox-checked {
+    visibility: visible;
+}
+
+.dropdown-menu li.edui-combobox-item .edui-combobox-label, .dropdown-menu li.edui-combobox-stack-item .edui-combobox-label {
+    line-height: 1.2;
+}
