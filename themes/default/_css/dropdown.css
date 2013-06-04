@@ -1,7 +1,15 @@
-.dropdown-menu{
+.edui-dropdown-menu{
     font-size:14px;
+    min-width: 130px;
 }
-
+.edui-dropdown-menu > li > a{
+    padding: 3px 0 3px 3px;
+}
+.edui-dropdown-menu > li > a i{
+    position:static;
+    top:0;
+    left:0;
+}
 .edui-dropmenu-checkbox {
     display: inline-block;
     *zoom: 1;

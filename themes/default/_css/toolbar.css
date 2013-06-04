@@ -1,4 +1,37 @@
-.toolbar .navbar-inner{
+/*text toolbar*/
+.edui-navbar-inner {
+    border: none;
+    box-shadow: none;
+    padding:5px 10px;
+    border-bottom: 1px solid #d4d4d4;
+    min-height: 30px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+}
+.edui-navbar-inner a{
+    color:#333;
+}
+.edui-nav{
+    margin-bottom: 0;
+}
+
+
+/*button toolbar*/
+
+.edui-btn-toolbar{
+    margin: 0;
+    padding:5px 10px;
+    border-bottom: 1px solid #d4d4d4;
+    background-color: #f0f0f0;
+    background-image: -moz-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fdfdfd),to(#ddd));
+    background-image: -webkit-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: -o-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: linear-gradient(to bottom,#fdfdfd,#ddd);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdfdfd',endColorstr='#ffdddddd',GradientType=0);
+    zoom: 1;
+}
+.edui-btn-group{
+    margin: 5px;
 }

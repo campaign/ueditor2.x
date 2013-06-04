@@ -1,10 +1,4 @@
-.edui-container{
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.edui-container .bottombar{
+.edui-bottombar{
     padding: 8px 0;
     height: 20px;
     list-style: none;

@@ -1,3 +1,7 @@
-.edui-button-label {
-    padding: 10px;
+.edui-btn-group + .edui-btn-group{
+    margin-left:8px;
+}
+
+.edui-button-spacing{
+    padding:5px;
 }

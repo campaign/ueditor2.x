@@ -1,21 +1,21 @@
 /*color picker
 */
-.colorpicker {
+.edui-colorpicker {
     margin: 10px;
 }
-.colorpicker .colorpicker-topbar{
+.edui-colorpicker .edui-colorpicker-topbar{
     height: 27px;
     width: 200px;
     overflow: hidden;
 }
-.colorpicker .colorpicker-topbar .colorpicker-preview{
+.edui-colorpicker .edui-colorpicker-topbar .edui-colorpicker-preview{
     height: 20px;
     border: 1px inset black;
     margin-left: 1px;
     width: 128px;
     float: left;
 }
-.colorpicker .colorpicker-topbar .colorpicker-nocolor{
+.edui-colorpicker .edui-colorpicker-topbar .edui-colorpicker-nocolor{
     float: right;
     margin-right: 1px;
     font-size: 12px;
@@ -25,17 +25,17 @@
     padding: 3px 5px;
     cursor: pointer;
 }
-.colorpicker table{
+.edui-colorpicker table{
     border-collapse: collapse;
     border-spacing: 2px;
 }
-.colorpicker tr.colorpicker-firstrow{
+.edui-colorpicker tr.edui-colorpicker-firstrow{
     height: 30px;
 }
-.colorpicker table td{
+.edui-colorpicker table td{
     padding: 0 2px;
 }
-.colorpicker table td .colorpicker-colorcell{
+.edui-colorpicker table td .edui-colorpicker-colorcell{
     display: block;
     text-decoration: none;
     color: black;

@@ -1,14 +1,15 @@
 /*bootstrap ueditor  补丁样式*/
-@import "bootstrap-ueditor.css";
 
 /*通用基础样式*/
 @import "common.css";
 
-    /*编辑器样式*/
-@import "editor.css";
+@import "container.css";
 
+@import "toolbar.css";
 
-    /*颜色下拉菜单*/
+@import "bottombar.css";
+
+/*颜色下拉菜单*/
 @import "colorpicker.css";
 
 @import "contextmenu.css";
@@ -19,10 +20,10 @@
 
 @import "tablepicker.css";
 
-@import "combobox.css";
+/*@import "combobox.css";*/
 
 @import "dropdown.css";
 
-@import "toolbar.css";
-
 @import "elementpath.css";
+
+@import "combobox.css";

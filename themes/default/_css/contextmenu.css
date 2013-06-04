@@ -1,31 +1,34 @@
-.item-right{
+.edui-item-right{
     float:right;
     margin-left:20px;
 }
 
-/*.dropdown-menu > li > a {*/
-    /*padding: 3px 10px;*/
-/*}*/
-
-.dropdown-menu > li > a > .edui-contextmenu-icon {
-    display: inline-block;
+.edui-contextmenu > li > a{
+    padding:3px 20px;
+}
+.edui-contextmenu > li > a > .edui-contextmenu-icon {
     *zoom: 1;
     width: 25px;
+    display:inline-block;
 }
-
-.dropdown-menu .dropdown-submenu > a {
+.edui-contextmenu > li > a i{
+    position:static;
+    top:0;
+    left:0;
+}
+.edui-contextmenu .edui-contextsubmenu > a {
     padding-right: 10px;
 }
 
-.dropdown-submenu > a:after {
+.edui-contextsubmenu > a:after {
     margin-right: 0;
 }
 
-.dropdown-menu > li > a h1,
-.dropdown-menu > li > a h2,
-.dropdown-menu > li > a h3,
-.dropdown-menu > li > a h4,
-.dropdown-menu > li > a h5,
-.dropdown-menu > li > a h6{
+.edui-contextmenu > li > a h1,
+.edui-contextmenu  > li > a h2,
+.edui-contextmenu > li > a h3,
+.edui-contextmenu  > li > a h4,
+.edui-contextmenu  > li > a h5,
+.edui-contextmenu  > li > a h6{
     display:inline
 }

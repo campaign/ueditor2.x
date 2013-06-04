@@ -16,6 +16,7 @@
     visibility: visible;
 }
 
-.dropdown-menu li.edui-combobox-item .edui-combobox-label, .dropdown-menu li.edui-combobox-stack-item .edui-combobox-label {
+.dropdown-menu li.edui-combobox-item .edui-combobox-label,
+.dropdown-menu li.edui-combobox-stack-item .edui-combobox-label {
     line-height: 1.2;
 }

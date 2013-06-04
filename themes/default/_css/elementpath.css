@@ -1,9 +1,9 @@
 .edui-elementpath > li {
-    display: inline-block;
-    *display: inline;
-    text-shadow: 0 1px 0 #ffffff;
-    *zoom: 1;
-}
+     display: inline-block;
+     *display: inline;
+     text-shadow: 0 1px 0 #ffffff;
+     *zoom: 1;
+ }
 
 .edui-elementpath > li > .divider {
     padding: 0 5px;
