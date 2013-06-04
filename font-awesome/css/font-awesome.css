@@ -1293,3 +1293,6 @@ ul.icons-ul > li .icon-li {
 .icon-source:before {
     content: "\f0f6";
 }
+.icon-newdocument:before {
+    content: "\f016";
+}
