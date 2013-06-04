@@ -10,20 +10,20 @@ UE.ui.define('colorpicker', {
                 '7f7f7f,0c0c0c,1d1b10,0f243e,244061,632423,4f6128,3f3151,205867,974806,' +
                 'c00000,ff0000,ffc000,ffff00,92d050,00b050,00b0f0,0070c0,002060,7030a0,').split(',');
 
-        var html = '<div class="colorpicker">' +
-            '<div class="colorpicker-topbar">' +
-            '<div class="colorpicker-preview"></div>' +
-            '<div class="colorpicker-nocolor">'+opt.lang_clearColor+'</div>' +
+        var html = '<div class="edui-colorpicker">' +
+            '<div class="edui-colorpicker-topbar">' +
+            '<div class="edui-colorpicker-preview"></div>' +
+            '<div class="edui-colorpicker-nocolor">'+opt.lang_clearColor+'</div>' +
             '</div>' +
             '<table>' +
             '<tr><td colspan="10">'+opt.lang_themeColor+'</td> </tr>' +
-            '<tr class="colorpicker-firstrow" >';
+            '<tr class="edui-colorpicker-firstrow" >';
 
         for (var i = 0; i < COLORS.length; i++) {
             if (i && i % 10 === 0) {
-                html += '</tr>' + (i == 60 ? '<tr><td colspan="10">'+opt.lang_standardColor+'</td></tr>' : '') + '<tr' + (i == 60 ? ' class="colorpicker-firstrow"' : '') + '>';
+                html += '</tr>' + (i == 60 ? '<tr><td colspan="10">'+opt.lang_standardColor+'</td></tr>' : '') + '<tr' + (i == 60 ? ' class="edui-colorpicker-firstrow"' : '') + '>';
             }
-            html += i < 70 ? '<td><a title="' + COLORS[i] + '" class="colorpicker-colorcell"' +
+            html += i < 70 ? '<td><a title="' + COLORS[i] + '" class="edui-colorpicker-colorcell"' +
                 ' data-color="#' + COLORS[i] + '"' +
                 ' style="background-color:#' + COLORS[i] + ';border:solid #ccc;' +
                 (i < 10 || i >= 60 ? 'border-width:1px;' :
@@ -43,11 +43,11 @@ UE.ui.define('colorpicker', {
             .on("mouseover",function (e) {
                 var color = e.target.getAttribute('data-color');
                 if (color) {
-                    me.root().find(".colorpicker-preview").css("background-color", color);
+                    me.root().find(".edui-colorpicker-preview").css("background-color", color);
                 }
             })
             .on("mouseout",function () {
-                me.root().find(".colorpicker-preview").css("background-color", "");
+                me.root().find(".edui-colorpicker-preview").css("background-color", "");
             })
             .on("click",function (e) {
                 var color = e.target.getAttribute('data-color');

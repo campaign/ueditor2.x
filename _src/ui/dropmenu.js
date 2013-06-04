@@ -1,6 +1,6 @@
 //dropmenu 类
 UE.ui.define('dropmenu',{
-    tmpl:'<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" >' +
+    tmpl:'<ul class="dropdown-menu edui-dropdown-menu" aria-labelledby="dropdownMenu" >' +
             '<%for(var i=0,ci;ci=data[i++];){%>'+
                 '<%if(ci.divider){%><li class="divider"></li><%}else{%>' +
                 '<li <%if(ci.active||ci.disabled){%>class="<%= ci.active|| \'\' %> <%=ci.disabled||\'\' %>" <%}%> data-value="<%= ci.value%>">' +

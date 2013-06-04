@@ -1,16 +1,16 @@
 //toolbar 类
 (function () {
     UE.ui.define('toolbar', {
-        tpl: '<div class="toolbar"><div class="text-toolbar">' +
-            '<div class="navbar-inner">' +
-            '<ul class="nav nav-pills">' +
+        tpl: '<div class="edui-toolbar"><div class="edui-text-toolbar">' +
+            '<div class="navbar-inner edui-navbar-inner ">' +
+            '<ul class="nav edui-nav nav-pills">' +
             '</ul>' +
             '</div>' +
             '</div>' +
-            '<div class="btn-toolbar"></div></div>'
+            '<div class="btn-toolbar edui-btn-toolbar"></div></div>'
           ,
         textmenutpl: '<li class="dropdown"><a href="#" class="dropdown-toggle"><%=label%></a></li>',
-        btngrouptpl:'<div class="btn-group"></div>',
+        btngrouptpl:'<div class="btn-group edui-btn-group"></div>',
         init: function () {
             var $root = this.root($(this.tpl));
             this.data('$txtToolbar', $root.find('.nav-pills'))
@@ -19,7 +19,7 @@
         },
         createTextItem : function(label){
 
-            return $($.parseTmpl(this.textmenutpl,{'label':label})).click(function(){
+            return $($.parseTmpl(this.textmenutpl,{'label':label})).delegate(':first','click',function(){
                 $(this).trigger('wrapclick')
             })
         },

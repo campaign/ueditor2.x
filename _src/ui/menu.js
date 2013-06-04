@@ -1,6 +1,7 @@
 //dropmenu 类
 UE.ui.define('menu',{
     show : function($obj,dir,fnname,topOffset,leftOffset){
+
         fnname = fnname || 'position';
         if(this.trigger('beforeshow') === false){
             return;
@@ -12,6 +13,10 @@ UE.ui.define('menu',{
         }
     },
     hide : function(){
+        var $parentmenu;
+        if($parentmenu = this.root().data('parentmenu')){
+            $parentmenu.edui().hide();
+        }
         this.root().css('display','none');
     },
     attachTo : function($obj){
@@ -19,6 +24,7 @@ UE.ui.define('menu',{
         if(!$obj.data('$mergeObj')){
             $obj.data('$mergeObj',me.root());
             $obj.on('wrapclick',function(evt){
+
                 if(!$.contains(document,me.root()[0])){
                     me.root().appendTo($obj)
                 }
