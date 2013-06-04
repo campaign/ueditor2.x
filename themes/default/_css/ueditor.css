@@ -1,4 +1,3 @@
-/*bootstrap ueditor  补丁样式*/
 
 /*通用基础样式*/
 @import "common.css";
@@ -19,8 +18,6 @@
 @import "splitbutton.css";
 
 @import "tablepicker.css";
-
-/*@import "combobox.css";*/
 
 @import "dropdown.css";
 
