@@ -9,29 +9,33 @@
 
     <script src="../jquery.js"></script>
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../themes/default/_css/ueditor.css" rel="stylesheet"/>
+    <link href="todc.css" rel="stylesheet"/>
     <link href="../font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link href="../themes/default/_css/ueditor.css" rel="stylesheet"/>
+
+
     <script type="text/javascript" charset="utf-8" src="../ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="editor_api.js">
     </script>
 
 </head>
 <body>
-<div id="editor" style="height:500px;width:1000px"></div>
+<div id="editor" style="height:500px;width:1000px;"></div>
 <script>
     UE.getEditor('editor',{
         menulist:[
             {label:'文件',data:[
-                {label:'新建',exec:function(){}},
-                {label:'打印',icon:'print',shortkey:'ctrl+p',exec:'print'}
+                //如果没有给query,icon都是用exec给的名字
+                {label:'新建',exec:'newdocument',shortkey:'ctrl+n'},
+                {label:'打印',shortkey:'ctrl+p',exec:'print'}
             ]},
             {label:'编辑',data:[
-                {label:'撤销',exec:'undo',icon:'undo',shortkey:'ctrl+z'},
-                {label:'回退',exec:'redo',icon:'redo',shortkey:'ctrl+y'},
+                {label:'撤销',exec:'undo',shortkey:'ctrl+z'},
+                {label:'回退',exec:'redo',shortkey:'ctrl+y'},
                 {divider:1},
                 {label:'全选',exec:'selectall',shortkey:'ctrl+a'},
                 {divider:1},
-                {label:'查找和替换',exec:'searchreplace',icon:'searchreplace',shortkey:'ctrl+shift+r'}
+                {label:'查找和替换','modal':'searchreplace',shortkey:'ctrl+shift+r'}
             ]},{label:'插入',data:[
                 {label:'图片',exec:function(){},icon:'image'},
                 {label:'视频',exec:function(){},icon:'video'},
