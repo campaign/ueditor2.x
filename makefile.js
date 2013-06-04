@@ -141,7 +141,7 @@ function addtheme(){
 
 function mergeCss(){
     var content = [];
-    var csslist = fs.readFileSync('themes/default/_css/ueditor.css','utf8');
+    var csslist = fs.readFileSync('themes/default/_css/todc.css','utf8');
     csslist = csslist.match(/\"([^\"]+)\"/g);
     for(var i= 0,ci;ci=csslist[i++];){
         console.log(ci.replace(/['"]/g,''));
@@ -150,11 +150,11 @@ function mergeCss(){
     if(!fs.existsSync('themes/default/css')){
         fs.mkdirSync('themes/default/css',0755);
     }
-    fs.writeFileSync('themes/default/css/ueditor.css',content.join('\n'));
+    fs.writeFileSync('themes/default/css/todc.css',content.join('\n'));
     console.log('ueditor.css merge success');
     new compressor.minify({
         type: 'sqwish',
-        fileIn: 'themes/default/css/ueditor.css',
+        fileIn: 'themes/default/css/todc.css',
         fileOut: 'themes/default/css/ueditor.min.css',
         callback: function(err){
             console.log('ueditor.min.css compress success');

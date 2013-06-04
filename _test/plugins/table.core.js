@@ -3,7 +3,7 @@
  * User: taoqili
  * Date: 13-2-21
  * Time: 下午1:31
- * To change this template use File | Settings | File Templates.
+ * To change this template.tpl use File | Settings | File Templates.
  */
 function getTable(str) {
     var div = document.getElementById("testTable");

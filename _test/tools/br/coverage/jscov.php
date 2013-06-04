@@ -5,7 +5,7 @@ require_once  dirname( __FILE__ ) .'/../config.php';
  * User: lisisi01
  * Date: 12-9-13
  * Time: 下午12:36
- * To change this template use File | Settings | File Templates.
+ * To change this template.tpl use File | Settings | File Templates.
  */
 
 function source(){

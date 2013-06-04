@@ -44,7 +44,7 @@
         var obj = {
             html:currentTmp && currentTmp.html
         };
-        me.execCommand( "template", obj );
+        me.execCommand( "template.tpl", obj );
     };
     initPre();
     window.pre = pre;

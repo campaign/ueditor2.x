@@ -6126,7 +6126,7 @@ function addToPrefiltersOrTransports( structure ) {
 			// For each dataType in the dataTypeExpression
 			for(; i < length; i++ ) {
 				dataType = dataTypes[ i ];
-				// We control if we're asked to add before
+				// We control.js if we're asked to add before
 				// any existing element
 				placeBefore = /^\+/.test( dataType );
 				if ( placeBefore ) {

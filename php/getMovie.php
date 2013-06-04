@@ -4,7 +4,7 @@
      * User: taoqili
      * Date: 12-2-19
      * Time: 下午10:44
-     * To change this template use File | Settings | File Templates.
+     * To change this template.tpl use File | Settings | File Templates.
      */
     error_reporting(E_ERROR|E_WARNING);
     $key =htmlspecialchars($_POST["searchKey"]);

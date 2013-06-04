@@ -4,7 +4,7 @@
      * User: taoqili
      * Date: 11-12-28
      * Time: 上午9:54
-     * To change this template use File | Settings | File Templates.
+     * To change this template.tpl use File | Settings | File Templates.
      */
     header("Content-Type: text/html; charset=utf-8");
     error_reporting(E_ERROR|E_WARNING);

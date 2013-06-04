@@ -2650,7 +2650,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
 						'else enum explicit extern if for friend goto inline ' +
 						'mutable naked namespace new noinline noreturn nothrow ' +
 						'register reinterpret_cast return selectany ' +
-						'sizeof static static_cast struct switch template this ' +
+						'sizeof static static_cast struct switch template.tpl this ' +
 						'thread throw true false try typedef typeid typename union ' +
 						'using uuid virtual void volatile whcar_t while';
 					

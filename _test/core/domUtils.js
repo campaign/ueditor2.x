@@ -1604,7 +1604,7 @@ test('inNodeEndBoundary',function(){
 //    same(domUtils.findTagNamesInSelection(range,['div','pre','a','h1','h2','h3','h4','h5','h6','h7','table']),body.getElementsByTagName('table')[0],'深节点');
 //} );
 
-//test( '<strong style="color:red">control range</strong>中查找是否包含特定的标签列表', function() {
+//test( '<strong style="color:red">control.js range</strong>中查找是否包含特定的标签列表', function() {
 //    var domUtils = baidu.editor.dom.domUtils;
 //    var editor = new baidu.editor.ui.Editor({autoFloatEnabled:true});
 //    var div = te.dom[2];

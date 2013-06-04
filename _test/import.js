@@ -82,7 +82,7 @@
 ///import plugins/defaultfilter;
 ///import plugins/formula;
 ///import plugins/puretxtpaste;
-///import plugins/template;
+///import plugins/template.tpl;
 ///import plugins/background;
 ///import plugins/music;
 

@@ -7,7 +7,7 @@
  * User: taoqili
  * Date: 11-9-7
  * Time: 下午8:18
- * To change this template use File | Settings | File Templates.
+ * To change this template.tpl use File | Settings | File Templates.
  */
 
 UE.plugins['wordcount'] = function(){

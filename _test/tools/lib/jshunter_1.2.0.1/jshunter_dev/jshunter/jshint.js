@@ -42,7 +42,7 @@
  is assumed that each string represents one line. The source can be a
  JavaScript text or a JSON text.
 
- The second parameter is an optional object of options which control the
+ The second parameter is an optional object of options which control.js the
  operation of JSHINT. Most of the options are booleans: They are all
  optional and have a default value of false. One of the options, predef,
  can be an array of names, which will be used to declare global variables,
@@ -840,7 +840,7 @@ var JSHINT = (function () {
         String.prototype.name = function () {
 
 // If the string looks like an identifier, then we can return it as is.
-// If the string contains no control characters, no quote characters, and no
+// If the string contains no control.js characters, no quote characters, and no
 // backslash characters, then we can simply slap some quotes around it.
 // Otherwise we must also replace the offending characters with safe
 // sequences.
@@ -1412,7 +1412,7 @@ var JSHINT = (function () {
                                         c = s.charAt(l);
                                         if (c < ' ') {
                                             warningAt(
-"Unexpected control character in regular expression.", line, from + l);
+"Unexpected control.js character in regular expression.", line, from + l);
                                         } else if (c === '<') {
                                             warningAt(
 "Unexpected escaped character '{a}' in regular expression.", line, from + l, c);
@@ -1519,7 +1519,7 @@ klass:                                  do {
                                                 c = s.charAt(l);
                                                 if (c < ' ') {
                                                     warningAt(
-"Unexpected control character in regular expression.", line, from + l);
+"Unexpected control.js character in regular expression.", line, from + l);
                                                 } else if (c === '<') {
                                                     warningAt(
 "Unexpected escaped character '{a}' in regular expression.", line, from + l, c);

@@ -36,7 +36,7 @@ SWFUpload.prototype.initSWFUpload = function (userSettings) {
 		this.movieElement = null;
 
 
-		// Setup global control tracking
+		// Setup global control.js tracking
 		SWFUpload.instances[this.movieName] = this;
 
 		// Load the settings.  Load the Flash movie.
@@ -549,7 +549,7 @@ SWFUpload.prototype.callFlash = function (functionName, argumentArray) {
 };
 
 /* *****************************
-	-- Flash control methods --
+	-- Flash control.js methods --
 	Your UI should use these
 	to operate SWFUpload
    ***************************** */

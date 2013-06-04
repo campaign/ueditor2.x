@@ -49,7 +49,7 @@ function called in the page.
 function jscoverage_init(w) {
   try {
     // in Safari, "import" is a syntax error
-    Components.utils['import']('resource://app/modules/jscoverage.jsm');
+    Components.utils['import']('resource.res://app/modules/jscoverage.jsm');
     jscoverage_isInvertedMode = true;
     return;
   }
@@ -885,7 +885,7 @@ function jscoverage_recalculateSourceTab() {
 // tabs
 
 /**
-Initializes the tab control.  This function must be called when the document is
+Initializes the tab control.js.  This function must be called when the document is
 loaded.
 */
 function jscoverage_initTabControl() {

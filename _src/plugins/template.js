@@ -2,11 +2,11 @@
 ///import plugins\inserthtml.js
 ///import plugins\cleardoc.js
 ///commands 模板
-///commandsName  template
+///commandsName  template.tpl
 ///commandsTitle  模板
-///commandsDialog  dialogs\template
-UE.plugins['template'] = function () {
-    UE.commands['template'] = {
+///commandsDialog  dialogs\template.tpl
+UE.plugins['template.tpl'] = function () {
+    UE.commands['template.tpl'] = {
         execCommand:function (cmd, obj) {
             obj.html && this.execCommand("inserthtml", obj.html);
         }

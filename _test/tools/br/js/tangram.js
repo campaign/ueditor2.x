@@ -1642,7 +1642,7 @@
 	    // http://www.ietf.org/rfc/rfc2068.txt
 	    // token      = 1*<any CHAR except CTLs or tspecials>
 	    // CHAR       = <any US-ASCII character (octets 0 - 127)>
-	    // CTL        = <any US-ASCII control character
+	    // CTL        = <any US-ASCII control.js character
 	    //              (octets 0 - 31) and DEL (127)>
 	    // tspecials  = "(" | ")" | "<" | ">" | "@"
 	    //              | "," | ";" | ":" | "\" | <">
@@ -9380,7 +9380,7 @@
 	 *  //并行实例
 	 *  baidu.page.load([
 	 *      {
-	 *          url : "http://xxx.baidu.com/xpath/template.html",
+	 *          url : "http://xxx.baidu.com/xpath/template.tpl.html",
 	 *          onload : fnExtractTemplate
 	 *      },
 	 *      { url : "http://xxx.baidu.com/xpath/style.css"},

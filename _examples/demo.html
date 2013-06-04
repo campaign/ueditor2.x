@@ -8,7 +8,7 @@
     <meta name="author" content="campaign">
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap.css" rel="stylesheet">
 
     <!--[if lte IE 6]>
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
@@ -19,7 +19,7 @@
 
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="themes/default/_css/ueditor.css">
+    <link rel="stylesheet" type="text/css" href="../themes/default/_css/ueditor.css">
 
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -33,6 +33,58 @@
 </head>
 
 <body>
+
+<div class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="eduilinktext"><%=lang_input_text%></label>
+        <div class="controls">
+            <input type="text" id="eduilinktext" placeholder="">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="eduilinkurl"><%=lang_input_url%></label>
+        <div class="controls">
+            <input type="password" id="eduilinkurl" placeholder="">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="eduilinktitle"><%=lang_input_title%></label>
+        <div class="controls">
+            <input type="password" id="eduilinktitle" placeholder="">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <label class="checkbox">
+                <input type="checkbox" id="eduilinktarget"><%=lang_input_target%>
+            </label>
+        </div>
+    </div>
+</div>
+<table>
+
+    <tr>
+        <td><label for="text">sdfa</label></td>
+        <td><input class="txt" id="text" type="text" disabled="true"/></td>
+    </tr>
+    <tr>
+        <td><label for="href">sdf</label></td>
+        <td><input class="txt" id="href" type="text" /></td>
+    </tr>
+    <tr>
+        <td><label for="title"><%=lang_input_title%></label></td>
+        <td><input class="txt" id="title" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <label class="checkbox"><%=lang_input_target%><input id="target" type="checkbox"/></label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" id="msg"></td>
+    </tr>
+</table>
 <div class="container">
 
 <div class="text-toolbar">
@@ -299,7 +351,7 @@
             <h3 id="myModalLabel">帮助</h3>
         </div>
         <div class="modal-body">
-            <iframe height="100%" width="100%" frameborder="0" src="dialogs/help/help.html"></iframe>
+            <iframe height="100%" width="100%" frameborder="0" src="../dialogs/help/help.html"></iframe>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
@@ -312,7 +364,7 @@
 
 
 
-<script src="jquery.js"></script>
+<script src="../jquery.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
 
 <script type="text/javascript">
