@@ -6,11 +6,15 @@
 
 (function () {
     var _editorUI = {},
-        _editors = {};
-
+        _editors = {},
+        _editorModals = {};
+    var _$eduiDialogsContainer;
     function parseData(data, editor) {
         $.each(data, function (i, v) {
             if (v.label) {
+                if(!v.icon){
+                    v.icon = v.exec;
+                }
                 if (v.data) {
                     parseData(v.data, editor);
                 } else {
@@ -19,14 +23,14 @@
                         v.widget = $.proxy(_editorUI[v.widget],editor, v.widget,'menu')();
                         if($.type(v.query) == 'string'){
                             command = v.query;
-                            v.query = $.proxy(function(name){this.queryCommandState(name)},editor,command);
+                            v.query = $.proxy(function(name){return this.queryCommandState(name)},editor,command);
                         }
                     }else{
                         if ($.type(v.exec) == 'string') {
                             command = v.exec;
                             v.exec = $.proxy(function(name){this.execCommand(name)},editor,command);
                             if (!v.query) {
-                                v.query = $.proxy(function(name){this.queryCommandState(name)},editor,command);
+                                v.query = $.proxy(function(name){return this.queryCommandState(name)},editor,command);
                             }
                         } else {
                             var fn = v.exec;
@@ -42,6 +46,7 @@
             if(v.shortkey){
                 v.shortkey = v.shortkey.toUpperCase()
             }
+
         });
         return data;
     }
@@ -101,17 +106,22 @@
         },
         createUI: function (id, editor) {
             var $editorCont = $(id),
-                $container = $('<div class="edui-container"><div class="editor-body"></div></div>').insertBefore($editorCont);
-            $container.find('.editor-body').append($editorCont).before(this.createToolbar(editor.options, editor));
+                $container = $('<div class="edui-container"><div class="edui-editor-body"></div></div>').insertBefore($editorCont);
+            $container.find('.edui-editor-body').append($editorCont).before(this.createToolbar(editor.options, editor));
 
             if(editor.options.elementpath || editor.options.wordCount){
-                var $bottombar = $('<div class="bottombar"></div>');
+                var $bottombar = $('<div class="edui-bottombar"></div>');
                 $container.append($bottombar);
             }
             if(editor.options.elementpath){
                 $bottombar.append(this.getUI(editor,'elementpath'));
             }
+            //为所有的dialog添加容器
+            _$eduiDialogsContainer = $('<div class="edui-dialog-container"></div>').appendTo($container);
             return $container;
+        },
+        createDialog : function(){
+            
         },
         createToolbar: function (options, editor) {
             var me = this;
@@ -123,7 +133,7 @@
                     $.eduicontextmenu(parseData(v.data, editor)).edui().attachTo(toolbar.appendToTextmenu(toolbar.createTextItem(v.label)));
                 })
             } else {
-                $toolbar.find('.text-toolbar').remove()
+                $toolbar.find('.edui-text-toolbar').remove()
             }
 
             if (options.toolbar) {
@@ -139,7 +149,7 @@
                 })
 
             } else {
-                $toolbar.find('.btn-toolbar').remove()
+                $toolbar.find('.edui-btn-toolbar').remove()
             }
             return $toolbar;
         }
