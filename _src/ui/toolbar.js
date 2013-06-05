@@ -27,9 +27,12 @@
            this.data('$txtToolbar').append($item);
             return $item;
         },
-        appendToBtnmenu : function(data){
+        appendToBtnmenu : function(data,btngruopCss){
             var me = this,$cont = me.data('$btnToolbar');
             var $groupcont = $(me.btngrouptpl);
+            if(btngruopCss){
+                $groupcont.css(btngruopCss);
+            }
             if(!$.isArray(data)){
                 data = [data];
             }
@@ -37,6 +40,7 @@
                 $groupcont.append($btn)
             });
             $cont.append($groupcont)
+
         }
     });
 })();
