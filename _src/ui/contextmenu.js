@@ -46,16 +46,17 @@ UE.ui.define('contextmenu',{
                 $root.data('activesubmenu',$submenu);
             }else{
                 var sub = $root.data('activesubmenu');
-//                if(sub)
-//                    sub.edui().hide();
+                if(sub)
+                    sub.edui().hide();
             }
         });
         me.register('mouseover',$root,function(){
             var sub = $root.data('activesubmenu');
-//            if(sub){
-//                sub.edui().hide()
-//            }
+            if(sub){
+                sub.edui().hide()
+            }
         });
+
         $root.children('li[class!="disabled divider dropdown-submenu"]').click(function(){
             me.hide();
             var $this = $(this);

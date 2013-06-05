@@ -1,27 +1,24 @@
 /*modal 类*/
 UE.ui.define('modal', {
-    tpl: '<div id="help" class="modal hide" tabindex="-1" >' +
+    tpl: '<div class="modal hide" tabindex="-1" >' +
         '<div class="modal-header">' +
         '<button type="button" class="close" data-hide="modal">×</button>' +
-        '<h3><%=lang_title%></h3>' +
+        '<h3><%=title%></h3>' +
         '</div>' +
         '<div class="modal-body">' +
         '<iframe height="100%" width="100%" frameborder="0" src="<%=url%>"></iframe>' +
         ' </div>' +
-        '<% if(!nook) {%>' +
+        '<% if(cancellabel || oklabel) {%>' +
         '<div class="modal-footer">' +
-        '<button class="btn" data-hide="modal"><%=lang_hideButton%></button>' +
-        '<button class="btn btn-primary" data-ok="modal"><%=lang_okButton%></button>' +
+        '<%if(cancellabel){%><button class="btn" data-hide="modal"><%=cancellabel%></button><%}%>' +
+        '<%if(oklabel){%><button class="btn btn-primary" data-ok="modal"><%=oklabel%></button><%}%>' +
         '</div>' +
-        '<%}%>' +
-        '</div>',
+        '<%}%></div>',
     default: {
-        lang_title: "",
-        lang_hideButton:"",
-        lang_okButton:"",
-
+        title: "",
+        cancellabel:"",
+        oklabel:"",
         url: "",
-        nook: false,
         backdrop: true,
         keyboard: true,
         show: false

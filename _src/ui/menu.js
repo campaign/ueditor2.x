@@ -15,7 +15,8 @@ UE.ui.define('menu',{
     hide : function(){
         var $parentmenu;
         if($parentmenu = this.root().data('parentmenu')){
-            $parentmenu.edui().hide();
+            if($parentmenu.data('parentmenu'))
+                $parentmenu.edui().hide();
         }
         this.root().css('display','none');
     },
