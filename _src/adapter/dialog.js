@@ -1,30 +1,36 @@
-UE.registerUI('bold italic redo undo source underline strikethrough superscript subscript ' +
-    'pagebreak deletetable insertrow deleterow removeformat cleardoc selectall formatmatch pasteplain ' +
-    'insertparagraphbeforetable insertrow deleterow insertcol deletecol mergecells mergeright mergedown splittocells ' +
-    'splittorows splittocols unlink date time horizontal blockquote indent touppercase tolowercase snapscreen print preview justifyleft justifycenter justifyright justifyjustify',
-    function(name) {
+UE.registerUI('link',
+    function (name, mode) {
+        var me = this,
+            currentRange,
+            dialog = $.eduimodal({
+                title: (me.options.labelMap && me.options.labelMap[name]) || me.getLang("labelMap." + name),
+                url: me.options.UEDITOR_HOME_URL + '/dialogs/' + name + '/' + name + '.html',
+                oklabel: me.getLang('ok'),
+                cancellabel: me.getLang('cancel')
+            }).attr('id', name);
 
-        var me = this;
+        dialog.edui().on('hide', function () {
+            var rng = me.selection.getRange();
+            if (rng.equals(currentRange)) {
+                rng.select()
+            }
+        });
         var $btn = $.eduibutton({
-            icon : name,
-            click : function(){
-                //排版定制
-                if(/^justify/.test(name)){
-                    var para = name.replace(/^justify/);
-                    name = 'justify'
+            icon: name,
+            click: function () {
+                currentRange = me.selection.getRange();
+                if (!dialog.parent()[0]) {
+                    me.$container.find('.edui-dialog-container').append(dialog);
                 }
-                me.execCommand(name,para)
+                dialog.edui().show();
+                UE.setActiveEditor(me);
+                me.$activeDialog = dialog;
             },
             title: this.getLang('labelMap')[name] || ''
         });
 
-        this.addListener('selectionchange',function(){
-            //排版定制
-            if(/^justify/.test(name)){
-                var para = name.replace(/^justify/);
-                name = 'justify'
-            }
-            var state = this.queryCommandState(name,para);
+        me.addListener('selectionchange', function () {
+            var state = this.queryCommandState(name);
             $btn.edui().disabled(state == -1).active(state == 1)
         });
         return $btn;
