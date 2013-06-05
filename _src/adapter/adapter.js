@@ -7,42 +7,56 @@
 (function () {
     var _editorUI = {},
         _editors = {},
-        _editorModals = {},
         _activeEditor = null;
-    var _$eduiDialogsContainer;
 
-    function parseData(data, editor) {
+    function parseData(data, editor,parentData) {
         $.each(data, function (i, v) {
             if (v.label) {
                 if(!v.icon){
                     v.icon = v.exec;
                 }
-                if (v.data) {
-                    parseData(v.data, editor);
-                } else {
-                    var command;
-                    if(v.widget && _editorUI[v.widget]) {
-                        v.widget = $.proxy(_editorUI[v.widget],editor, v.widget,'menu')();
-                        if($.type(v.query) == 'string'){
-                            command = v.query;
-                            v.query = $.proxy(function(name){return this.queryCommandState(name)},editor,command);
+                if(v.dialog){
+                    v.exec = function(){
+                        var dialog = $.proxy(_editorUI[v.dialog],editor, v.dialog,'menu')();
+                        return function(){
+                            if (!dialog.parent()[0]) {
+                                editor.$container.find('.edui-dialog-container').append(dialog);
+                            }
+                            dialog.edui().show();
+                            UE.setActiveEditor(editor);
+                            editor.$activeDialog = dialog;
                         }
-                    }else{
-                        if ($.type(v.exec) == 'string') {
-                            command = v.exec;
-                            v.exec = $.proxy(function(name){this.execCommand(name)},editor,command);
-                            if (!v.query) {
+                    }();
+                    v.query = $.proxy(function(cmdName){return this.queryCommandState(cmdName)},editor,name);
+                }else {
+                    if (v.data) {
+                        parseData(v.data, editor,v);
+                    } else {
+                        var command;
+                        if(v.widget && _editorUI[v.widget]) {
+                            v.widget = $.proxy(_editorUI[v.widget],editor, v.widget,'menu')();
+                            if($.type(v.query) == 'string'){
+                                command = v.query;
                                 v.query = $.proxy(function(name){return this.queryCommandState(name)},editor,command);
                             }
-                        } else {
-                            var fn = v.exec;
-                            v.exec = $.proxy(fn, null, editor, v);
-                            var queryfn = v.query;
-                            v.query = $.proxy(queryfn, null, editor, v);
+                        }else{
+                            if ($.type(v.exec) == 'string') {
+                                command = v.exec;
+                                v.exec = $.proxy(function(name){this.execCommand(name)},editor,command);
+                                if (!v.query) {
+                                    v.query = $.proxy(function(name){return this.queryCommandState(name)},editor,command);
+                                }
+                            } else {
+                                var fn = v.exec;
+                                v.exec = $.proxy(fn, null, editor, v);
+                                var queryfn = v.query;
+                                v.query = $.proxy(queryfn, null, editor, v);
+                            }
                         }
-                    }
 
+                    }
                 }
+
 
             }
             if(v.shortkey){
@@ -174,7 +188,22 @@
                         ui && btngroup.push(ui);
                     });
                     toolbar.appendToBtnmenu(btngroup);
-                })
+                });
+                //收起menulist
+                toolbar.appendToBtnmenu($.eduibutton({
+                    icon:'expand',
+                    click:function(){
+                        var $i = this.root().find('i');
+                        if($i.hasClass('icon-expand')){
+                            $i[0].className = 'icon-collapse';
+                            $toolbar.find('.edui-text-toolbar').slideUp(200);
+                        }else{
+                            $i[0].className = 'icon-expand';
+                            $toolbar.find('.edui-text-toolbar').slideDown(200)
+                        }
+                    },
+                    title:editor.getLang('collapsebtn')
+                }),{'float':'right'})
 
             } else {
                 $toolbar.find('.edui-btn-toolbar').remove()

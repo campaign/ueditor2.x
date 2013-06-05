@@ -19,7 +19,10 @@
 
 </head>
 <body>
-<div id="editor" style="height:500px;width:1000px;"></div>
+<div style="margin:100px auto;">
+    <div id="editor" style="height:500px;width:1000px;"></div>
+</div>
+
 <script>
     UE.getEditor('editor',{
         menulist:[
@@ -36,16 +39,15 @@
                 {divider:1},
                 {label:'查找和替换','modal':'searchreplace',shortkey:'ctrl+shift+r'}
             ]},{label:'插入',data:[
-                {label:'图片',exec:function(){},icon:'image'},
-                {label:'视频',exec:function(){},icon:'video'},
-                {label:'音乐',exec:function(){},icon:'music'},
+                {label:'图片',dialog:'insertimage',icon:'image'},
+                {label:'视频',dialog:'insertvideo',icon:'video'},
+                {label:'音乐',dialog:'music',icon:'music'},
                 {divider:1},
-                {label:'链接',exec:function(){},icon:'link',shortkey:'ctrl+k'},
+                {label:'链接',dialog:'link',icon:'link',shortkey:'ctrl+k'},
                 {divider:1},
                 {label:'插入代码',exec:function(editor,name){
-
                 },icon:'code',data:[
-                    {label:'ActionScript3',exec:function(){}},
+                    {label:'ActionScript3',value:''},
                     {label:'C/C++',exec:function(){}},
                     {label:'Bash/Shell',exec:function(){}},
                     {label:'CodeFunction',exec:function(){}},
@@ -85,7 +87,7 @@
                 {label:'字体边框',exec:'fontborder',shortkey:'ctrl+shift+b'},
                 {divider:1},
                 {label:'段落',data:[
-                    {label:'<h1>H1</h1>',exec:'bold'},
+                    {label:'<h1>H1</h1>'},
                     {label:'<h2>H2</h2>',exec:'bold'},
                     {label:'<h3>H3</h3>',exec:'bold'},
                     {label:'<h4>H4</h4>',exec:'bold'},
