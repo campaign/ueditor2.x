@@ -86,7 +86,8 @@
             allHtmlEnabled: false,
             scaleEnabled: false,
             tableNativeEditInFF: false,
-            autoSyncData : true
+            autoSyncData : true,
+            iframeUrlMap:{}
         });
 
         utils.loadFile(document, {
