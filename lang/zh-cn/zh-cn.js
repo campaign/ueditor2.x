@@ -167,7 +167,7 @@ UE.I18N['zh-cn'] = {
          'pastemsg':"请使用 'Ctrl + v'执行复制操作",
         'highlightcode':'插入代码'
     },
-
+    'collapsebtn':'收起菜单栏',
     'anthorMsg':"链接",
     'clearColor':'清空颜色',
     'standardColor':'标准颜色',
