@@ -1,9 +1,10 @@
 (function () {
     var parent = window.parent;
-    //dialog对象
-    dialog = parent.$EDITORUI[window.frameElement.id.replace( /_iframe$/, '' )];
-    //当前打开dialog的编辑器实例
-    editor = dialog.editor;
+
+    editor = parent.UE.getActiveEditor();
+
+
+    dialog = editor.$activeDialog;
 
     UE = parent.UE;
 
@@ -14,6 +15,10 @@
     browser = UE.browser;
 
     ajax = UE.ajax;
+
+    $ = function(selector,context,rootQuery){
+        return parent.$(selector,context,rootQuery || document)
+    }
 
     $G = function ( id ) {
         return document.getElementById( id )
@@ -31,12 +36,12 @@
         }, 0 )
     };
     utils.loadFile(document,{
-        href:editor.options.themePath + editor.options.theme + "/dialogbase.css?cache="+Math.random(),
+        href:editor.options.themePath + editor.options.theme + "/" + editor.options.theme + '.css',
         tag:"link",
         type:"text/css",
         rel:"stylesheet"
     });
-    lang = editor.getLang(dialog.className.split( "-" )[2]);
+    lang = editor.getLang(dialog.attr('id'));
 
     domUtils.on(window,'load',function () {
 

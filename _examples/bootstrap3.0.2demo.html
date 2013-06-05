@@ -8,10 +8,6 @@
     <!--开发版-->
 
     <script src="../jquery.js"></script>
-    <link href="bootstrap3.0.2.css" rel="stylesheet"/>
-    <link href="../themes/font-awesome/css/font-awesome.css" rel="stylesheet"/>
-    <link href="../themes/default/_css/ueditor.css" rel="stylesheet"/>
-
 
     <script type="text/javascript" charset="utf-8" src="../ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="editor_api.js">
@@ -22,6 +18,7 @@
 <div id="editor" style="height:500px;width:1000px;"></div>
 <script>
     UE.getEditor('editor',{
+        theme:'bootstrap3',
         menulist:[
             {label:'文件',data:[
                 //如果没有给query,icon都是用exec给的名字
@@ -121,8 +118,7 @@
             'justifyleft justifycenter justifyright justifyjustify',
             'insertorderedlist insertunorderedlist',
             'inserttable',
-            'forecolor',
-            'fontfamily fontsize'
+            'forecolor fontfamily fontsize'
         ], 'insertorderedlist':{
             'decimal':'1,2,3...',
             'lower-alpha':'a,b,c...',

@@ -8,9 +8,9 @@
     <!--开发版-->
 
     <script src="../jquery.js"></script>
-    <link href="bootstrap.css" rel="stylesheet"/>
-    <link href="../themes/font-awesome/css/font-awesome.css" rel="stylesheet"/>
-    <link href="../themes/default/_css/ueditor.css" rel="stylesheet"/>
+    <!--<link href="bootstrap.css" rel="stylesheet"/>-->
+    <!--<link href="../themes/font/font.css" rel="stylesheet"/>-->
+    <!--<link href="../themes/default/_css/ueditor.css" rel="stylesheet"/>-->
 
 
     <script type="text/javascript" charset="utf-8" src="../ueditor.config.js"></script>
@@ -66,12 +66,12 @@
                 {label:'字体边框',exec:'fontborder',shortkey:'ctrl+shift+b'},
                 {divider:1},
                 {label:'段落',data:[
-                    {label:'<h1>H1</h1>',exec:'bold'},
-                    {label:'<h2>H2</h2>',exec:'bold'},
-                    {label:'<h3>H3</h3>',exec:'bold'},
-                    {label:'<h4>H4</h4>',exec:'bold'},
-                    {label:'<h5>H5</h5>',exec:'bold'},
-                    {label:'<h6>H6</h6>',exec:'bold'}
+                    {label:'<h1>H1</h1>'},
+                    {label:'<h2>H2</h2>'},
+                    {label:'<h3>H3</h3>'},
+                    {label:'<h4>H4</h4>'},
+                    {label:'<h5>H5</h5>'},
+                    {label:'<h6>H6</h6>'}
                 ]},
                 {divider:1},
                 {label:'清除格式',exec:'removeformat',shortkey:'ctrl+shift+t',icon:'removeformat'}
@@ -104,12 +104,12 @@
                 {label:'字体边框',exec:'fontborder',shortkey:'ctrl+shift+b'},
                 {divider:1},
                 {label:'段落',data:[
-                    {label:'<h1>H1</h1>',exec:'bold'},
-                    {label:'<h2>H2</h2>',exec:'bold'},
-                    {label:'<h3>H3</h3>',exec:'bold'},
-                    {label:'<h4>H4</h4>',exec:'bold'},
-                    {label:'<h5>H5</h5>',exec:'bold'},
-                    {label:'<h6>H6</h6>',exec:'bold'}
+                    {label:'<h1>H1</h1>'},
+                    {label:'<h2>H2</h2>'},
+                    {label:'<h3>H3</h3>'},
+                    {label:'<h4>H4</h4>'},
+                    {label:'<h5>H5</h5>'},
+                    {label:'<h6>H6</h6>'}
                 ]},
                 {divider:1},
                 {label:'清除格式',exec:'removeformat',shortkey:'ctrl+shift+t',icon:'removeformat'}
@@ -121,8 +121,8 @@
             'justifyleft justifycenter justifyright justifyjustify',
             'insertorderedlist insertunorderedlist',
             'inserttable',
-            'forecolor',
-            'fontfamily fontsize'
+                'link',
+            'forecolor fontfamily fontsize'
         ], 'insertorderedlist':{
             'decimal':'1,2,3...',
             'lower-alpha':'a,b,c...',

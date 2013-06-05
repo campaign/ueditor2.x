@@ -72,7 +72,7 @@
             'plugins/snapscreen.js',
             'plugins/insertparagraph.js',
             'plugins/webapp.js',
-            'plugins/template.tpl.js',
+            'plugins/template.js',
             'plugins/music.js',
             'ui/widget.js',
             'ui/button.js',
@@ -97,7 +97,8 @@
             'adapter/fontsize.js',
             'adapter/forecolor.js',
             'adapter/backcolor.js',
-            'adapter/elementpath.js'
+            'adapter/elementpath.js',
+            'adapter/dialog.js'
         ],
         baseURL = '../_src/';
     for (var i=0,pi;pi = paths[i++];) {
