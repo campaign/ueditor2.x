@@ -16,14 +16,12 @@
         'edittip':'table/edittip.html',
         'edittable':'table/edittable.html',
         'edittd':'table/edittd.html',
-        'webapp':'webapp/webapp.html',
         'snapscreen':'snapscreen/snapscreen.html',
         'scrawl':'scrawl/scrawl.html',
         'music':'music/music.html',
-        'template':'template/template.html',
         'background':'background/background.html'
     };
-    UE.registerUI('link insertimage insertvideo music',
+    UE.registerUI('link insertimage insertvideo music searchreplace',
         function (name, mode) {
 
             var me = this,
