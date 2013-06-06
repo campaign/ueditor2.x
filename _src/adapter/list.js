@@ -30,10 +30,17 @@ UE.registerUI('insertorderedlist insertunorderedlist ',
         $btn.edui().mergeWith($dropmenu);
 
         this.addListener('selectionchange',function(){
-            var val = this.queryCommandValue(name);
-            if(val){
-                $dropmenu.edui().val(val)
+
+            var state = this.queryCommandState(name);
+            if(state != -1){
+                var val = this.queryCommandValue(name);
+                if(val){
+                    $dropmenu.edui().val(val)
+                }
+            }else{
+                $btn.edui().disabled(true)
             }
+
         });
         return $btn;
     }
