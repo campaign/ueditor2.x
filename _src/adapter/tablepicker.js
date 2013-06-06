@@ -8,21 +8,23 @@ UE.registerUI('inserttable',
      *                  button => 返回一个eduibutton对象
      *                  menu => 返回一个eduitablepicker对象
      */
-    function( name, mode ) {
+    function( name, mode, item ) {
 
         var me = this,
             $btn = null;
 
-//        //querycommand
-//        this.addListener('selectionchange',function(){
-//            var state = this.queryCommandState( name );
-//            $btn.edui().disabled( state == -1 ).active( state == 1 );
-//        });
+        item && console.log(item.edui())
+
+        //querycommand
+        this.addListener('selectionchange',function(){
+            var state = this.queryCommandState( name );
+            $btn && $btn.edui().disabled( state == -1 ).active( state == 1 );
+        });
 
         return mode === 'menu' ? $.eduitablepicker({
             mode: mode
         }).on('select', function( evt, row, col ){
-                alert( row + ' , ' + col )
+                insertTable( row, col );
             }) :  ($btn = $.eduibutton({
             icon : 'inserttable',
             click : function() {
@@ -35,10 +37,7 @@ UE.registerUI('inserttable',
                     tablePickerWidget = $.eduitablepicker({
                         mode: mode
                     }).eduitablepicker( "attachTo", btnWidget.root() ).on('select', function( evt, row, col ){
-                            me.execCommand('inserttable', {
-                                numRows: row,
-                                numCols: col
-                            });
+                            insertTable( row, col );
                         }).edui();
                     btnWidget.data( 'tablepicker', tablePickerWidget );
                 }
@@ -46,7 +45,17 @@ UE.registerUI('inserttable',
                 tablePickerWidget.show();
 
             }
-        }))
+        }));
+
+
+        function insertTable( row, col ) {
+
+            me.execCommand('inserttable', {
+                numRows: row,
+                numCols: col
+            });
+
+        }
 
 
     }

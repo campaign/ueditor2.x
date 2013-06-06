@@ -29,13 +29,20 @@
 </div>
 
 <script>
+
+    var theme = location.href.match(/\?(.+)/);
+
+    theme = ( theme && theme[1] ) || 'default';
+
     $('select').change(function(){
 
         location.href = location.href.replace(/#/,'').replace(/\?.*$/,'') + '?' + this.value
 
-    }).val(location.href.match(/\?(.+)/)[1] || 'default')
+    }).val( theme )
+
+
     UE.getEditor('editor',{
-        theme:location.href.match(/\?(.+)/)[1] || 'default',
+        theme: theme,
         menulist:[
             {label:'文件',data:[
                 //如果没有给query,icon都是用exec给的名字

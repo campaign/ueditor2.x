@@ -1,13 +1,14 @@
 //button 类
 UE.ui.define('button', {
     tpl: '<button class="btn" <% if(title) {%> data-original-title="<%=title%>" <%};%>> ' +
-        '<% if(icon) {%><i class="icon-<%=icon%>"></i><% }; %><%if(text) {%><span class="edui-button-label"><%=text%></span><%}%>' +
+        '<% if(icon) {%><i class="icon-<%=icon%>"></i><% }; %><%if(text) {%><span class="edui-button-label<%if (width==="fontFamily") {%> edui-button-font-label<%}%>"><%=text%></span><%}%>' +
         '<%if(caret && text){%><span class="edui-button-spacing"></span><%}%>' +
         '<% if(caret) {%><span class="caret"></span><% };%></button>',
     default: {
         text: '',
         title: '',
         icon: '',
+        width: '',
         caret: false,
         click: function(){}
     },

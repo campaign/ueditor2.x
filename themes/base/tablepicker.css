@@ -11,14 +11,14 @@
 }
 
 .edui-tablepicker-selected-box {
-    background: url(../images/tablepicker/sel.png);
+    background: url(images/tablepicker/sel.png);
 }
 
 .edui-tablepicker-controller {
     position: relative;
     top: 0;
     left: 0;
-    background: url(../images/tablepicker/unsel.png);
+    background: url(images/tablepicker/unsel.png);
     z-index: 2;
 }
 
