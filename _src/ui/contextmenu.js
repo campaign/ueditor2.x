@@ -42,8 +42,11 @@ UE.ui.define('contextmenu',{
                     $submenu = $this.data('submenu');
                     $submenu.data('parentmenu',$this.parent());
                 }
-                $submenu.edui().show($this,'right','position',5,2);
-                $root.data('activesubmenu',$submenu);
+                if(!$this.hasClass('disabled')){
+                    $submenu.edui().show($this,'right','position',5,2);
+                    $root.data('activesubmenu',$submenu);
+                }
+
             }else{
                 var sub = $root.data('activesubmenu');
                 if(sub)

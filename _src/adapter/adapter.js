@@ -27,13 +27,16 @@
                             editor.$activeDialog = dialog;
                         }
                     }();
-                    v.query = $.proxy(function(cmdName){return this.queryCommandState(cmdName)},editor,name);
+                    v.query = $.proxy(function(cmdName){return this.queryCommandState(cmdName)},editor, v.dialog);
                 }else {
                     if (v.data) {
                         parseData(v.data, editor,v);
                     } else {
                         var command;
                         if(v.widget && _editorUI[v.widget]) {
+                            if(!v.query){
+                                v.query = v.widget;
+                            }
                             v.widget = $.proxy(_editorUI[v.widget],editor, v.widget,'menu')();
                             if($.type(v.query) == 'string'){
                                 command = v.query;
