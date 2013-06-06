@@ -19,12 +19,23 @@
 
 </head>
 <body>
-<div style="margin:100px auto;">
+<select>
+    <option value="default">bootstrap</option>
+    <option value="bootstrap3">bootstrap3</option>
+    <option value="todc">todc</option>
+</select>
+<div style="margin:0 auto;">
     <div id="editor" style="height:500px;width:1000px;"></div>
 </div>
 
 <script>
+    $('select').change(function(){
+
+        location.href = location.href.replace(/#/,'').replace(/\?.*$/,'') + '?' + this.value
+
+    }).val(location.href.match(/\?(.+)/)[1] || 'default')
     UE.getEditor('editor',{
+        theme:location.href.match(/\?(.+)/)[1] || 'default',
         menulist:[
             {label:'文件',data:[
                 //如果没有给query,icon都是用exec给的名字
@@ -37,7 +48,7 @@
                 {divider:1},
                 {label:'全选',exec:'selectall',shortkey:'ctrl+a'},
                 {divider:1},
-                {label:'查找和替换','modal':'searchreplace',shortkey:'ctrl+shift+r'}
+                {label:'查找和替换',dialog:'searchreplace',icon:'searchreplace',shortkey:'ctrl+shift+r'}
             ]},{label:'插入',data:[
                 {label:'图片',dialog:'insertimage',icon:'image'},
                 {label:'视频',dialog:'insertvideo',icon:'video'},
