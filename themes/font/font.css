@@ -1297,9 +1297,9 @@ ul.icons-ul > li .icon-li {
 .icon-newdocument:before {
     content: "\f016";
 }
-.icon-collapse:before {
+.icon-expand:before {
     content: "\f139";
 }
-.icon-expand:before {
+.icon-collapse:before {
     content: "\f13a";
 }
