@@ -13,11 +13,11 @@ UE.registerUI('inserttable',
         var me = this,
             $btn = null;
 
-        //querycommand
-        this.addListener('selectionchange',function(){
-            var state = this.queryCommandState( name );
-            $btn.edui().disabled( state == -1 ).active( state == 1 );
-        });
+//        //querycommand
+//        this.addListener('selectionchange',function(){
+//            var state = this.queryCommandState( name );
+//            $btn.edui().disabled( state == -1 ).active( state == 1 );
+//        });
 
         return mode === 'menu' ? $.eduitablepicker({
             mode: mode
