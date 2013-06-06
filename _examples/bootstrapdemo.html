@@ -33,9 +33,9 @@
 
         location.href = location.href.replace(/#/,'').replace(/\?.*$/,'') + '?' + this.value
 
-    }).val(location.href.match(/\?(.+)/)[1] || 'default')
+    }).val(location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default')
     UE.getEditor('editor',{
-        theme:location.href.match(/\?(.+)/)[1] || 'default',
+        theme:location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default',
         menulist:[
             {label:'文件',data:[
                 //如果没有给query,icon都是用exec给的名字
@@ -128,7 +128,7 @@
                 {label:'清除格式',exec:'removeformat',shortkey:'ctrl+shift+t',icon:'removeformat'}
             ]}
         ],toolbar:[
-                'source',
+            'source',
             'redo undo',
             'bold italic underline',
             'justifyleft justifycenter justifyright justifyjustify',
