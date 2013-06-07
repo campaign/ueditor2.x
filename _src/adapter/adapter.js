@@ -99,10 +99,10 @@
                 _editorUI[uiname] = fn;
             })
         },
-        getUI:function(editor,name){
+        getUI:function(editor,name,mode){
             var arg = Array.prototype.slice.call(arguments,1);
             if(_editorUI[name]){
-                return $.proxy(_editorUI[name],editor,name)()
+                return $.proxy(_editorUI[name],editor,name,mode)()
             }
             return null;
         },
