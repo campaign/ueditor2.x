@@ -16,9 +16,12 @@
 
     ajax = UE.ajax;
 
-    $ = function(selector,context,rootQuery){
-        return parent.$(selector,context,rootQuery || document)
-    }
+    $ = function( selector ) {
+        // The jQuery object is actually just the init constructor 'enhanced'
+        return new $.fn.init( selector, document);
+    };
+
+    parent.jQuery.extend(true,$,parent.jQuery);
 
     $G = function ( id ) {
         return document.getElementById( id )

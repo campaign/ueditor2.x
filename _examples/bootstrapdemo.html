@@ -38,11 +38,9 @@
 
         location.href = location.href.replace(/#/,'').replace(/\?.*$/,'') + '?' + this.value
 
-    }).val( theme )
-
-
+    }).val(location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default')
     UE.getEditor('editor',{
-        theme: theme,
+        theme:location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default',
         menulist:[
             {label:'文件',data:[
                 //如果没有给query,icon都是用exec给的名字
@@ -63,38 +61,53 @@
                 {divider:1},
                 {label:'链接',dialog:'link',icon:'link',shortkey:'ctrl+k'},
                 {divider:1},
-                {label:'插入代码',exec:function(editor,name){
-                },icon:'code',data:[
-                    {label:'ActionScript3',value:''},
-                    {label:'C/C++',exec:function(){}},
-                    {label:'Bash/Shell',exec:function(){}},
-                    {label:'CodeFunction',exec:function(){}},
-                    {label:'C#',exec:function(){}},
-                    {label:'Delphi',exec:function(){}},
-                    {label:'Diff',exec:function(){}}
-                ]},
+                {label:'插入代码',icon:'code',exec:'insertcode',data:[
+                    {label:'ActionScript3',value:'as3'},
+                    {label:'Bash/Shell',value:'bash'},
+                    {label:'C/C++',value:'cpp'},
+                    {label:'Css',value:'css'},
+                    {label:'CodeFunction',value:'cf'},
+                    {label:'C#',value:'c#'},
+                    {label:'Delphi',value:'delphi'},
+                    {label:'Diff',value:'diff'},
+                    {label:'Erlang',value:'erlang'},
+                    {label:'Groovy',value:'groovy'},
+                    {label:'Html',value:'html'},
+                    {label:'Java',value:'java'},
+                    {label:'JavaFx',value:'jfx'},
+                    {label:'Javascript',value:'js'},
+                    {label:'Perl',value:'pl'},
+                    {label:'Plain Text',value:'plain'},
+                    {label:'PowerShell',value:'ps'},
+                    {label:'Python',value:'python'},
+                    {label:'Ruby',value:'ruby'},
+                    {label:'Scala',value:'scala'},
+                    {label:'Sql',value:'sql'},
+                    {label:'Vb',value:'vb'},
+                    {label:'Xml',value:'xml'}
+                ]}
             ]},{label:'显示',data:[
                 {label:'预览',exec:'preview',shortkey:'ctrl+shift+p'},
                 {label:'全屏',exec:'fullscreen',icon:'fullscreen',shortkey:'ctrl+shift+f'}
             ]},{label:'格式',data:[
-                {label:'粗体',exec:'bold',icon:'bold',shortkey:'ctrl+b'},
-                {label:'斜体',exec:'italic',icon:'italic',shortkey:'ctrl+i'},
-                {label:'下划线',exec:'underline',icon:'underline',shortkey:'ctrl+u'},
-                {label:'删除线',exec:'strikethrough',icon:'strikethrough',shortkey:'ctrl+s'},
-                {label:'上标',exec:'superscript',icon:'superscript',shortkey:'ctrl+.'},
-                {label:'下标',exec:'subscript',icon:'subscript',shortkey:'ctrl+,'},
+                {label:'粗体',exec:'bold',shortkey:'ctrl+b'},
+                {label:'斜体',exec:'italic',shortkey:'ctrl+i'},
+                {label:'下划线',exec:'underline',shortkey:'ctrl+u'},
+                {label:'删除线',exec:'strikethrough',shortkey:'ctrl+s'},
+                {label:'上标',exec:'superscript',shortkey:'ctrl+.'},
+                {label:'下标',exec:'subscript',shortkey:'ctrl+,'},
                 {label:'字体边框',exec:'fontborder',shortkey:'ctrl+shift+b'},
                 {divider:1},
-                {label:'段落',data:[
-                    {label:'<h1>H1</h1>'},
-                    {label:'<h2>H2</h2>'},
-                    {label:'<h3>H3</h3>'},
-                    {label:'<h4>H4</h4>'},
-                    {label:'<h5>H5</h5>'},
-                    {label:'<h6>H6</h6>'}
+                {label:'段落',exec:'paragraph',data:[
+                    {label:'<h1>H1</h1>',value:'h1'},
+                    {label:'<h2>H2</h2>',value:'h2'},
+                    {label:'<h3>H3</h3>',value:'h3'},
+                    {label:'<h4>H4</h4>',value:'h4'},
+                    {label:'<h5>H5</h5>',value:'h5'},
+                    {label:'<h6>H6</h6>',value:'h6'}
                 ]},
                 {divider:1},
-                {label:'清除格式',exec:'removeformat',shortkey:'ctrl+shift+t',icon:'removeformat'}
+                {label:'清除格式',exec:'removeformat',shortkey:'ctrl+shift+t'}
             ]},{label:'表格',data:[
                 {label:'插入表格',icon:'inserttable',shortkey:'ctrl+shift+t',widget:'inserttable'},
                 {label:'斜体',exec:'italic',icon:'italic',shortkey:'ctrl+i'},
@@ -135,13 +148,13 @@
                 {label:'清除格式',exec:'removeformat',shortkey:'ctrl+shift+t',icon:'removeformat'}
             ]}
         ],toolbar:[
-                'source',
+            'source',
             'redo undo',
             'bold italic underline',
             'justifyleft justifycenter justifyright justifyjustify',
             'insertorderedlist insertunorderedlist',
-            'inserttable',
-                'link',
+            'inserttable link',
+
             'forecolor fontfamily fontsize'
         ], 'insertorderedlist':{
             'decimal':'1,2,3...',

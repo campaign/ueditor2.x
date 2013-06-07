@@ -12,10 +12,10 @@ UE.ui.define('menu',{
             }:{}))
         }
     },
-    hide : function(){
+    hide : function(all){
         var $parentmenu;
         if($parentmenu = this.root().data('parentmenu')){
-            if($parentmenu.data('parentmenu'))
+            if($parentmenu.data('parentmenu')|| all)
                 $parentmenu.edui().hide();
         }
         this.root().css('display','none');
