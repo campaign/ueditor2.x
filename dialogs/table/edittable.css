@@ -1,5 +1,4 @@
 .wrapper {
-    margin: 10px auto 0;
     font-size: 12px;
     overflow: hidden;
 }
@@ -21,25 +20,30 @@
 }
 
 .section {
-    margin-bottom: 20px;
-    overflow: hidden;
+    width: 300px;
 }
 
 .section h3 {
     font-weight: bold;
-    padding: 5px 0;
-    margin-bottom: 10px;
+    padding: 0;
+    margin: 0;
     border-bottom: 1px solid #EDEDED;
     font-size: 12px;
 }
 
 .section ul {
     list-style: none;
-    overflow: hidden;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.section input[type="radio"], input[type="checkbox"] {
+    margin: 0 5px 0 0;
 }
 
 .section li {
     float: left;
+    margin-right: 20px;
 }
 
 .section .tone {
@@ -72,4 +76,10 @@
     border-width: 2px 1px 1px 1px;
     height: 22px;
     background-color: #F7F7F7;
+}
+
+.colorpicker-input-box {
+    position: relative;
+    top: 0;
+    left: 0;
 }

@@ -5,7 +5,7 @@ UE.ui.define('modal', {
         '<button type="button" class="close" data-hide="modal">×</button>' +
         '<h3><%=title%></h3>' +
         '</div>' +
-        '<div class="modal-body">' +
+        '<div class="modal-body" style="width: 800px; height: 400px;">' +
         '<iframe height="100%" width="100%" frameborder="0" src="<%=url%>"></iframe>' +
         ' </div>' +
         '<% if(cancellabel || oklabel) {%>' +

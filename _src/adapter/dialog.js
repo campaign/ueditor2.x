@@ -21,7 +21,7 @@
         'music':'music/music.html',
         'background':'background/background.html'
     };
-    UE.registerUI('link insertimage insertvideo music searchreplace',
+    UE.registerUI('link insertimage edittable insertvideo music searchreplace',
         function (name, mode) {
 
             var me = this,

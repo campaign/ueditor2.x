@@ -21,41 +21,66 @@
     };
     editTable.prototype = {
         init:function () {
-            var colorPiker = new UE.ui.ColorPicker({
-                    editor:editor
-                }),
-                colorPop = new UE.ui.Popup({
-                    editor:editor,
-                    content:colorPiker
+            var colorPiker = $.eduicolorpicker({
+                lang_clearColor: editor.getLang('clearColor') || '',
+                lang_themeColor: editor.getLang('themeColor') || '',
+                lang_standardColor: editor.getLang('standardColor') || ''
+            }).edui().on('pickcolor', function( evt, color ){
+                fontIcon.css("color", color);
+                me.execCommand( name, color );
+            });
+
+
+            var $container = $(window.frameElement).parents('.modal'),
+                $tone = $(tone);
+
+            colorPiker.root().appendTo( $container );
+
+            //重写一下show
+            colorPiker.show = function(){
+
+                var inputOffset = $tone.offset();
+
+                this.root().css({
+                    top: inputOffset.top + 'px',
+                    left: inputOffset.left + 'px'
                 });
+                this.root().css('display', 'block');
+            };
 
-            title.checked = editor.queryCommandState("inserttitle") == -1;
-            caption.checked = editor.queryCommandState("insertcaption") == -1;
+            $tone.on('focus', function( evt ){
 
-            me.createTable(title.checked, caption.checked);
-            me.setAutoSize();
-            me.setColor(me.getColor());
+                colorPiker.show();
 
-            domUtils.on(title, "click", me.titleHanler);
-            domUtils.on(caption, "click", me.captionHanler);
-            domUtils.on(sorttable, "click", me.sorttableHanler);
-            domUtils.on(autoSizeContent, "click", me.autoSizeContentHanler);
-            domUtils.on(autoSizePage, "click", me.autoSizePageHanler);
+            });
 
-            domUtils.on(tone, "click", function () {
-                colorPop.showAnchor(tone);
-            });
-            domUtils.on(document, 'mousedown', function () {
-                colorPop.hide();
-            });
-            colorPiker.addListener("pickcolor", function () {
-                me.setColor(arguments[1]);
-                colorPop.hide();
-            });
-            colorPiker.addListener("picknocolor", function () {
-                me.setColor("");
-                colorPop.hide();
-            });
+//            title.checked = editor.queryCommandState("inserttitle") == -1;
+//            caption.checked = editor.queryCommandState("insertcaption") == -1;
+//
+//            me.createTable(title.checked, caption.checked);
+//            me.setAutoSize();
+//            me.setColor(me.getColor());
+//
+//            domUtils.on(title, "click", me.titleHanler);
+//            domUtils.on(caption, "click", me.captionHanler);
+//            domUtils.on(sorttable, "click", me.sorttableHanler);
+//            domUtils.on(autoSizeContent, "click", me.autoSizeContentHanler);
+//            domUtils.on(autoSizePage, "click", me.autoSizePageHanler);
+//
+//            domUtils.on(tone, "click", function () {
+//                colorPop.showAnchor(tone);
+//            });
+//            domUtils.on(document, 'mousedown', function () {
+//                colorPop.hide();
+//            });
+//            colorPiker.addListener("pickcolor", function () {
+//                me.setColor(arguments[1]);
+//                colorPop.hide();
+//            });
+//            colorPiker.addListener("picknocolor", function () {
+//                me.setColor("");
+//                colorPop.hide();
+//            });
         },
 
         createTable:function (hasTitle, hasCaption) {
