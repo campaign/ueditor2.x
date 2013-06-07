@@ -2,12 +2,13 @@
 UE.ui.define('tab', {
     init: function (options) {
         var me = this,
+            cxt=options.context,
             slr = options.selector;
 
         if ($.type(slr)) {
-            me.root($(slr));
+            me.root($(slr,cxt));
 
-            $(slr).on('click', function (e) {
+            $(slr,cxt).on('click', function (e) {
                 e.preventDefault()
                 me.show(e)
             })
