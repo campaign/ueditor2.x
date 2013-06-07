@@ -4,7 +4,7 @@
 .edui-modal-body{
     max-height: 100%;
 }
-.modal-body iframe{
+.edui-modal-body iframe{
     border: 0;
     padding: 0;
     margin: 0;
@@ -13,6 +13,6 @@
 
 /*link*/
 .edui-link-body{
-    width:350px;
+    width:400px;
     height:230px;
 }
