@@ -33,7 +33,7 @@
 
 .section ul {
     list-style: none;
-    padding: 5px 0;
+    padding: 15px 0;
     margin: 0;
 }
 
@@ -51,10 +51,11 @@
 }
 
 .section .preview {
-    width: 220px;
+    width: 300px;
 }
 
 .section .preview table {
+    margin-top: 15px;
     text-align: center;
     vertical-align: middle;
     color: #666;
