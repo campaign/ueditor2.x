@@ -93,10 +93,7 @@
             'adapter/button.js',
             'adapter/list.js',
             'adapter/tablepicker.js',
-            'adapter/fontfamily.js',
-            'adapter/fontsize.js',
-            'adapter/forecolor.js',
-            'adapter/backcolor.js',
+            'adapter/font.js',
             'adapter/elementpath.js',
             'adapter/dialog.js'
         ],
