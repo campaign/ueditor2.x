@@ -44,7 +44,8 @@
         type:"text/css",
         rel:"stylesheet"
     });
-    lang = editor.getLang(dialog.attr('id'));
+
+    lang = editor.getLang(dialog.attr('id').replace(/^edui-/,''));
 
     domUtils.on(window,'load',function () {
 

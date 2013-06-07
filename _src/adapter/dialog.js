@@ -31,7 +31,8 @@
                     url: me.options.UEDITOR_HOME_URL + '/dialogs/' + (me.options.iframeUrlMap[name] || iframeUrlMap[name]),
                     oklabel: me.getLang('ok'),
                     cancellabel: me.getLang('cancel')
-                }).attr('id', name);
+                });
+            dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
 
             dialog.edui().on('hide', function () {
                 var rng = me.selection.getRange();

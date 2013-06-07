@@ -56,7 +56,19 @@
                 {divider:1},
                 {label:'链接',dialog:'link',icon:'link',shortkey:'ctrl+k'},
                 {divider:1},
-                {label:'插入代码',icon:'code',exec:'insertcode',data:[
+                {label:'插入代码',icon:'code',exec:'insertcode',value:function(editor,name,evt){
+                    var root = this.root(),value = editor.queryCommandValue(name);
+                    root.find('li').each(function(index,li){
+                        var $li = $(li);
+                        if($li.data('value') === value){
+                            $li.find('i').addClass('icon-ok')
+                        }else{
+                            $li.find('i').removeClass('icon-ok')
+                        }
+                    })
+
+
+                },data:[
                     {label:'ActionScript3',value:'as3'},
                     {label:'Bash/Shell',value:'bash'},
                     {label:'C/C++',value:'cpp'},
@@ -93,7 +105,19 @@
                 {label:'下标',exec:'subscript',shortkey:'ctrl+,'},
                 {label:'字体边框',exec:'fontborder',shortkey:'ctrl+shift+b'},
                 {divider:1},
-                {label:'段落',exec:'paragraph',data:[
+                {label:'段落',exec:'paragraph',value:function(editor,name){
+                    var root = this.root(),value = editor.queryCommandValue(name);
+                    root.find('li').each(function(index,li){
+                        var $li = $(li);
+                        if($li.data('value') === value.toLowerCase()){
+                            $li.find('i').addClass('icon-ok')
+                        }else{
+                            $li.find('i').removeClass('icon-ok')
+                        }
+                    })
+
+
+                },data:[
                     {label:'<h1>H1</h1>',value:'h1'},
                     {label:'<h2>H2</h2>',value:'h2'},
                     {label:'<h3>H3</h3>',value:'h3'},

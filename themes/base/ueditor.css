@@ -1,4 +1,4 @@
-
+@import "dialog.css";
 /*通用基础样式*/
 @import "common.css";
 
@@ -24,3 +24,4 @@
 @import "elementpath.css";
 
 @import "combobox.css";
+
