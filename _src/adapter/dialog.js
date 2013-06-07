@@ -21,7 +21,7 @@
         'music':'music/music.html',
         'background':'background/background.html'
     };
-    UE.registerUI('link insertimage insertvideo music searchreplace',
+    UE.registerUI('link insertimage edittable edittd edittip insertvideo music searchreplace',
         function (name, mode) {
 
             var me = this,
@@ -32,8 +32,8 @@
                     oklabel: me.getLang('ok'),
                     cancellabel: me.getLang('cancel')
                 });
-            dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
 
+            dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
 
             dialog.edui().on('hide', function () {
                 var rng = me.selection.getRange();
