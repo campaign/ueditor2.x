@@ -15,15 +15,9 @@ UE.ui.define('contextmenu',{
                 $root.append($('<li class="divider"></li>'));
             }else{
                 if(v.data){
-                    $('<li class="dropdown-submenu edui-contextsubmenu"><em class="edui-contextmenu-icon"></em><a tabindex="-1" href="#"><em class="edui-contextmenu-icon"></em>'+ v.label+'</a></li>')
-                        .appendTo($root)
-                        .data({
-                            'submenu-data':v.data,
-                            'contextmenu-data':v
-                        })
+                    $('<li class="dropdown-submenu edui-contextsubmenu"><em class="edui-contextmenu-icon"></em><a tabindex="-1" href="#"><em class="edui-contextmenu-icon"></em>'+ v.label+'</a></li>').appendTo($root).data('submenu-data', v.data);
                 }else {
-                    var $li = $('<li '+( 'data-value="'+ (v.value|| v.label)+'" ')+'>'+ $.parseTmpl(me.tmpl, $.extend2(v,me.defaultItem,true)) +'</li>').appendTo($root)
-                        .data('exec', v.exec||emptyFn).data('query', v.query||emptyFn).data('value', v.value||'');
+                    var $li = $('<li '+( 'data-value="'+ (v.value|| v.label)+'" ')+'>'+ $.parseTmpl(me.tmpl, $.extend2(v,me.defaultItem,true)) +'</li>').appendTo($root).data('exec', v.exec||emptyFn).data('query', v.query||emptyFn);
                     if(v.widget){
                         $li.data('widget', v.widget)
                     }
@@ -43,13 +37,7 @@ UE.ui.define('contextmenu',{
                     var subdata = $this.data('submenu-data');
 
                     if(subdata){
-                        $submenu = $.eduicontextmenu(subdata);
-                        var valFn = $this.data('contextmenu-data').value;
-
-                        if($.isFunction(valFn)){
-                            $submenu.edui().on('beforeshow',valFn);
-                        }
-                        $this.data('submenu-data','').data('submenu',$submenu.appendTo($root))
+                        $this.data('submenu-data','').data('submenu',$.eduicontextmenu(subdata).appendTo($root))
                     }
                     $submenu = $this.data('submenu');
                     $submenu.data('parentmenu',$this.parent());

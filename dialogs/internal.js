@@ -44,6 +44,7 @@
         type:"text/css",
         rel:"stylesheet"
     });
+
     utils.loadFile(document,{
         href:editor.options.themePath + editor.options.theme + "/base/ueditor.css",
         tag:"link",

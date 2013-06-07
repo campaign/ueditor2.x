@@ -15,10 +15,6 @@
                 if(!v.icon){
                     v.icon = v.exec;
                 }
-                if(v.value && $.isFunction(v.value)){
-                    var tmpFn = v.value;
-                    v.value = $.proxy(tmpFn,null,editor, v.exec)
-                }
                 if(v.dialog){
                     v.exec = function(){
                         var dialog = $.proxy(_editorUI[v.dialog],editor, v.dialog,'menu')();

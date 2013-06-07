@@ -1,4 +1,18 @@
-.edui-link-body{
+.modal{
+    width:auto;
+}
+.modal-body{
+    max-height: 100%;
+}
+.modal-body iframe{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
 
-     height:400px;
+/*link*/
+.edui-link-body{
+    width:350px;
+    height:230px;
 }
