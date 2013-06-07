@@ -40,7 +40,7 @@
                 //可用项列表
                 items: [],
                 itemCount: 0,
-		//item对应的值列表
+		        //item对应的值列表
                 value: [],
                 //自动记录
                 autoRecord: true,
@@ -53,6 +53,7 @@
 
                 var btnWidget = $.eduibutton({
                     caret: true,
+                    width: options.mode,
                     text: options.label,
                     click: $.proxy( me.open, me )
                 });
@@ -109,6 +110,7 @@
             selectItem: function( index ){
 
                 var itemCount = this.data('options').itemCount,
+                    items = this.data('options').autowidthitem,
                     currentItem = null,
                     selector = null;
 
@@ -133,7 +135,7 @@
                 if( currentItem.length ) {
 
                     //更改按钮标签内容
-                    this.box().eduibutton('label', currentItem.find(".edui-combobox-label").text() );
+                    this.box().eduibutton('label', items[ index ] );
                     this.selectByItemNode( currentItem[0] );
 
                     return currentItem[0];
@@ -213,6 +215,8 @@
 
             }
 
+            options.autowidthitem = options.autowidthitem || options.items;
+
             return options;
 
         }
@@ -226,16 +230,53 @@
             options.itemStyles = [];
             options.value = [];
 
+            options.autowidthitem = [];
+
             for( var i = 0, len = fontFamily.length; i < len; i++ ) {
 
                 temp = fontFamily[ i ].val;
                 tempItems.push( temp.split(/\s*,\s*/)[0] );
                 options.itemStyles.push('font-family: ' + temp);
                 options.value.push( temp );
+                options.autowidthitem.push( wordCountAdaptive( tempItems[ i ] ) );
 
             }
 
             options.items = tempItems;
+
+        }
+
+        /**
+         * 执行宽度自适应
+         */
+        function wordCountAdaptive( word, hasSuffix ) {
+
+            var tmpNode = document.createElement('span');
+
+            tmpNode.innerHTML = word;
+
+            tmpNode.style.cssText = 'display: inline; position: absolute; top: -10000000px; left: -100000px;';
+
+            document.body.appendChild( tmpNode );
+
+            if( tmpNode.offsetWidth < 50 ) {
+
+                return word;
+
+            } else {
+
+                word = word.slice( 0, hasSuffix ? -4 : -1 );
+
+                if( word.length ===  0 ) {
+                    return '...';
+                }
+
+                return wordCountAdaptive( word + '...', true );
+
+            }
+
+
+            tmpNode = null;
 
         }
 

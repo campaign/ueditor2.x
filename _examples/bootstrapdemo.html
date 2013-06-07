@@ -29,6 +29,11 @@
 </div>
 
 <script>
+
+    var theme = location.href.match(/\?(.+)/);
+
+    theme = ( theme && theme[1] ) || 'default';
+
     $('select').change(function(){
 
         location.href = location.href.replace(/#/,'').replace(/\?.*$/,'') + '?' + this.value
@@ -92,7 +97,7 @@
                     {label:'Sql',value:'sql'},
                     {label:'Vb',value:'vb'},
                     {label:'Xml',value:'xml'}
-                ]},
+                ]}
             ]},{label:'显示',data:[
                 {label:'预览',exec:'preview',shortkey:'ctrl+shift+p'},
                 {label:'全屏',exec:'fullscreen',icon:'fullscreen',shortkey:'ctrl+shift+f'}

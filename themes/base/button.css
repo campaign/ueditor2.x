@@ -5,3 +5,11 @@
 .edui-button-spacing{
     padding:5px;
 }
+
+.edui-button-font-label {
+    width: 50px;
+    overflow: hidden;
+    display: inline-block;
+    text-align: left;
+    *zoom: 1;
+}
