@@ -38,6 +38,20 @@
                                 data.query = $.proxy(function(name,val){return this.queryCommandState(name,val)},editor, v.exec, data.value||'')
                             }
                         });
+
+                        v.value = $.proxy(function(editor,name){
+                            var root = this.root(),value = editor.queryCommandValue(name);
+                            root.find('li').each(function(index,li){
+                                var $li = $(li);
+                                if($li.data('value') === value.toLowerCase()){
+                                    $li.find('i').addClass('icon-ok')
+                                }else{
+                                    $li.find('i').removeClass('icon-ok')
+                                }
+                            })
+
+
+                        },null,editor, v.exec);
                         parseData(v.data, editor,v);
                     } else {
                         var command;

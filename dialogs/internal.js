@@ -44,7 +44,14 @@
         type:"text/css",
         rel:"stylesheet"
     });
-    lang = editor.getLang(dialog.attr('id'));
+
+    utils.loadFile(document,{
+        href:editor.options.themePath + editor.options.theme + "/base/ueditor.css",
+        tag:"link",
+        type:"text/css",
+        rel:"stylesheet"
+    });
+    lang = editor.getLang(dialog.attr('id').replace(/^edui-/,''));
 
     domUtils.on(window,'load',function () {
 
