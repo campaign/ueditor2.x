@@ -10,8 +10,8 @@ UE.ui.define ( 'modal' , {
         ' </div>' +
         '<% if(cancellabel || oklabel) {%>' +
         '<div class="modal-footer">' +
-        '<%if(cancellabel){%><button class="btn" data-hide="modal"><%=cancellabel%></button><%}%>' +
         '<%if(oklabel){%><button class="btn btn-primary" data-ok="modal"><%=oklabel%></button><%}%>' +
+        '<%if(cancellabel){%><button class="btn" data-hide="modal"><%=cancellabel%></button><%}%>' +
         '</div>' +
         '<%}%></div>' ,
     default : {
