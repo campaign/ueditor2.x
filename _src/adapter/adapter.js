@@ -9,7 +9,7 @@
         _editors = {},
         _activeEditor = null;
 
-    function parseData(data, editor,parentData) {
+    function parseData(data, editor) {
         $.each(data, function (i, v) {
             if (v.label) {
                 if(!v.icon){
@@ -30,6 +30,14 @@
                     v.query = $.proxy(function(cmdName){return this.queryCommandState(cmdName)},editor, v.dialog);
                 }else {
                     if (v.data) {
+                        $.each(v.data,function(i,data){
+                           if(!data.exec && v.exec && $.type(v.exec) == 'string'){
+                                data.exec = $.proxy(function(name,val){this.execCommand(name,val)},editor, v.exec, data.value||'')
+                           }
+                            if(!data.query && (!v.query || !$.isFunction(v.query))){
+                                data.query = $.proxy(function(name,val){return this.queryCommandState(name,val)},editor, v.exec, data.value||'')
+                            }
+                        });
                         parseData(v.data, editor,v);
                     } else {
                         var command;
