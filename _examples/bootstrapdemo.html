@@ -39,7 +39,7 @@
         location.href = location.href.replace(/#/,'').replace(/\?.*$/,'') + '?' + this.value
 
     }).val(location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default')
-    UE.getEditor('editor',{
+    window.tt = UE.getEditor('editor',{
         theme:location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default',
         menulist:[
             {label:'文件',data:[

@@ -90,6 +90,7 @@
             'ui/tab.js',
             'ui/elementpath.js',
             'adapter/adapter.js',
+            'adapter/ready.js',
             'adapter/button.js',
             'adapter/list.js',
             'adapter/tablepicker.js',

@@ -7,6 +7,7 @@
 (function () {
     var _editorUI = {},
         _editors = {},
+        _readyFn = [],
         _activeEditor = null;
 
     function parseData(data, editor) {
@@ -122,6 +123,9 @@
             return _editors[id] || (_editors[id] = this.createEditor(id, options));
 
         },
+        ready: function( fn ){
+            _readyFn.push( fn );
+        },
         createEditor: function (id, opt) {
             var editor = new UE.Editor(opt);
 
@@ -149,7 +153,15 @@
             editor.langIsReady ? $.proxy(renderUI,this) : editor.addListener("langReady", $.proxy(renderUI,this));
             function renderUI(){
                 var $container = this.createUI('#' + id, editor);
+
                 editor.ready(function(){
+
+                    $.each( _readyFn, function( index, fn ){
+
+                        $.proxy( fn, editor )();
+
+                    } );
+
                     this.addListener('click',function(){
                         $container.find('.dropdown-menu').each(function(){
                             $(this).edui().hide()
