@@ -61,7 +61,7 @@ UE.ui.define('contextmenu',{
         });
 
         $root.children('li[class!="disabled divider dropdown-submenu"]').click(function(){
-            me.hide();
+            me.hide(true);
             var $this = $(this);
             $this.data('exec')($this.data('value'));
 
