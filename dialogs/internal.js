@@ -20,7 +20,6 @@
         // The jQuery object is actually just the init constructor 'enhanced'
         return new $.fn.init( selector, document);
     };
-
     parent.jQuery.extend(true,$,parent.jQuery);
 
     $G = function ( id ) {
@@ -46,7 +45,7 @@
     });
 
     utils.loadFile(document,{
-        href:editor.options.themePath + editor.options.theme + "/base/ueditor.css",
+        href:editor.options.themePath + "/base/ueditor.css",
         tag:"link",
         type:"text/css",
         rel:"stylesheet"
