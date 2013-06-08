@@ -259,7 +259,13 @@
 
             document.body.appendChild( tmpNode );
 
-            if( tmpNode.offsetWidth < 50 ) {
+            var width = tmpNode.offsetWidth;
+
+            document.body.removeChild( tmpNode );
+
+            tmpNode = null;
+
+            if( width < 50 ) {
 
                 return word;
 
@@ -275,8 +281,6 @@
 
             }
 
-
-            tmpNode = null;
 
         }
 
