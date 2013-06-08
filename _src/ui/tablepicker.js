@@ -46,7 +46,7 @@
          * @param {widget object} target
          * @returns {undefined} undefined
          */
-        default: {
+        defaultOpt: {
             maxRowNum: 20,
             maxColNum: 20,
             rowCount: 10,

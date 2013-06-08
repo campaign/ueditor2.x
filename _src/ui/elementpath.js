@@ -1,7 +1,7 @@
 //elementpath 类
 UE.ui.define('elementpath',{
     tmpl:'<ul class="edui-elementpath"><%for(var i=0,ci;ci=data[i++];){%><li><a href="#"><%=ci.label%></a><%if(data[i]){%><span class="divider">/</span><%}%></li><%}%></ul>',
-    default:{
+    defaultOpt:{
         data:[]
     },
     init : function(options){

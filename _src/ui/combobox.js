@@ -32,7 +32,7 @@
                         '</ul>';
 
             },
-            default: {
+            defaultOpt: {
                 //按钮初始文字
                 label: '',
                 //记录栈初始列表
