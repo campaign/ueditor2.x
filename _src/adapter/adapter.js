@@ -15,7 +15,7 @@
         $.each(data, function (i, v) {
             if (v.label) {
                 if(!v.icon){
-                    v.icon = v.exec;
+                    v.icon = v.exec || v.dialog || v.widget;
                 }
                 if(v.dialog){
                     v.exec = function(){
