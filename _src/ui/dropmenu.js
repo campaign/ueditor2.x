@@ -8,7 +8,7 @@ UE.ui.define('dropmenu',{
                 '</li><%}%>' +
             '<%}%>' +
         '</ul>',
-    default:{
+    defaultOpt:{
         data:[],
         click:function(){}
     },

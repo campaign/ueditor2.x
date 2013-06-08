@@ -1,9 +1,10 @@
 window.onload = function () {
+
     editor.setOpt({
         emotionLocalization:false
     });
 
-    emotion.SmileyPath = editor.options.emotionLocalization === true ? 'images/' : "http://img.baidu.com/hi/";
+    emotion.SmileyPath = true ? 'images/' : "http://img.baidu.com/hi/";
     emotion.SmileyBox = createTabList( emotion.tabNum );
     emotion.tabExist = createArr( emotion.tabNum );
 
@@ -12,8 +13,8 @@ window.onload = function () {
 };
 
 function initImgName() {
-    for ( var pro in emotion.SmilmgName ) {
-        var tempName = emotion.SmilmgName[pro],
+    for ( var pro in emotion.SmilingName ) {
+        var tempName = emotion.SmilingName[pro],
                 tempBox = emotion.SmileyBox[pro],
                 tempStr = "";
 
@@ -57,7 +58,7 @@ function InsertSmiley( url, evt ) {
 
 function switchTab( index ) {
 
-    autoHeight( index );
+//    autoHeight( index );
     if ( emotion.tabExist[index] == 0 ) {
         emotion.tabExist[index] = 1;
         createTab( 'tab' + index );

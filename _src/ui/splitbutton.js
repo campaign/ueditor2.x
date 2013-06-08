@@ -6,7 +6,7 @@ UE.ui.define('splitbutton',{
                 '<span class="caret"><\/span>'+
             '</button>'+
         '</div>',
-    default:{
+    defaultOpt:{
         text:'',
         title:'',
         click:function(){}

@@ -8,7 +8,8 @@
     var _editorUI = {},
         _editors = {},
         _readyFn = [],
-        _activeEditor = null;
+        _activeEditor = null,
+        _activeWidget = null;
 
     function parseData(data, editor) {
         $.each(data, function (i, v) {
@@ -25,7 +26,6 @@
                             }
                             dialog.edui().show();
                             UE.setActiveEditor(editor);
-                            editor.$activeDialog = dialog;
                         }
                     }();
                     v.query = $.proxy(function(cmdName){return this.queryCommandState(cmdName)},editor, v.dialog);
@@ -100,7 +100,6 @@
             })
         },
         getUI:function(editor,name,mode){
-            var arg = Array.prototype.slice.call(arguments,1);
             if(_editorUI[name]){
                 return $.proxy(_editorUI[name],editor,name,mode)()
             }
@@ -109,7 +108,8 @@
         setActiveEditor:function(editor){
             _activeEditor = editor;
         },
-        getActiveEditor: function () {
+        getActiveEditor: function ($widget) {
+
             var ac;
             utils.each(UE.instants, function (editor) {
                 if (editor.selection.isFocus()) {
@@ -117,7 +117,30 @@
                     return false;
                 }
             });
-            return ac || _activeEditor;
+
+            if(ac){
+                return ac;
+            }
+            var $container = $widget.parents('.edui-container');
+            if(_activeEditor){
+                if($container[0] === _activeEditor.container){
+                    return _activeEditor
+                }
+            }
+            $.each(_editors,function(id,val){
+                if(val.container === $container[0]){
+                    ac = val;
+                    return false;
+                }
+            });
+            return ac;
+
+        },
+        setActiveWidget : function($widget){
+            _activeWidget = $widget;
+        },
+        getActiveWidget : function(){
+            return  _activeWidget
         },
         getEditor: function (id, options) {
             return _editors[id] || (_editors[id] = this.createEditor(id, options));
@@ -128,7 +151,7 @@
         },
         createEditor: function (id, opt) {
             var editor = new UE.Editor(opt);
-
+            var T = this;
             utils.loadFile(document,{
                 href: editor.options.themePath + editor.options.theme + "/" + editor.options.theme + '.css',
                 tag:"link",
@@ -146,48 +169,46 @@
                         tag:"link",
                         type:"text/css",
                         rel:"stylesheet"
+                    },function(){
+                        editor.langIsReady ? $.proxy(renderUI,T)() : editor.addListener("langReady", $.proxy(renderUI,T));
+                        function renderUI(){
+                            var $container = this.createUI('#' + id, editor);
+
+                            editor.ready(function(){
+
+                                $.each( _readyFn, function( index, fn ){
+
+                                    $.proxy( fn, editor )();
+
+                                } );
+
+
+                            });
+
+                            editor.render(id);
+                            $container.css({
+                                width: $(editor.iframe).width()
+                            });
+
+                            //添加tooltip;
+                            $.eduitooltip('attachTo');
+                            $container.find('a').click(function(evt){
+                                evt.preventDefault()
+                            })
+                        }
                     })
                 })
             });
 
-            editor.langIsReady ? $.proxy(renderUI,this) : editor.addListener("langReady", $.proxy(renderUI,this));
-            function renderUI(){
-                var $container = this.createUI('#' + id, editor);
 
-                editor.ready(function(){
-
-                    $.each( _readyFn, function( index, fn ){
-
-                        $.proxy( fn, editor )();
-
-                    } );
-
-                    this.addListener('click',function(){
-                        $container.find('.dropdown-menu').each(function(){
-                            $(this).edui().hide()
-                        })
-                    })
-                });
-
-                editor.render(id);
-                $container.css({
-                    width: $(editor.iframe).width()
-                });
-
-                //添加tooltip;
-                $.eduitooltip('attachTo');
-                $container.find('a').click(function(evt){
-                    evt.preventDefault()
-                })
-            }
-
+            return editor;
 
         },
         createUI: function (id, editor) {
             var $editorCont = $(id),
                 $container = $('<div class="edui-container"><div class="edui-editor-body"></div><div class="edui-dialog-container"></div></div>').insertBefore($editorCont);
             editor.$container = $container;
-            editor.container = $container.get();
+            editor.container = $container[0];
             $container.find('.edui-editor-body').append($editorCont).before(this.createToolbar(editor.options, editor));
 
             if(editor.options.elementpath || editor.options.wordCount){

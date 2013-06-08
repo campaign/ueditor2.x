@@ -69,18 +69,18 @@
         return obj ? this.data('eduiwidget',obj) : this.data('eduiwidget');
     };
 
-    function _createClass(Class,properties,supperClass){
-        Class.prototype = $.extend2(
+    function _createClass(ClassObj,properties,supperClass){
+        ClassObj.prototype = $.extend2(
             $.extend({},properties),
             (UE.ui[supperClass]||_widget).prototype,
             true
         );
-        Class.prototype.supper =  (UE.ui[supperClass]||_widget).prototype;
-        return Class
+        ClassObj.prototype.supper =  (UE.ui[supperClass]||_widget).prototype;
+        return ClassObj
     }
     var _guid = 1;
-    function mergeToJQ(Class,className){
-        $[_prefix + className] = Class;
+    function mergeToJQ(ClassObj,className){
+        $[_prefix + className] = ClassObj;
         $.fn[_prefix + className] = function(opt){
             var result,args = Array.prototype.slice.call(arguments,1);
 
@@ -88,7 +88,7 @@
                 var $this = $(el);
                 var obj = $this.edui();
                 if(!obj){
-                    Class(!opt || !$.isPlainObject(opt) ? {} : opt,$this);
+                    ClassObj(!opt || !$.isPlainObject(opt) ? {} : opt,$this);
                     $this.edui(obj)
                 }
                 if($.type(opt) == 'string'){
@@ -110,9 +110,9 @@
     }
     UE.ui = {
         define : function(className,properties,supperClass){
-            var Class = UE.ui[className] = _createClass(function(options,$el){
+            var ClassObj = UE.ui[className] = _createClass(function(options,$el){
                     var _obj = function(){};
-                    $.extend(_obj.prototype,Class.prototype,{
+                    $.extend(_obj.prototype,ClassObj.prototype,{
                             guid : className + _guid++,
                             widgetName : className
                         }
@@ -127,7 +127,7 @@
                         return obj.root()[_prefix +className].apply(obj.root(),arguments)
                     }else{
                         $el && obj.root($el);
-                        obj.init && obj.init(!options || $.isPlainObject(options) ? $.extend2(options||{},obj.default||{},true) : options);
+                        obj.init && obj.init(!options || $.isPlainObject(options) ? $.extend2(options||{},obj.defaultOpt||{},true) : options);
                         obj.root().find('a').click(function(evt){
                             evt.preventDefault()
                         });
@@ -137,7 +137,7 @@
                 },
                 properties,supperClass);
 
-            mergeToJQ(Class,className);
+            mergeToJQ(ClassObj,className);
         }
     };
 

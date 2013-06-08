@@ -41,7 +41,9 @@ UE.registerUI('inserttable',
                         }).edui();
                     btnWidget.data( 'tablepicker', tablePickerWidget );
                 }
-
+                tablePickerWidget.edui().on('show',function(){
+                    UE.setActiveWidget(tablePickerWidget)
+                });
                 tablePickerWidget.show();
 
             }
