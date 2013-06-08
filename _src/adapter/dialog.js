@@ -18,10 +18,10 @@
         'edittd':'table/edittd.html',
         'snapscreen':'snapscreen/snapscreen.html',
         'scrawl':'scrawl/scrawl.html',
-        'music':'music/music.html',
-        'background':'background/background.html'
+        'music':'music/music.html'
     };
-    UE.registerUI('link insertimage edittable edittd edittip insertvideo music searchreplace map gmap',
+    UE.registerUI('link insertimage edittable edittd edittip insertvideo music searchreplace ' +
+                      'map gmap help wordimage attachment insertframe snapscreen anchor map gmap',
         function (name, mode) {
 
             var me = this,
