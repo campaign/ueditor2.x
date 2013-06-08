@@ -14,7 +14,7 @@ UE.ui.define ('modal' , {
         '<%if(cancellabel){%><button class="btn" data-hide="modal"><%=cancellabel%></button><%}%>' +
         '</div>' +
         '<%}%></div>' ,
-    default: {
+    defaultOpt: {
         title: "" ,
         cancellabel: "" ,
         oklabel: "" ,
