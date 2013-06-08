@@ -52,3 +52,9 @@
     width: 500px;
     height: 400px;
 }
+
+/*查找替换*/
+.edui-searchreplace-body{
+    width: 370px;
+    height: 200px;
+}
