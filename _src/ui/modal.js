@@ -34,6 +34,7 @@ UE.ui.define ( 'modal' , {
         me.root ().delegate ( '[data-ok="modal"]' , 'click' , $.proxy ( me.ok , me ) );
     } ,
     toggle : function () {
+
         var me = this;
         return me[! me.data ( "isShown" ) ? 'show' : 'hide'] ();
     } ,
