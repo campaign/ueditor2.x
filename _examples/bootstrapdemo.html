@@ -56,16 +56,16 @@
                 {label:'查找和替换',dialog:'searchreplace',icon:'searchreplace',shortkey:'ctrl+shift+r'}
             ]},{label:'插入',data:[
                 {label:'图片',dialog:'insertimage',icon:'image'},
-                {label:'表情',widget:'emotion',icon:'emotion'},
+                {label:'表情',widget:'emotion'},
                 {label:'视频',dialog:'insertvideo',icon:'video'},
-                {label:'音乐',dialog:'music',icon:'music'},
-                {label:'锚点',dialog:'anchor',icon:'anchor'},
-                {label:'附件',dialog:'attachment'},
-                {label:'谷歌地图',dialog:'gmap'},
-                {label:'地图',dialog:'map'},
-                {label:'特殊字符',dialog:'spechars'},
+                {label:'音乐',dialog:'music'},
+                {label:'锚点',exec:'anchor'},
+                {label:'附件',exec:'attachment'},
+                {label:'谷歌地图',exec:'gmap'},
+                {label:'地图',exec:'map'},
+                {label:'特殊字符',exec:'spechars'},
                 {divider:1},
-                {label:'链接',dialog:'link',icon:'link',shortkey:'ctrl+k'},
+                {label:'链接',dialog:'link',shortkey:'ctrl+k'},
                 {divider:1},
                 {label:'插入代码',icon:'code',exec:'insertcode',data:[
                     {label:'ActionScript3',value:'as3'},
@@ -94,7 +94,7 @@
                 ]}
             ]},{label:'显示',data:[
                 {label:'预览',exec:'preview',shortkey:'ctrl+shift+p'},
-                {label:'全屏',exec:'fullscreen',icon:'fullscreen',shortkey:'ctrl+shift+f'}
+                {label:'全屏',exec:'fullscreen',shortkey:'ctrl+shift+f'}
             ]},{label:'格式',data:[
                 {label:'粗体',exec:'bold',shortkey:'ctrl+b'},
                 {label:'斜体',exec:'italic',shortkey:'ctrl+i'},
