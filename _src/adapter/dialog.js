@@ -44,15 +44,6 @@
 
                     dialog = $.eduimodal(opt);
 
-                    dialog.edui().on('hide',function () {
-                        var rng = me.selection.getRange();
-                        if (rng.equals(currentRange)) {
-                            rng.select()
-                        }
-                    }).on('show', function () {
-                            currentRange = me.selection.getRange();
-                            UE.setActiveWidget(this.root())
-                        });
 
                     dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
 
@@ -63,6 +54,7 @@
                         }
                     }).on('show', function () {
                             currentRange = me.selection.getRange();
+                            UE.setActiveWidget(this.root())
                         });
 
                     if (mode == 'menu') {
