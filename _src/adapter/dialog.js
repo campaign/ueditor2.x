@@ -42,6 +42,7 @@
                 }
             }).on('show',function(){
                 currentRange = me.selection.getRange();
+                UE.setActiveWidget(this.root())
             });
 
             if(mode == 'menu'){

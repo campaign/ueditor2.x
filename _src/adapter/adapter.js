@@ -8,7 +8,8 @@
     var _editorUI = {},
         _editors = {},
         _readyFn = [],
-        _activeEditor = null;
+        _activeEditor = null,
+        _activeWidget = null;
 
     function parseData(data, editor) {
         $.each(data, function (i, v) {
@@ -26,6 +27,8 @@
                             dialog.edui().show();
                             UE.setActiveEditor(editor);
                             editor.$activeDialog = dialog;
+
+
                         }
                     }();
                     v.query = $.proxy(function(cmdName){return this.queryCommandState(cmdName)},editor, v.dialog);
@@ -99,17 +102,17 @@
                 _editorUI[uiname] = fn;
             })
         },
-        getUI:function(editor,name){
-            var arg = Array.prototype.slice.call(arguments,1);
+        getUI:function(editor,name,modal){
             if(_editorUI[name]){
-                return $.proxy(_editorUI[name],editor,name)()
+                return $.proxy(_editorUI[name],editor,name,modal)()
             }
             return null;
         },
         setActiveEditor:function(editor){
             _activeEditor = editor;
         },
-        getActiveEditor: function () {
+        getActiveEditor: function ($widget) {
+
             var ac;
             utils.each(UE.instants, function (editor) {
                 if (editor.selection.isFocus()) {
@@ -117,7 +120,30 @@
                     return false;
                 }
             });
-            return ac || _activeEditor;
+
+            if(ac){
+                return ac;
+            }
+            var $container = $widget.parents('.edui-container');
+            if(_activeEditor){
+                if($container[0] === _activeEditor.container){
+                    return _activeEditor
+                }
+            }
+            $.each(_editors,function(id,val){
+                if(val.container === $container[0]){
+                    ac = val;
+                    return false;
+                }
+            });
+            return ac;
+
+        },
+        setActiveWidget : function($widget){
+            _activeWidget = $widget;
+        },
+        getActiveWidget : function(){
+            return  _activeWidget
         },
         getEditor: function (id, options) {
             return _editors[id] || (_editors[id] = this.createEditor(id, options));
@@ -180,14 +206,14 @@
                     evt.preventDefault()
                 })
             }
-
+            return editor;
 
         },
         createUI: function (id, editor) {
             var $editorCont = $(id),
                 $container = $('<div class="edui-container"><div class="edui-editor-body"></div><div class="edui-dialog-container"></div></div>').insertBefore($editorCont);
             editor.$container = $container;
-            editor.container = $container.get();
+            editor.container = $container[0];
             $container.find('.edui-editor-body').append($editorCont).before(this.createToolbar(editor.options, editor));
 
             if(editor.options.elementpath || editor.options.wordCount){
