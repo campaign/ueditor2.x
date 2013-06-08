@@ -86,12 +86,13 @@ UE.registerUI('forecolor',
         //querycommand
         this.addListener('selectionchange',function(){
 
+            //什么都不用做
             //更新按钮状态
-            var state = this.queryCommandState( name );
-            $btn.edui().disabled( state == -1 ).active( state == 1 );
-
-            //更新颜色
-            fontIcon.css( "color", this.queryCommandValue( name ) );
+//            var state = this.queryCommandState( name );
+//            $btn.edui().disabled( state == -1 ).active( state == 1 );
+//
+//            //更新颜色
+//            fontIcon.css( "color", this.queryCommandValue( name ) );
 
 
         });
@@ -160,7 +161,8 @@ UE.registerUI('backcolor',
             lang_themeColor: me.getLang('themeColor') || '',
             lang_standardColor: me.getLang('standardColor') || ''
         }).eduitablepicker( "attachTo", $btn ).edui().on('pickcolor', function( evt, color ){
-            });
+                me.execCommand( name, color );
+        });
 
         $btn.edui().mergeWith( colorPickerWidget.root() );
 
