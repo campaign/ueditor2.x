@@ -26,9 +26,6 @@
                             }
                             dialog.edui().show();
                             UE.setActiveEditor(editor);
-                            editor.$activeDialog = dialog;
-
-
                         }
                     }();
                     v.query = $.proxy(function(cmdName){return this.queryCommandState(cmdName)},editor, v.dialog);
@@ -102,9 +99,9 @@
                 _editorUI[uiname] = fn;
             })
         },
-        getUI:function(editor,name,modal){
+        getUI:function(editor,name){
             if(_editorUI[name]){
-                return $.proxy(_editorUI[name],editor,name,modal)()
+                return $.proxy(_editorUI[name],editor,name,mode)()
             }
             return null;
         },
@@ -206,7 +203,7 @@
                     evt.preventDefault()
                 })
             }
-            return editor;
+
 
         },
         createUI: function (id, editor) {

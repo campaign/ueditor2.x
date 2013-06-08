@@ -1,62 +1,62 @@
 /*tab 类*/
-UE.ui.define('tab', {
-    init: function (options) {
+UE.ui.define ( 'tab' , {
+    init : function ( options ) {
         var me = this,
-            cxt=options.context,
             slr = options.selector;
 
-        if ($.type(slr)) {
-            me.root($(slr,cxt));
+        if ( $.type ( slr ) ) {
+            me.root ( $ ( slr , options.context ) );
+            me.data ( "context" , options.context );
 
-            $(slr,cxt).on('click', function (e) {
-                e.preventDefault()
-                me.show(e)
-            })
+            $ ( slr , me.data ( "context" ) ).on ( 'click' , function ( e ) {
+                e.preventDefault ()
+                me.show ( e )
+            } )
         }
-    },
-    show: function (e) {
+    } ,
+    show : function ( e ) {
         var me = this,
-            $cur = $(e.target),
-            $ul = $cur.closest('ul'),
+            $cur = $ ( e.target ),
+            $ul = $cur.closest ( 'ul' ),
             selector,
             previous,
             $target,
             e;
 
-        selector = $cur.attr('href');
-        selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '');
+        selector = $cur.attr ( 'href' );
+        selector = selector && selector.replace ( /.*(?=#[^\s]*$)/ , '' );
 
-        var $tmp = $cur.parent('li');
+        var $tmp = $cur.parent ( 'li' );
 
-        if (!$tmp.length || $tmp.hasClass('active')) return;
+        if ( ! $tmp.length || $tmp.hasClass ( 'active' ) ) return;
 
-        previous = $ul.find('.active:last a')[0];
+        previous = $ul.find ( '.active:last a' )[0];
 
-        e = $.Event('show', {
-            relatedTarget: previous
-        });
+        e = $.Event ( 'show' , {
+            relatedTarget : previous
+        } );
 
-        me.trigger(e);
+        me.trigger ( e );
 
-        if (e.isDefaultPrevented()) return;
+        if ( e.isDefaultPrevented () ) return;
 
-        $target = $(selector);
+        $target = $ ( selector , me.data ( "context" ) );
 
-        me.activate($cur.parent('li'), $ul);
-        me.activate($target, $target.parent(), function () {
-            me.trigger({
-                type: 'shown', relatedTarget: previous
-            })
-        });
-    },
-    activate: function (element, container, callback) {
-        var $active = container.find('> .active');
+        me.activate ( $cur.parent ( 'li' ) , $ul );
+        me.activate ( $target , $target.parent () , function () {
+            me.trigger ( {
+                type : 'shown' , relatedTarget : previous
+            } )
+        } );
+    } ,
+    activate : function ( element , container , callback ) {
+        var $active = container.find ( '> .active' );
 
-        $active.removeClass('active');
+        $active.removeClass ( 'active' );
 
-        element.addClass('active');
+        element.addClass ( 'active' );
 
-        callback && callback();
+        callback && callback ();
     }
-});
+} );
 

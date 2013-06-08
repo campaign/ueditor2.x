@@ -6,14 +6,25 @@ UE.ready(function(){
 
     var editor = this;
 
-    editor.addListener("delcells", function () {
+    (function(){
 
-        var tips = UE.getUI( editor, 'edittip');
+        var tips = UE.getUI( editor, 'edittip', 'menu'),
+            inited = false;
 
-        console.log(tips.edui())
+        editor.addListener("delcells", function () {
 
-        tips.show();
+            UE.setActiveEditor(editor);
+            editor.$activeDialog = tips;
 
-    });
+            if( !inited ) {
+                inited = true;
+                tips.appendTo($('.edui-dialog-container'));
+            }
+
+            tips.edui().show();
+
+        });
+
+    })();
 
 });
