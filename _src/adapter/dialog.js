@@ -37,6 +37,13 @@
                             url: me.options.UEDITOR_HOME_URL + '/dialogs/' + (me.options.iframeUrlMap[name] || iframeUrlMap[name])
                         };
 
+                    if (type == "ok") {
+                        opt.oklabel = me.getLang('ok');
+                        opt.cancellabel = me.getLang('cancel');
+                    }
+
+                    dialog = $.eduimodal(opt);
+
                     dialog.edui().on('hide',function () {
                         var rng = me.selection.getRange();
                         if (rng.equals(currentRange)) {
@@ -46,12 +53,6 @@
                             currentRange = me.selection.getRange();
                             UE.setActiveWidget(this.root())
                         });
-                    if (type == "ok") {
-                        opt.oklabel = me.getLang('ok');
-                        opt.cancellabel = me.getLang('cancel');
-                    }
-
-                    dialog = $.eduimodal(opt);
 
                     dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
 
