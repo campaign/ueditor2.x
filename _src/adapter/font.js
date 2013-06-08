@@ -115,7 +115,9 @@ UE.registerUI('forecolor',
                 fontIcon.css("color", color);
                 me.execCommand( name, color );
             });
-
+        colorPickerWidget.on('show',function(){
+            UE.setActiveWidget(colorPickerWidget.root())
+        });
         $btn.edui().mergeWith( colorPickerWidget.root() );
 
         return $btn;
@@ -165,7 +167,9 @@ UE.registerUI('backcolor',
         });
 
         $btn.edui().mergeWith( colorPickerWidget.root() );
-
+        colorPickerWidget.on('show',function(){
+            UE.setActiveWidget(colorPickerWidget.root())
+        });
         return $btn;
 
         function getCurrentColor() {

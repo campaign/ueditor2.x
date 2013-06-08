@@ -488,9 +488,7 @@ ul.icons-ul > li .icon-li {
 .icon-camera:before {
   content: "\f030";
 }
-.icon-font:before {
-  content: "\f031";
-}
+
 
 .icon-text-height:before {
   content: "\f034";
@@ -1302,4 +1300,12 @@ ul.icons-ul > li .icon-li {
 }
 .icon-collapse:before {
     content: "\f13a";
+}
+.icon-font:before {
+    content: "\f031";
+}
+.icon-fontborder:before {
+    content: "\f031";
+    border:1px solid #000;
+    border-radius:2px;
 }

@@ -11,7 +11,7 @@
     vertical-align: top;
 }
 
-/*link*/
+/*链接*/
 .edui-link-body{
     width:420px;
     height:220px;
@@ -35,8 +35,20 @@
     height: 60px;
 }
 
-/*insertimage*/
+/*图片上传*/
 .edui-insertimage-body {
     width: 700px;
-    height: 300px;
+    height: 400px;
+}
+
+/*插入视频*/
+.edui-insertvideo-body{
+    width: 600px;
+    height: 350px;
+}
+
+/*插入音乐*/
+.edui-music-body{
+    width: 500px;
+    height: 400px;
 }

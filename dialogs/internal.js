@@ -1,10 +1,12 @@
 (function () {
     var parent = window.parent;
 
-    editor = parent.UE.getActiveEditor();
+
+    dialog = parent.UE.getActiveWidget();
 
 
-    dialog = editor.$activeDialog;
+    editor = parent.UE.getActiveEditor(dialog);
+
 
     UE = parent.UE;
 
@@ -17,7 +19,6 @@
     ajax = UE.ajax;
 
     $ = function( selector ) {
-        // The jQuery object is actually just the init constructor 'enhanced'
         return new $.fn.init( selector, document);
     };
     parent.jQuery.extend(true,$,parent.jQuery);
