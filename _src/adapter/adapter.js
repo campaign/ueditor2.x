@@ -99,7 +99,7 @@
                 _editorUI[uiname] = fn;
             })
         },
-        getUI:function(editor,name){
+        getUI:function(editor,name,mode){
             if(_editorUI[name]){
                 return $.proxy(_editorUI[name],editor,name,mode)()
             }
@@ -185,11 +185,7 @@
 
                     } );
 
-                    this.addListener('click',function(){
-                        $container.find('.dropdown-menu').each(function(){
-                            $(this).edui().hide()
-                        })
-                    })
+
                 });
 
                 editor.render(id);
