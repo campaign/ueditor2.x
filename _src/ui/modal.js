@@ -40,7 +40,7 @@ UE.ui.define ('modal' , {
     show: function () {
         var me = this;
 
-        me.trigger ("show");
+        me.trigger ("beforeshow");
 
         if (me.data ("isShown")) return;
 
@@ -54,7 +54,7 @@ UE.ui.define ('modal' , {
                 .show ()
                 .addClass ('in')
                 .focus ()
-                .trigger ('shown');
+                .trigger ('aftershow');
         })
     } ,
     autoCenter: function () {
@@ -63,7 +63,7 @@ UE.ui.define ('modal' , {
     hide: function () {
         var me = this;
 
-        me.trigger ("hide");
+        me.trigger ("beforehide");
 
         if (!me.data ("isShown")) return;
 
@@ -91,7 +91,7 @@ UE.ui.define ('modal' , {
         me.root ().hide ();
         me.backdrop (function () {
             me.removeBackdrop ();
-            me.trigger ('hidden');
+            me.trigger ('afterhide');
         })
     } ,
     removeBackdrop: function () {

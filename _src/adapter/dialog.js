@@ -46,12 +46,12 @@
 
                     dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
 
-                    dialog.edui().on('hide',function () {
+                    dialog.edui().on('beforehide',function () {
                         var rng = me.selection.getRange();
                         if (rng.equals(currentRange)) {
                             rng.select()
                         }
-                    }).on('show', function () {
+                    }).on('beforeshow', function () {
                             currentRange = me.selection.getRange();
                             UE.setActiveWidget(this.root())
                         });
