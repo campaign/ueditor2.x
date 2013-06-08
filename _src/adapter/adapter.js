@@ -199,7 +199,7 @@
                     evt.preventDefault()
                 })
             }
-
+            return editor;
 
         },
         createUI: function (id, editor) {
