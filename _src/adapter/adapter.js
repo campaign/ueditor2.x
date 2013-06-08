@@ -151,7 +151,7 @@
         },
         createEditor: function (id, opt) {
             var editor = new UE.Editor(opt);
-
+            var T = this;
             utils.loadFile(document,{
                 href: editor.options.themePath + editor.options.theme + "/" + editor.options.theme + '.css',
                 tag:"link",
@@ -169,36 +169,38 @@
                         tag:"link",
                         type:"text/css",
                         rel:"stylesheet"
+                    },function(){
+                        editor.langIsReady ? $.proxy(renderUI,T)() : editor.addListener("langReady", $.proxy(renderUI,T));
+                        function renderUI(){
+                            var $container = this.createUI('#' + id, editor);
+
+                            editor.ready(function(){
+
+                                $.each( _readyFn, function( index, fn ){
+
+                                    $.proxy( fn, editor )();
+
+                                } );
+
+
+                            });
+
+                            editor.render(id);
+                            $container.css({
+                                width: $(editor.iframe).width()
+                            });
+
+                            //添加tooltip;
+                            $.eduitooltip('attachTo');
+                            $container.find('a').click(function(evt){
+                                evt.preventDefault()
+                            })
+                        }
                     })
                 })
             });
 
-            editor.langIsReady ? $.proxy(renderUI,this) : editor.addListener("langReady", $.proxy(renderUI,this));
-            function renderUI(){
-                var $container = this.createUI('#' + id, editor);
 
-                editor.ready(function(){
-
-                    $.each( _readyFn, function( index, fn ){
-
-                        $.proxy( fn, editor )();
-
-                    } );
-
-
-                });
-
-                editor.render(id);
-                $container.css({
-                    width: $(editor.iframe).width()
-                });
-
-                //添加tooltip;
-                $.eduitooltip('attachTo');
-                $container.find('a').click(function(evt){
-                    evt.preventDefault()
-                })
-            }
             return editor;
 
         },
