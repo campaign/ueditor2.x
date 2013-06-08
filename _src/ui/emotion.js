@@ -6,7 +6,7 @@
 
     UE.ui.define ( 'emotion' , {
 
-        default: {
+        defaultOpt: {
             url: 'about: blank'
         },
         tpl: function( options ){
