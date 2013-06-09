@@ -6,22 +6,18 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <script type="text/javascript" src="../internal.js"></script>
     <style type="text/css">
-        .warpper{ position:relative;width: 380px;margin: 10px auto;}
-        .tabbody{height: 115px;}
-        .tabbody table{width:100%;border-collapse: separate;border-spacing: 3px;}
-        .tabbody .panel{width:373px;height:100%;padding-left: 5px;position: absolute;background-color: #fff;}
-        .tabbody input.int{ width:190px;height:21px;border:1px solid #d7d7d7;line-height:21px;}
-        .tabbody input.btn{padding: 0 5px; text-align:center;line-height:24px; text-decoration: none;height:24px;background:url("../../themes/default/images/dialog-title-bg.png") repeat-x;border:1px solid #ccc; }
+        .warpper{ position:relative;width: 350px;margin:0 auto;}
+        td{vertical-align: top;}
     </style>
 </head>
 <body>
-<div class="warpper" id="searchtab">
-    <div id="head" class="tabhead">
-        <span  tabsrc="find" class="focus"><var id="lang_tab_search"></var></span>
-        <span  tabsrc="replace" ><var id="lang_tab_replace"></var></span>
-    </div>
-    <div class="tabbody">
-        <div class="panel" id="find">
+<div id="searchtab" class="warpper" >
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#find"><var id="lang_tab_search"></var></a></li>
+        <li><a href="#replace"><var id="lang_tab_replace"></var></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane  active" id="find">
             <table>
                 <tr>
                     <td width="80"><var id="lang_search1"></var>: </td>
@@ -41,7 +37,7 @@
                 </tr>
             </table>
         </div>
-        <div class="panel" id="replace">
+        <div class="tab-pane other" id="replace">
             <table>
                 <tr>
                     <td width="80"><var id="lang_search2"></var>: </td>
@@ -69,6 +65,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var $tab=$.eduitab({selector:"#searchtab",context:document});
+</script>
 <script type="text/javascript" src="searchreplace.js"></script>
 </body>
 </html>

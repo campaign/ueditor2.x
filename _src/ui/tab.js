@@ -33,8 +33,7 @@ UE.ui.define ( 'tab' , {
 
         previous = $ul.find ( '.active:last a' )[0];
 
-        e = $.Event ( 'show' , {
-            target: $cur[0],
+        e = $.Event ( 'beforeshow' , {
             relatedTarget : previous
         } );
 
@@ -47,7 +46,7 @@ UE.ui.define ( 'tab' , {
         me.activate ( $cur.parent ( 'li' ) , $ul );
         me.activate ( $target , $target.parent () , function () {
             me.trigger ( {
-                type : 'shown' , relatedTarget : previous
+                type : 'aftershow' , relatedTarget : previous
             } )
         } );
     } ,

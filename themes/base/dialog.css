@@ -52,3 +52,27 @@
     width: 500px;
     height: 400px;
 }
+
+/*查找替换*/
+.edui-searchreplace-body{
+    width: 370px;
+    height: 200px;
+}
+
+/*锚点*/
+.edui-anchor-body{
+    width: 350px;
+    height: 50px;
+}
+
+/*附件*/
+.edui-attachment-body{
+    width: 480px;
+    height: 370px;
+}
+
+/*谷歌地图*/
+.edui-gmap-body{
+    width:550px;
+    height: 400px;
+}
