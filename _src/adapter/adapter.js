@@ -222,7 +222,7 @@
             var $toolbar = $.eduitoolbar(), toolbar = $toolbar.edui();
             //创建下来菜单列表
 
-            if (options.menulist) {
+            if (options.menulist && options.menulist.length) {
                 $.each(options.menulist, function (i, v) {
                     if(v.data){
                         $.eduicontextmenu(parseData(v.data, editor))
@@ -244,25 +244,10 @@
                     }
 
 
-                })
-            } else {
-                $toolbar.find('.edui-text-toolbar').remove()
-            }
-
-            if (options.toolbar) {
-
-                $.each(options.toolbar,function(i,groupstr){
-                    var btngroup = [];
-                    $.each(groupstr.split(/\s+/),function(index,name){
-                        var ui = me.getUI(editor,name);
-
-                        ui && btngroup.push(ui);
-                    });
-                    toolbar.appendToBtnmenu(btngroup);
                 });
-                //收起menulist
                 toolbar.appendToBtnmenu($.eduibutton({
                     icon:'expand',
+                    texttype:true,
                     click:function(){
                         var $i = this.root().find('i');
                         if($i.hasClass('icon-expand')){
@@ -275,6 +260,22 @@
                     },
                     title:editor.getLang('collapsebtn')
                 }),{'float':'right'})
+            } else {
+                $toolbar.find('.edui-text-toolbar').remove()
+            }
+
+            if (options.toolbar && options.toolbar.length) {
+
+                $.each(options.toolbar,function(i,groupstr){
+                    var btngroup = [];
+                    $.each(groupstr.split(/\s+/),function(index,name){
+                        var ui = me.getUI(editor,name);
+
+                        ui && btngroup.push(ui);
+                    });
+                    toolbar.appendToBtnmenu(btngroup);
+                });
+
 
             } else {
                 $toolbar.find('.edui-btn-toolbar').remove()

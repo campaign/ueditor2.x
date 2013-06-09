@@ -13,3 +13,18 @@
     text-align: left;
     *zoom: 1;
 }
+.edui-text-btn{
+    display:inline-block;
+    font-size:14px;
+    text-decoration: none;
+    text-align: center;
+    vertical-align:middle;
+    cursor:pointer;
+    color:#000;
+    margin-top:4px;
+}
+.edui-text-btn:hover{
+    text-decoration: none;
+    color:#000;
+    cursor:pointer;
+}
