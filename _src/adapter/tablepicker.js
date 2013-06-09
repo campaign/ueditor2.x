@@ -27,6 +27,7 @@ UE.registerUI('inserttable',
                 insertTable( row, col );
             }) :  ($btn = $.eduibutton({
             icon : 'inserttable',
+            title: me.getLang("labelMap")[name],
             click : function() {
 
                 var btnWidget = this;
@@ -47,6 +48,7 @@ UE.registerUI('inserttable',
                 tablePickerWidget.show();
 
             }
+
         }));
 
 
@@ -58,7 +60,6 @@ UE.registerUI('inserttable',
             });
 
         }
-
 
     }
 

@@ -35,6 +35,7 @@
             defaultOpt: {
                 //按钮初始文字
                 label: '',
+                title: '',
                 //记录栈初始列表
                 recordStack: [],
                 //可用项列表
@@ -53,6 +54,7 @@
 
                 var btnWidget = $.eduibutton({
                     caret: true,
+                    title: options.title,
                     width: options.mode,
                     text: options.label,
                     click: $.proxy( me.open, me )

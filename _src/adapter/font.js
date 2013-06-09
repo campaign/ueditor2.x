@@ -8,6 +8,7 @@ UE.registerUI('fontfamily', function( name ) {
         var me = this,
             $fontCombobox = $.eduicombobox({
                 label: '字体',
+                title: me.getLang("labelMap")[name],
                 recordStack: [],
                 mode: 'fontFamily',
                 items: me.options.fontfamily
@@ -45,6 +46,7 @@ UE.registerUI('fontsize', function( name ) {
         var me = this,
             $fontCombobox = $.eduicombobox({
                 label: '字号',
+                title: me.getLang("labelMap")[name],
                 autorecord: false,
                 mode: 'fontsize',
                 items: me.options.fontsize
@@ -83,23 +85,10 @@ UE.registerUI('forecolor',
             fontIcon = null,
             $btn = null;
 
-        //querycommand
-        this.addListener('selectionchange',function(){
-
-            //什么都不用做
-            //更新按钮状态
-//            var state = this.queryCommandState( name );
-//            $btn.edui().disabled( state == -1 ).active( state == 1 );
-//
-//            //更新颜色
-//            fontIcon.css( "color", this.queryCommandValue( name ) );
-
-
-        });
-
         $btn = $.eduisplitbutton({
             icon: 'font',
             caret: true,
+            title: me.getLang("labelMap")[name],
             click: function() {
                 me.execCommand( name, getCurrentColor() );
             }
@@ -144,12 +133,11 @@ UE.registerUI('backcolor',
             var state = this.queryCommandState( name );
             $btn.edui().disabled( state == -1 ).active( state == 1 );
 
-//            updateColor( this.queryCommandValue( name ) );
-
         });
 
         $btn = $.eduisplitbutton({
             icon: 'font',
+            title: me.getLang("labelMap")[name],
             caret: true,
             click: function() {
                 me.execCommand( name, getCurrentColor() );
