@@ -5,7 +5,13 @@
     <title>帮助</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <script type="text/javascript" src="../internal.js"></script>
-    <link rel="stylesheet" type="text/css" href="help.css">
+    <style type="text/css">
+        .warpper{width: 370px;margin: 10px auto;zoom: 1;}
+        .tab-content h1{font-size:26px;margin: 5px 0 0 5px;}
+        .tab-content p{font-size:12px;margin: 5px 0 0 5px;}
+        .tab-content table{width:90%;line-height: 20px;margin: 5px 0 0 5px;;}
+        .tab-content table thead{font-weight: bold;line-height: 25px;}
+    </style>
 </head>
 <body>
 
@@ -81,7 +87,7 @@
 
 <script type="text/javascript">
     var $tab=$.eduitab({selector:"#helptab",context:document});
+    document.getElementById('version').innerHTML = parent.UE.version
 </script>
-<script type="text/javascript" src="help.js"></script>
 </body>
 </html>
