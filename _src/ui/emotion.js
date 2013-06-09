@@ -18,6 +18,9 @@
 
             me.root( $( $.parseTmpl( me.supper.mergeTpl( me.tpl( options ) ), options ) ) );
 
+            me.root().attr('id', 'edui-emotion');
+            me.root().addClass('edui-emotion-popup');
+
         }
 
     }, 'popup' );

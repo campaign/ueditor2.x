@@ -4,13 +4,32 @@ window.onload = function () {
         emotionLocalization:false
     });
 
-    emotion.SmileyPath = true ? 'images/' : "http://img.baidu.com/hi/";
+    emotion.SmileyPath = editor.options.emotionLocalization === true ? 'images/' : "http://img.baidu.com/hi/";
     emotion.SmileyBox = createTabList( emotion.tabNum );
     emotion.tabExist = createArr( emotion.tabNum );
-
     initImgName();
-    initEvtHandler( "tabHeads" );
+    initEvtHandler();
 };
+
+var emotion = {
+        tabNum: 7,
+        inited: {},
+        SmilingName:{ tab0:['j_00', 84], tab1:['t_00', 40], tab2:['w_00', 52], tab3:['B_00', 63], tab4:['C_00', 20], tab5:['i_f', 50], tab6:['y_00', 40] }, //图片前缀名
+        imageFolders:{ tab0:'jx2/', tab1:'tsj/', tab2:'ldw/', tab3:'bobo/', tab4:'babycat/', tab5:'face/', tab6:'youa/'}, //图片对应文件夹路径
+        imageCss:{tab0:'jd', tab1:'tsj', tab2:'ldw', tab3:'bb', tab4:'cat', tab5:'pp', tab6:'youa'}, //图片css类名
+        imageCssOffset:{tab0:35, tab1:35, tab2:35, tab3:35, tab4:35, tab5:25, tab6:35}, //图片偏移
+        SmileyInfor:{
+            tab0:['Kiss', 'Love', 'Yeah', '啊！', '背扭', '顶', '抖胸', '88', '汗', '瞌睡', '鲁拉', '拍砖', '揉脸', '生日快乐', '大笑', '瀑布汗~', '惊讶', '臭美', '傻笑', '抛媚眼', '发怒', '打酱油', '俯卧撑', '气愤', '?', '吻', '怒', '胜利', 'HI', 'KISS', '不说', '不要', '扯花', '大心', '顶', '大惊', '飞吻', '鬼脸', '害羞', '口水', '狂哭', '来', '发财了', '吃西瓜', '套牢', '害羞', '庆祝', '我来了', '敲打', '晕了', '胜利', '臭美', '被打了', '贪吃', '迎接', '酷', '微笑', '亲吻', '调皮', '惊恐', '耍酷', '发火', '害羞', '汗水', '大哭', '', '加油', '困', '你NB', '晕倒', '开心', '偷笑', '大哭', '滴汗', '叹气', '超赞', '??', '飞吻', '天使', '撒花', '生气', '被砸', '吓傻', '随意吐'],
+            tab1:['Kiss', 'Love', 'Yeah', '啊！', '背扭', '顶', '抖胸', '88', '汗', '瞌睡', '鲁拉', '拍砖', '揉脸', '生日快乐', '摊手', '睡觉', '瘫坐', '无聊', '星星闪', '旋转', '也不行', '郁闷', '正Music', '抓墙', '撞墙至死', '歪头', '戳眼', '飘过', '互相拍砖', '砍死你', '扔桌子', '少林寺', '什么？', '转头', '我爱牛奶', '我踢', '摇晃', '晕厥', '在笼子里', '震荡'],
+            tab2:['大笑', '瀑布汗~', '惊讶', '臭美', '傻笑', '抛媚眼', '发怒', '我错了', 'money', '气愤', '挑逗', '吻', '怒', '胜利', '委屈', '受伤', '说啥呢？', '闭嘴', '不', '逗你玩儿', '飞吻', '眩晕', '魔法', '我来了', '睡了', '我打', '闭嘴', '打', '打晕了', '刷牙', '爆揍', '炸弹', '倒立', '刮胡子', '邪恶的笑', '不要不要', '爱恋中', '放大仔细看', '偷窥', '超高兴', '晕', '松口气', '我跑', '享受', '修养', '哭', '汗', '啊~', '热烈欢迎', '打酱油', '俯卧撑', '?'],
+            tab3:['HI', 'KISS', '不说', '不要', '扯花', '大心', '顶', '大惊', '飞吻', '鬼脸', '害羞', '口水', '狂哭', '来', '泪眼', '流泪', '生气', '吐舌', '喜欢', '旋转', '再见', '抓狂', '汗', '鄙视', '拜', '吐血', '嘘', '打人', '蹦跳', '变脸', '扯肉', '吃To', '吃花', '吹泡泡糖', '大变身', '飞天舞', '回眸', '可怜', '猛抽', '泡泡', '苹果', '亲', '', '骚舞', '烧香', '睡', '套娃娃', '捅捅', '舞倒', '西红柿', '爱慕', '摇', '摇摆', '杂耍', '招财', '被殴', '被球闷', '大惊', '理想', '欧打', '呕吐', '碎', '吐痰'],
+            tab4:['发财了', '吃西瓜', '套牢', '害羞', '庆祝', '我来了', '敲打', '晕了', '胜利', '臭美', '被打了', '贪吃', '迎接', '酷', '顶', '幸运', '爱心', '躲', '送花', '选择'],
+            tab5:['微笑', '亲吻', '调皮', '惊讶', '耍酷', '发火', '害羞', '汗水', '大哭', '得意', '鄙视', '困', '夸奖', '晕倒', '疑问', '媒婆', '狂吐', '青蛙', '发愁', '亲吻', '', '爱心', '心碎', '玫瑰', '礼物', '哭', '奸笑', '可爱', '得意', '呲牙', '暴汗', '楚楚可怜', '困', '哭', '生气', '惊讶', '口水', '彩虹', '夜空', '太阳', '钱钱', '灯泡', '咖啡', '蛋糕', '音乐', '爱', '胜利', '赞', '鄙视', 'OK'],
+            tab6:['男兜', '女兜', '开心', '乖乖', '偷笑', '大笑', '抽泣', '大哭', '无奈', '滴汗', '叹气', '狂晕', '委屈', '超赞', '??', '疑问', '飞吻', '天使', '撒花', '生气', '被砸', '口水', '泪奔', '吓傻', '吐舌头', '点头', '随意吐', '旋转', '困困', '鄙视', '狂顶', '篮球', '再见', '欢迎光临', '恭喜发财', '稍等', '我在线', '恕不议价', '库房有货', '货在路上']
+        }
+    },
+    contentBox = null;
+
 
 function initImgName() {
     for ( var pro in emotion.SmilingName ) {
@@ -28,21 +47,46 @@ function initImgName() {
     }
 }
 
-function initEvtHandler( conId ) {
-    var tabHeads = $G( conId );
-    for ( var i = 0, j = 0; i < tabHeads.childNodes.length; i++ ) {
-        var tabObj = tabHeads.childNodes[i];
-        if ( tabObj.nodeType == 1 ) {
-            domUtils.on( tabObj, "click", (function ( index ) {
-                return function () {
-                    switchTab( index );
-                };
-            })( j ) );
-            j++;
-        }
+function initEvtHandler() {
+
+    $.eduitab({
+        selector: '#emotionBox',
+        context: document
+    }).on('show', function( evt ){
+        //初始化 页面
+        initTab( $(evt.target).parent().index() );
+    }).eduitab('show', {
+        //选中第一个
+        type: 'click',
+        target: $('.nav a')[0]
+    });
+
+}
+
+function initTab( index ) {
+
+    if( emotion.inited[ index ] ) {
+        return;
     }
-    switchTab( 0 );
-    $G( "tabIconReview" ).style.display = 'none';
+
+    emotion.inited[ index ] = true;
+    createTab( 'tab'+index );
+    autoHeight( index );
+
+}
+
+function autoHeight( index ) {
+
+    var height = emotion.SmileyInfor[ 'tab' + index ].length;
+
+    height = Math.ceil( height / 11 );
+
+    height *= 38;
+
+    height += 100;
+
+    dialog.css( 'height', height + 'px' );
+
 }
 
 function InsertSmiley( url, evt ) {
@@ -52,65 +96,7 @@ function InsertSmiley( url, evt ) {
     obj._src = obj.src;
     editor.execCommand( 'insertimage', obj );
     if ( !evt.ctrlKey ) {
-        dialog.popup.hide();
-    }
-}
-
-function switchTab( index ) {
-
-//    autoHeight( index );
-    if ( emotion.tabExist[index] == 0 ) {
-        emotion.tabExist[index] = 1;
-        createTab( 'tab' + index );
-    }
-    //获取呈现元素句柄数组
-    var tabHeads = $G( "tabHeads" ).getElementsByTagName( "span" ),
-            tabBodys = $G( "tabBodys" ).getElementsByTagName( "div" ),
-            i = 0, L = tabHeads.length;
-    //隐藏所有呈现元素
-    for ( ; i < L; i++ ) {
-        tabHeads[i].className = "";
-        tabBodys[i].style.display = "none";
-    }
-    //显示对应呈现元素
-    tabHeads[index].className = "focus";
-    tabBodys[index].style.display = "block";
-}
-
-function autoHeight( index ) {
-    var iframe = dialog.getDom( "iframe" ),
-            parent = iframe.parentNode.parentNode;
-    switch ( index ) {
-        case 0:
-            iframe.style.height = "380px";
-            parent.style.height = "392px";
-            break;
-        case 1:
-            iframe.style.height = "220px";
-            parent.style.height = "232px";
-            break;
-        case 2:
-            iframe.style.height = "260px";
-            parent.style.height = "272px";
-            break;
-        case 3:
-            iframe.style.height = "300px";
-            parent.style.height = "312px";
-            break;
-        case 4:
-            iframe.style.height = "140px";
-            parent.style.height = "152px";
-            break;
-        case 5:
-            iframe.style.height = "260px";
-            parent.style.height = "272px";
-            break;
-        case 6:
-            iframe.style.height = "230px";
-            parent.style.height = "242px";
-            break;
-        default:
-
+        dialog.hide();
     }
 }
 
@@ -124,7 +110,7 @@ function createTab( tabName ) {
             iColWidth = 3, //表格剩余空间的显示比例
             tableCss = emotion.imageCss[tabName],
             cssOffset = emotion.imageCssOffset[tabName],
-            textHTML = ['<table class="smileytable">'],
+            textHTML = ['<table border="1" class="smileytable">'],
             i = 0, imgNum = emotion.SmileyBox[tabName].length, imgColNum = 11, faceImage,
             sUrl, realUrl, posflag, offset, infor;
 
@@ -139,7 +125,7 @@ function createTab( tabName ) {
                 offset = cssOffset * i * (-1) - 1;
                 infor = emotion.SmileyInfor[tabName][i];
 
-                textHTML.push( '<td  class="' + tableCss + '"   border="1" width="' + iColWidth + '%" style="border-collapse:collapse;" align="center"  bgcolor="transparent" onclick="InsertSmiley(\'' + realUrl.replace( /'/g, "\\'" ) + '\',event)" onmouseover="over(this,\'' + sUrl + '\',\'' + posflag + '\')" onmouseout="out(this)">' );
+                textHTML.push( '<td  class="' + tableCss + '" align="center"  bgcolor="transparent" onclick="InsertSmiley(\'' + realUrl.replace( /'/g, "\\'" ) + '\',event)" onmouseover="over(this,\'' + sUrl + '\',\'' + posflag + '\')" onmouseout="out(this)">' );
                 textHTML.push( '<span>' );
                 textHTML.push( '<img  style="background-position:left ' + offset + 'px;" title="' + infor + '" src="' + emotion.SmileyPath + (editor.options.emotionLocalization ? '0.gif" width="' : 'default/0.gif" width="') + iWidth + '" height="' + iHeight + '"></img>' );
                 textHTML.push( '</span>' );

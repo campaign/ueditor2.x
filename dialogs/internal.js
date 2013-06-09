@@ -4,7 +4,6 @@
 
     dialog = parent.UE.getActiveWidget();
 
-
     editor = parent.UE.getActiveEditor(dialog);
 
 

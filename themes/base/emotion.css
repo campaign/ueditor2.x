@@ -1,0 +1,20 @@
+.edui-emotion-popup {
+    width: 550px;
+    height: 370px;
+    padding: 10px;
+}
+
+.edui-emotion-nav {
+    margin: 0;
+}
+
+.edui-emotion-tabcontent {
+    border: 1px solid #ddd;
+    border-top: 0;
+    padding: 10px;
+    max-height: 350px;
+}
+
+.edui-emotion-panel {
+    height: 300px;
+}

@@ -11,6 +11,12 @@ UE.registerUI( 'emotion', function( name ){
         url: emotionUrl
     });
 
+    emotionPopup.on('beforeshow', function(){
+
+        UE.setActiveWidget( emotionPopup );
+
+    });
+
     return emotionPopup;
 
 } );

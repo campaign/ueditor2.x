@@ -15,6 +15,7 @@ UE.ui.define ( 'tab' , {
         }
     } ,
     show : function ( e ) {
+
         var me = this,
             $cur = $ ( e.target ),
             $ul = $cur.closest ( 'ul' ),
@@ -33,6 +34,7 @@ UE.ui.define ( 'tab' , {
         previous = $ul.find ( '.active:last a' )[0];
 
         e = $.Event ( 'show' , {
+            target: $cur[0],
             relatedTarget : previous
         } );
 
