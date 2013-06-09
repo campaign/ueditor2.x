@@ -41,6 +41,8 @@
     }).val(location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default')
     window.tt = UE.getEditor('editor',{
         theme:location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default',
+        initialFrameWidth: 1300,
+        initialFrameHeight: 300,
         menulist:[
             {label:'文件',data:[
                 //如果没有给query,icon都是用exec给的名字
@@ -145,7 +147,8 @@
             'justifyleft justifycenter justifyright justifyjustify',
             'insertorderedlist insertunorderedlist',
             'inserttable link',
-            'forecolor backcolor fontfamily fontsize'
+            'forecolor backcolor fontfamily fontsize',
+            'fullscreen'
         ], 'insertorderedlist':{
             'decimal':'1,2,3...',
             'lower-alpha':'a,b,c...',

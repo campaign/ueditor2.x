@@ -34,6 +34,7 @@ UE.ui.define ( 'tab' , {
         previous = $ul.find ( '.active:last a' )[0];
 
         e = $.Event ( 'beforeshow' , {
+            target: $cur[0],
             relatedTarget : previous
         } );
 

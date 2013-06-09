@@ -52,7 +52,7 @@ function initEvtHandler() {
     $.eduitab({
         selector: '#emotionBox',
         context: document
-    }).on('show', function( evt ){
+    }).on('beforeshow', function( evt ){
         //初始化 页面
         initTab( $(evt.target).parent().index() );
     }).eduitab('show', {
@@ -65,13 +65,14 @@ function initEvtHandler() {
 
 function initTab( index ) {
 
+    autoHeight( index );
+
     if( emotion.inited[ index ] ) {
         return;
     }
 
     emotion.inited[ index ] = true;
     createTab( 'tab'+index );
-    autoHeight( index );
 
 }
 
