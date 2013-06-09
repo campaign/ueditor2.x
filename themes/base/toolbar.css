@@ -35,3 +35,7 @@
 .edui-btn-group{
     margin: 5px;
 }
+.nav .edui-text-menu-item a .caret{
+    border-top-color:#000;
+    border-bottom-color:#000;
+}

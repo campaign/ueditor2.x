@@ -9,7 +9,7 @@
             '</div>' +
             '<div class="btn-toolbar edui-btn-toolbar"></div></div>'
           ,
-        textmenutpl: '<li class="dropdown"><a href="#" class="dropdown-toggle"><%=label%></a></li>',
+        textmenutpl: '<li class="dropdown edui-text-menu-item"><a href="#" class="dropdown-toggle"><%=label%><%if(caret){%><span class="caret"></span><%}%></a></li>',
         btngrouptpl:'<div class="btn-group edui-btn-group"></div>',
         init: function () {
             var $root = this.root($(this.tpl));
@@ -18,13 +18,17 @@
 
         },
         createTextItem : function(label){
+            if($.isPlainObject(label)){
+                return $($.parseTmpl(this.textmenutpl,label)).delegate(':first','click',label.exec)
+            }else{
+                return $($.parseTmpl(this.textmenutpl,{'label':label,'caret':1})).delegate(':first','click',function(){
+                    $(this).trigger('wrapclick')
+                })
+            }
 
-            return $($.parseTmpl(this.textmenutpl,{'label':label})).delegate(':first','click',function(){
-                $(this).trigger('wrapclick')
-            })
         },
         appendToTextmenu : function($item){
-           this.data('$txtToolbar').append($item);
+            this.data('$txtToolbar').append($item);
             return $item;
         },
         appendToBtnmenu : function(data,btngruopCss){
