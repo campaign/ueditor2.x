@@ -64,7 +64,7 @@
                 {label:'谷歌地图',dialog:'gmap'},
                 {label:'地图',dialog:'map'},
                 {label:'特殊字符',dialog:'spechars'},
-                {label:'Iframe',dialog:'insertframe'},
+                {label:'特殊字符',dialog:'spechars'},
                 {divider:1},
                 {label:'链接',dialog:'link',shortkey:'ctrl+k'},
                 {divider:1},
@@ -119,26 +119,7 @@
                 {label:'插入表格',icon:'inserttable',shortkey:'ctrl+shift+t',widget:'inserttable'},
                 {label:'单元格属性',icon:'inserttable',dialog:'edittd'},
                 {label:'表格属性',icon:'inserttable',dialog:'edittable'}
-            ]},{label:'帮助',data:[
-                {label:'粗体',exec:'bold',icon:'bold',shortkey:'ctrl+b'},
-                {label:'斜体',exec:'italic',icon:'italic',shortkey:'ctrl+i'},
-                {label:'下划线',exec:'underline',icon:'underline',shortkey:'ctrl+u'},
-                {label:'删除线',exec:'strikethrough',icon:'strikethrough',shortkey:'ctrl+s'},
-                {label:'上标',exec:'superscript',icon:'superscript',shortkey:'ctrl+.'},
-                {label:'下标',exec:'subscript',icon:'subscript',shortkey:'ctrl+,'},
-                {label:'字体边框',exec:'fontborder',shortkey:'ctrl+shift+b'},
-                {divider:1},
-                {label:'段落',data:[
-                    {label:'<h1>H1</h1>'},
-                    {label:'<h2>H2</h2>'},
-                    {label:'<h3>H3</h3>'},
-                    {label:'<h4>H4</h4>'},
-                    {label:'<h5>H5</h5>'},
-                    {label:'<h6>H6</h6>'}
-                ]},
-                {divider:1},
-                {label:'清除格式',exec:'removeformat',shortkey:'ctrl+shift+t',icon:'removeformat'}
-            ]}
+            ]},{label:'帮助',dialog:"help"}
         ],toolbar:[
             'source',
             'redo undo',
