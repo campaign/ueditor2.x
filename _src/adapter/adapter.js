@@ -173,16 +173,10 @@
                         editor.langIsReady ? $.proxy(renderUI,T)() : editor.addListener("langReady", $.proxy(renderUI,T));
                         function renderUI(){
                             var $container = this.createUI('#' + id, editor);
-
                             editor.ready(function(){
-
                                 $.each( _readyFn, function( index, fn ){
-
                                     $.proxy( fn, editor )();
-
                                 } );
-
-
                             });
 
                             editor.render(id);
@@ -209,7 +203,7 @@
                 $container = $('<div class="edui-container"><div class="edui-editor-body"></div><div class="edui-dialog-container"></div></div>').insertBefore($editorCont);
             editor.$container = $container;
             editor.container = $container[0];
-            $container.find('.edui-editor-body').append($editorCont).before(this.createToolbar(editor.options, editor));
+            $container.find('.edui-editor-body').append($editorCont).before(this.createToolbar(editor.options, editor,$container));
 
             if(editor.options.elementpath || editor.options.wordCount){
                 var $bottombar = $('<div class="edui-bottombar"></div>');
@@ -223,33 +217,37 @@
 
             return $container;
         },
-        createToolbar: function (options, editor) {
+        createToolbar: function (options, editor,$container) {
             var me = this;
             var $toolbar = $.eduitoolbar(), toolbar = $toolbar.edui();
             //创建下来菜单列表
 
-            if (options.menulist) {
+            if (options.menulist && options.menulist.length) {
                 $.each(options.menulist, function (i, v) {
-                    $.eduicontextmenu(parseData(v.data, editor)).edui().attachTo(toolbar.appendToTextmenu(toolbar.createTextItem(v.label)));
-                })
-            } else {
-                $toolbar.find('.edui-text-toolbar').remove()
-            }
+                    if(v.data){
+                        $.eduicontextmenu(parseData(v.data, editor))
+                            .edui()
+                            .attachTo(toolbar.appendToTextmenu(toolbar.createTextItem(v.label)));
+                    }else{
 
-            if (options.toolbar) {
+                        if(v.dialog){
+                            var $dialog = UE.getUI(editor,v.dialog,'menu');
+                            v.exec = function(){
+                                if(!$dialog.parent()[0]){
+                                    $container.find('.edui-dialog-container').append($dialog)
+                                }
+                                $dialog.edui().show()
+                            }
+                        }
+                        v.caret = 0;
+                        toolbar.appendToTextmenu(toolbar.createTextItem(v))
+                    }
 
-                $.each(options.toolbar,function(i,groupstr){
-                    var btngroup = [];
-                    $.each(groupstr.split(/\s+/),function(index,name){
-                        var ui = me.getUI(editor,name);
 
-                        ui && btngroup.push(ui);
-                    });
-                    toolbar.appendToBtnmenu(btngroup);
                 });
-                //收起menulist
                 toolbar.appendToBtnmenu($.eduibutton({
                     icon:'expand',
+                    texttype:true,
                     click:function(){
                         var $i = this.root().find('i');
                         if($i.hasClass('icon-expand')){
@@ -262,6 +260,22 @@
                     },
                     title:editor.getLang('collapsebtn')
                 }),{'float':'right'})
+            } else {
+                $toolbar.find('.edui-text-toolbar').remove()
+            }
+
+            if (options.toolbar && options.toolbar.length) {
+
+                $.each(options.toolbar,function(i,groupstr){
+                    var btngroup = [];
+                    $.each(groupstr.split(/\s+/),function(index,name){
+                        var ui = me.getUI(editor,name);
+
+                        ui && btngroup.push(ui);
+                    });
+                    toolbar.appendToBtnmenu(btngroup);
+                });
+
 
             } else {
                 $toolbar.find('.edui-btn-toolbar').remove()

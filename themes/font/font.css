@@ -916,9 +916,7 @@ ul.icons-ul > li .icon-li {
 .icon-sort:before {
   content: "\f0dc";
 }
-.icon-sort-down:before {
-  content: "\f0dd";
-}
+
 .icon-sort-up:before {
   content: "\f0de";
 }
@@ -1308,4 +1306,7 @@ ul.icons-ul > li .icon-li {
     content: "\f031";
     border:1px solid #000;
     border-radius:2px;
+}
+.icon-sort-down:before {
+    content: "\f0dd";
 }
