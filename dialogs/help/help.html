@@ -5,21 +5,28 @@
     <title>帮助</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <script type="text/javascript" src="../internal.js"></script>
-    <link rel="stylesheet" type="text/css" href="help.css">
+    <style type="text/css">
+        .warpper{width: 370px;margin: 10px auto;zoom: 1;}
+        .tab-content h1{font-size:26px;margin: 5px 0 0 5px;}
+        .tab-content p{font-size:12px;margin: 5px 0 0 5px;}
+        .tab-content table{width:90%;line-height: 20px;margin: 5px 0 0 5px;;}
+        .tab-content table thead{font-weight: bold;line-height: 25px;}
+    </style>
 </head>
 <body>
-<div class="wrapper" id="helptab">
-    <div id="tabHeads" class="tabhead">
-        <span class="focus" tabsrc="about"><var id="lang_input_about"></var></span>
-        <span tabsrc="shortcuts"><var id="lang_input_shortcuts"></var></span>
-    </div>
-    <div id="tabBodys" class="tabbody">
-        <div id="about" class="panel">
+
+<div id="helptab" class="warpper" >
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#about"><var id="lang_input_about"></var></a></li>
+        <li><a href="#shortcuts"><var id="lang_input_shortcuts"></var></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane  active" id="about">
             <h1>UEditor</h1>
             <p id="version"></p>
             <p><var id="lang_input_introduction"></var></p>
         </div>
-        <div id="shortcuts" class="panel">
+        <div class="tab-pane" id="shortcuts">
             <table>
                 <thead>
                 <tr>
@@ -77,6 +84,10 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="help.js"></script>
+
+<script type="text/javascript">
+    var $tab=$.eduitab({selector:"#helptab",context:document});
+    document.getElementById('version').innerHTML = parent.UE.version
+</script>
 </body>
 </html>

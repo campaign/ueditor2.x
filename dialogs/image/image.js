@@ -16,7 +16,6 @@ var imageUploader = {},
 
     var flagImg = null, flashContainer;
     imageUploader.init = function (opt, callbacks) {
-        switchTab("imageTab");
         createAlignButton(["remoteFloat", "localFloat"]);
         createFlash(opt, callbacks);
         var srcImg = editor.selection.getRange().getClosedNode();
@@ -543,116 +542,6 @@ var imageUploader = {},
     function toggleFlash(show) {
         if (flashContainer && browser.webkit) {
             flashContainer.style.left = show ? "0" : "-10000px";
-        }
-    }
-
-    /**
-     * tab点击处理事件
-     * @param tabHeads
-     * @param tabBodys
-     * @param obj
-     */
-    function clickHandler(tabHeads, tabBodys, obj) {
-        //head样式更改
-        for (var k = 0, len = tabHeads.length; k < len; k++) {
-            tabHeads[k].className = "";
-        }
-        obj.className = "focus";
-        //body显隐
-        var tabSrc = obj.getAttribute("tabSrc");
-        for (var j = 0, length = tabBodys.length; j < length; j++) {
-            var body = tabBodys[j],
-                id = body.getAttribute("id");
-            body.onclick = function () {
-                this.style.zoom = 1;
-            };
-            if (id != tabSrc) {
-                body.style.zIndex = 1;
-            } else {
-                body.style.zIndex = 200;
-                //当切换到本地图片上传时，隐藏遮罩用的iframe
-                if (id == "local") {
-                    toggleFlash(true);
-                    maskIframe.style.display = "none";
-                    //处理确定按钮的状态
-                    if (selectedImageCount) {
-                        dialog.buttons[0].setDisabled(true);
-                    }
-                } else {
-                    toggleFlash(false);
-                    maskIframe.style.display = "";
-                    dialog.buttons[0].setDisabled(false);
-                }
-                var list = g("imageList");
-                list.style.display = "none";
-                //切换到图片管理时，ajax请求后台图片列表
-                if (id == "imgManager") {
-                    list.style.display = "";
-                    //已经初始化过时不再重复提交请求
-                    if (!list.children.length) {
-                        ajax.request(editor.options.imageManagerUrl, {
-                            timeout:100000,
-                            action:"get",
-                            onsuccess:function (xhr) {
-                                //去除空格
-                                var tmp = utils.trim(xhr.responseText),
-                                    imageUrls = !tmp ? [] : tmp.split("ue_separate_ue"),
-                                    length = imageUrls.length;
-                                g("imageList").innerHTML = !length ? "&nbsp;&nbsp;" + lang.noUploadImage : "";
-                                for (var k = 0, ci; ci = imageUrls[k++];) {
-                                    var img = document.createElement("img");
-
-                                    var div = document.createElement("div");
-                                    div.appendChild(img);
-                                    div.style.display = "none";
-                                    g("imageList").appendChild(div);
-                                    img.onclick = function () {
-                                        changeSelected(this);
-                                    };
-                                    img.onload = function () {
-                                        this.parentNode.style.display = "";
-                                        var w = this.width, h = this.height;
-                                        scale(this, 100, 120, 80);
-                                        this.title = lang.toggleSelect + w + "X" + h;
-                                        this.onload = null;
-                                    };
-                                    img.setAttribute(k < 35 ? "src" : "lazy_src", editor.options.imageManagerPath + ci.replace(/\s+|\s+/ig, ""));
-                                    img.setAttribute("_src", editor.options.imageManagerPath + ci.replace(/\s+|\s+/ig, ""));
-
-                                }
-                            },
-                            onerror:function () {
-                                g("imageList").innerHTML = lang.imageLoadError;
-                            }
-                        });
-                    }
-                }
-                if (id == "imgSearch") {
-                    selectTxt(g("imgSearchTxt"));
-                }
-                if (id == "remote") {
-                    $focus(g("url"));
-                }
-            }
-        }
-
-    }
-
-    /**
-     * TAB切换
-     * @param tabParentId  tab的父节点ID或者对象本身
-     */
-    function switchTab(tabParentId) {
-        var tabElements = g(tabParentId).children,
-            tabHeads = tabElements[0].children,
-            tabBodys = tabElements[1].children;
-
-        for (var i = 0, length = tabHeads.length; i < length; i++) {
-            var head = tabHeads[i];
-            if (head.className === "focus")clickHandler(tabHeads, tabBodys, head);
-            head.onclick = function () {
-                clickHandler(tabHeads, tabBodys, this);
-            }
         }
     }
 
