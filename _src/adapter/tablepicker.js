@@ -37,11 +37,11 @@ UE.registerUI('inserttable',
                     tablePickerWidget = $.eduitablepicker({
                         mode: mode
                     }).eduitablepicker( "attachTo", btnWidget.root() ).on('select', function( evt, row, col ){
-                            insertTable( row, col );
-                        }).edui();
+                        insertTable( row, col );
+                    }).edui();
                     btnWidget.data( 'tablepicker', tablePickerWidget );
                 }
-                tablePickerWidget.edui().on('show',function(){
+                tablePickerWidget.on('show',function(){
                     UE.setActiveWidget(tablePickerWidget)
                 });
                 tablePickerWidget.show();
