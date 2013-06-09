@@ -8,14 +8,28 @@
     <style type="text/css">
         html,body{overflow:hidden;}
         #specharsTab{width: 97%;margin: 10px auto; zoom:1;position: relative}
-        .tabbody {height:447px;}
-        .tabbody span{ margin: 5px 3px;text-align: center;display:inline-block;width: 40px;height:16px;line-height: 16px;cursor: pointer; }
+        .tab-content span {
+            margin: 5px 3px;
+            text-align: center;
+            display: inline-block;
+            width: 40px;
+            height: 16px;
+            line-height: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div id="specharsTab">
-        <div id="tabHeads" class="tabhead"></div><div id="tabBodys" class="tabbody"></div>
+    <div id="specharsTab" class="warpper" >
+        <ul class="nav nav-tabs" id="tabHeads">
+        </ul>
+        <div class="tab-content" id="tabBodys">
+        </div>
     </div>
+
 <script type="text/javascript" src="spechars.js"></script>
+<script type="text/javascript">
+    var $tab=$.eduitab({selector:"#specharsTab",context:document});
+</script>
 </body>
 </html>

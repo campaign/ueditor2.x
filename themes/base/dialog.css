@@ -76,3 +76,21 @@
     width:550px;
     height: 400px;
 }
+
+/*百度地图*/
+.edui-map-body{
+    width:550px;
+    height: 400px;
+}
+
+/*特殊字符*/
+.edui-spechars-body{
+    width:720px;
+    height: 450px;
+}
+
+/*插入iframe*/
+.edui-insertframe-body{
+    width:370px;
+    height: 250px;
+}
