@@ -41,7 +41,15 @@
             (editor.options.allHtmlEnabled ? editor.getAllHtml() : editor.getContent(null, null, true)) :
             ''
     }
+    function loadPlugins(me){
+        //初始化插件
+        for (var pi in UE.plugins) {
+            UE.plugins[pi].call(me);
+        }
+        me.langIsReady = true;
 
+        me.fireEvent("langReady");
+    }
     /**
      * UEditor编辑器类
      * @name Editor
@@ -87,23 +95,22 @@
             scaleEnabled: false,
             tableNativeEditInFF: false,
             autoSyncData : true,
+            //2.x修改
             iframeUrlMap:{}
         });
+        if(!utils.isEmptyObject(UE.I18N)){
+            loadPlugins(me)
+        }else{
+            utils.loadFile(document, {
+                src: me.options.langPath + me.options.lang + "/" + me.options.lang + ".js",
+                tag: "script",
+                type: "text/javascript",
+                defer: "defer"
+            }, function () {
+                loadPlugins(me)
+            });
+        }
 
-        utils.loadFile(document, {
-            src: me.options.langPath + me.options.lang + "/" + me.options.lang + ".js",
-            tag: "script",
-            type: "text/javascript",
-            defer: "defer"
-        }, function () {
-            //初始化插件
-            for (var pi in UE.plugins) {
-                UE.plugins[pi].call(me);
-            }
-            me.langIsReady = true;
-
-            me.fireEvent("langReady");
-        });
         UE.instants['ueditorInstant' + me.uid] = me;
     };
     Editor.prototype = {
@@ -178,95 +185,51 @@
          * @grammar editor.render(containerId);    //可以指定一个容器ID
          * @grammar editor.render(containerDom);   //也可以直接指定容器对象
          */
-        render: function (container) {
+        render: function (container,holder) {
             var me = this, options = me.options;
             if (utils.isString(container)) {
                 container = document.getElementById(container);
             }
-
-
             if (container) {
-                this.options.textarea = container.getAttribute('name') || '';
-                if (/script|textarea/ig.test(container.tagName)) {
-                    var newDiv = document.createElement('div');
-                    container.parentNode.insertBefore(newDiv, container);
-                    this.options.initialContent = container.value || container.innerHTML;
-                    container.className && (newDiv.className = container.className);
-                    container.style.cssText && (newDiv.style.cssText = container.style.cssText);
-                    if (/textarea/i.test(container.tagName)) {
-                        editor.textarea = container;
-                        container.style.display = 'none';
-                    } else {
-                        container.parentNode.removeChild(container);
-                        container.id && (newDiv.id = container.id);
-                    }
-                    container = newDiv;
-                    container.innerHTML = '';
-                }
-                domUtils.addClass(container, "edui-" + options.theme);
-                var parents = domUtils.findParents(container,true);
-                var displays = [];
-                for(var i = 0 ,ci;ci=parents[i];i++){
-                    displays[i] = ci.style.display;
-                    ci.style.display = 'block'
-                }
-                if (options.initialFrameWidth) {
-                    options.minFrameWidth = options.initialFrameWidth;
-                } else {
+                if(options.initialFrameWidth){
+                    options.minFrameWidth = options.initialFrameWidth
+                }else{
                     options.minFrameWidth = options.initialFrameWidth = container.offsetWidth;
                 }
-                if (options.initialFrameHeight) {
-                    options.minFrameHeight = options.initialFrameHeight;
-                } else {
+                if(options.initialFrameHeight){
+                    options.minFrameHeight = options.initialFrameHeight
+                }else{
                     options.initialFrameHeight = options.minFrameHeight = container.offsetHeight;
                 }
-                for(var i = 0 ,ci;ci=parents[i];i++){
-                    ci.style.display =  displays[i]
-                }
-                //编辑器最外容器设置了高度，会导致，编辑器不占位
-                //todo 先去掉，没有找到原因
-                if(container.style.height){
-                    container.style.height = ''
-                }
-                container.style.width = options.initialFrameWidth+ 'px';
-                container.style.height = options.initialFrameHeight + 'px';
+                container.style.width = options.initialFrameWidth+ (/%$/.test(options.initialFrameWidth) ? '' : 'px');
+                container.style.height = options.initialFrameHeight + (/%$/.test(options.initialFrameHeight) ? '' : 'px');
                 container.style.zIndex = options.zIndex;
-                var useBodyAsViewport = ie && browser.version < 9,
-                    html = ( ie && browser.version < 9 ? '' : '<!DOCTYPE html>') +
-                        '<html xmlns=\'http://www.w3.org/1999/xhtml\'' + (!useBodyAsViewport ? ' class=\'view\'' : '') + '><head>' +
-                        ( options.iframeCssUrl ? '<link rel=\'stylesheet\' type=\'text/css\' href=\'' + utils.unhtml(options.iframeCssUrl) + '\'/>' : '' ) +
-                        '<style type=\'text/css\'>' +
-                        //设置四周的留边
-                        '.view{padding:0;word-wrap:break-word;cursor:text;height:100%;}\n' +
-                        //设置默认字体和字号
-                        //font-family不能呢随便改，在safari下fillchar会有解析问题
-                        'body{margin:8px;font-family:sans-serif;font-size:16px;}' +
-                        //设置段落间距
-                        'p{margin:5px 0;}'
-                        + ( options.initialStyle || '' ) +
-                        '</style></head><body' + (useBodyAsViewport ? ' class=\'view\'' : '') + '></body>';
-                if (options.customDomain && document.domain != location.hostname) {
-                    html += '<script>window.parent.UE.instants[\'ueditorInstant' + me.uid + '\']._setup(document);</script></html>';
-                    container.appendChild(domUtils.createElement(document, 'iframe', {
-                        id: 'ueditor_' + me.uid,
-                        width: "100%",
-                        height: "100%",
-                        frameborder: "0",
-                        src: 'javascript:void(function(){document.open();document.domain="' + document.domain + '";' +
-                            'document.write("' + html + '");document.close();}())'
-                    }));
-                } else {
-                    container.innerHTML = '<iframe id="' + 'ueditor_' + this.uid + '"' + 'width="100%" height="100%" scroll="no" frameborder="0" ></iframe>';
-                    var doc = container.firstChild.contentWindow.document;
-                    //去掉了原来的判断!browser.webkit，因为会导致onload注册的事件不触发
-                    doc.open();
-                    doc.write(html + '</html>');
-                    doc.close();
-                    me._setup(doc);
-                }
 
+                var html = ( ie && browser.version < 9  ? '' : '<!DOCTYPE html>') +
+                    '<html xmlns=\'http://www.w3.org/1999/xhtml\' class=\'view\' ><head>' +
+                    '<style type=\'text/css\'>' +
+                    //设置四周的留边
+                    '.view{padding:0;word-wrap:break-word;cursor:text;height:90%;}\n' +
+                    //设置默认字体和字号
+                    //font-family不能呢随便改，在safari下fillchar会有解析问题
+                    'body{margin:8px;font-family:sans-serif;font-size:16px;}' +
+                    //设置段落间距
+                    'p{margin:5px 0;}</style>' +
+                    ( options.iframeCssUrl ? '<link rel=\'stylesheet\' type=\'text/css\' href=\'' + utils.unhtml(options.iframeCssUrl) + '\'/>' : '' ) +
+                    (options.initialStyle ? '<style>' + options.initialStyle + '</style>' : '') +
+                    '</head><bodgy class=\'view\' ></body>' +
+                    '<script type=\'text/javascript\' ' + (ie ? 'defer=\'defer\'' : '' ) +' id=\'_initialScript\'>' +
+                    'setTimeout(function(){window.parent.UE.instants[\'ueditorInstant' + me.uid + '\']._setup(document);},0);' +
+                    'var _tmpScript = document.getElementById(\'_initialScript\');_tmpScript.parentNode.removeChild(_tmpScript);</script></html>';
+                container.appendChild(domUtils.createElement(document, 'iframe', {
+                    id: 'ueditor_' + me.uid,
+                    width: "100%",
+                    height: "100%",
+                    frameborder: "0",
+                    src: 'javascript:void(function(){document.open();' + (options.customDomain && document.domain != location.hostname ?  'document.domain="' + document.domain + '";' : '') +
+                        'document.write("' + html + '");document.close();}())'
+                }));
                 container.style.overflow = 'hidden';
-
             }
         },
         /**
@@ -285,8 +248,8 @@
                 doc.body.disabled = false;
             } else {
                 doc.body.contentEditable = true;
-                doc.body.spellcheck = false;
             }
+            doc.body.spellcheck = false;
             me.document = doc;
             me.window = doc.defaultView || doc.parentWindow;
             me.iframe = me.window.frameElement;
@@ -328,6 +291,7 @@
             }
 
             //编辑器不能为空内容
+
             if (domUtils.isEmptyNode(me.body)) {
                 me.body.innerHTML = '<p>' + (browser.ie ? '' : '<br/>') + '</p>';
             }
