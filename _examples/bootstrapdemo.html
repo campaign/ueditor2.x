@@ -39,7 +39,7 @@
         location.href = location.href.replace(/#/,'').replace(/\?.*$/,'') + '?' + this.value
 
     }).val(location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default')
-    window.tt = UE.getEditor('editor',{
+    UE.getEditor('editor',{
         theme:location.href.match(/\?(.+)/) && location.href.match(/\?(.+)/)[1] || 'default',
         menulist:[
             {label:'文件',data:[
@@ -94,7 +94,7 @@
                 ]}
             ]},{label:'显示',data:[
                 {label:'预览',exec:'preview',shortkey:'ctrl+shift+p'},
-                {label:'全屏',exec:'fullscreen',shortkey:'ctrl+shift+f'}
+                {label:'全屏',icon: 'resize-full', exec: 'fullscreen', shortkey:'ctrl+shift+f'}
             ]},{label:'格式',data:[
                 {label:'粗体',exec:'bold',shortkey:'ctrl+b'},
                 {label:'斜体',exec:'italic',shortkey:'ctrl+i'},

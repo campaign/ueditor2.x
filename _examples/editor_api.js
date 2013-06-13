@@ -90,7 +90,6 @@
             'ui/tab.js',
             'ui/emotion.js',
             'ui/elementpath.js',
-            'ui/fullscreen.js',
             'adapter/adapter.js',
             'adapter/ready.js',
             'adapter/button.js',

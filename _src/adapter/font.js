@@ -45,10 +45,10 @@ UE.registerUI('fontsize', function( name ) {
 
         var me = this,
             $fontCombobox = $.eduicombobox({
-                label: '字号',
+                label: '16',
                 title: me.getLang("labelMap")[name],
                 autorecord: false,
-                mode: 'fontsize',
+                mode: 'fontSize',
                 items: me.options.fontsize
             }),
             $btn = $fontCombobox.eduicombobox('box').eduicombobox('on', 'comboboxselect', function(evt, res) {

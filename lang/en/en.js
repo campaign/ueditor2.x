@@ -20,7 +20,7 @@ UE.I18N['en'] = {
         'emotion':'Emotion', 'spechars':'Spechars', 'searchreplace':'SearchReplace', 'map':'BaiduMap', 'gmap':'GoogleMap',
         'insertvideo':'Video', 'help':'Help', 'justifyleft':'JustifyLeft', 'justifyright':'JustifyRight', 'justifycenter':'JustifyCenter',
         'justifyjustify':'Justify', 'forecolor':'FontColor', 'backcolor':'BackColor', 'insertorderedlist':'OL',
-        'insertunorderedlist':'UL', 'fullscreen':'FullScreen', 'directionalityltr':'EnterFromLeft', 'directionalityrtl':'EnterFromRight',
+        'insertunorderedlist':'UL', 'fullscreen':'FullScreen', 'revert': 'Revert', 'directionalityltr':'EnterFromLeft', 'directionalityrtl':'EnterFromRight',
         'rowspacingtop':'RowSpacingTop', 'rowspacingbottom':'RowSpacingBottom', 'highlightcode':'Code', 'pagebreak':'PageBreak', 'insertframe':'Iframe', 'imagenone':'Default',
         'imageleft':'ImageLeft', 'imageright':'ImageRight', 'attachment':'Attachment', 'imagecenter':'ImageCenter', 'wordimage':'WordImage',
         'lineheight':'LineHeight','edittip':'EditTip','customstyle':'CustomStyle', 'scrawl':'Scrawl', 'autotypeset':'AutoTypeset',

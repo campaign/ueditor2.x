@@ -1,6 +1,6 @@
 //dropmenu 类
 UE.ui.define('contextmenu',{
-    tmpl:'<a tabindex="-1" href="#"><em class="edui-contextmenu-icon"><%if(icon){%><i class="icon-<%=icon%>"></i><%}%></em><%=label%><%if(shortkey){%><span class="muted edui-item-right"><%=shortkey%><%}%></span></a>',
+    tmpl:'<a tabindex="-1" href="#"><em class="edui-contextmenu-icon"><%if(icon){%><i class="edui-icon icon-<%=icon%>"></i><%}%></em><span class="edui-item-label"><%=label%></span><%if(shortkey){%><span class="muted edui-item-right"><%=shortkey%><%}%></span></a>',
     defaultItem:{
         icon:'',
         label:'',
@@ -63,7 +63,8 @@ UE.ui.define('contextmenu',{
         $root.children('li[class!="disabled divider dropdown-submenu"]').click(function(){
             me.hide(true);
             var $this = $(this);
-            $this.data('exec')($this.data('value'));
+            //增加一个参数， 传递当前的item dom对象
+            $this.data('exec')($this.data('value'), this);
 
         });
 

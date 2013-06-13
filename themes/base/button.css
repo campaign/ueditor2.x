@@ -6,13 +6,18 @@
     padding:5px;
 }
 
-.edui-button-font-label {
+.edui-button-font-label, .edui-button-fontsize-label {
     width: 50px;
     overflow: hidden;
     display: inline-block;
     text-align: left;
     *zoom: 1;
 }
+
+.edui-button-fontsize-label {
+    width: 20px;
+}
+
 .edui-text-btn{
     display:inline-block;
     font-size:14px;

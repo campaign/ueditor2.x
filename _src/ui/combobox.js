@@ -55,7 +55,7 @@
                 var btnWidget = $.eduibutton({
                     caret: true,
                     title: options.title,
-                    width: options.mode,
+                    mode: options.mode,
                     text: options.label,
                     click: $.proxy( me.open, me )
                 });
@@ -209,7 +209,7 @@
                     //字体参数适配
                     fontFamilyAdaptation( options );
                     break;
-                case 'fontsize':
+                case 'fontSize':
                     fontSizeAdaption( options );
                     break;
                 default:

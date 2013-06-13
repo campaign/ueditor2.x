@@ -68,7 +68,14 @@
                         }else{
                             if ($.type(v.exec) == 'string') {
                                 command = v.exec;
-                                v.exec = $.proxy(function(name){this.execCommand(name)},editor,command);
+                                //有插件  就执行插件
+                                if( UE.commands[ command ] || editor.commands[ command ] ) {
+                                    v.exec = $.proxy(function(name){this.execCommand(name)},editor,command);
+
+                                //否则， 检查一下是否有注册的UI
+                                } else if( _editorUI[ command ] ) {
+                                    v.exec = $.proxy(_editorUI[ command ], editor,command, 'menu');
+                                }
                                 if (!v.query) {
                                     v.query = $.proxy(function(name){return this.queryCommandState(name)},editor,command);
                                 }
