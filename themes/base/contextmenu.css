@@ -3,6 +3,13 @@
     margin-left:20px;
 }
 
+.edui-item-back {
+    margin-left: 20px;
+    visibility: hidden;
+    display: none;
+    display: inline\9;
+}
+
 .edui-contextmenu > li > a{
     padding:3px 20px;
 }

@@ -8,10 +8,14 @@
 
 .edui-button-font-label, .edui-button-fontsize-label {
     width: 50px;
+    height: 20px;
     overflow: hidden;
     display: inline-block;
     text-align: left;
+    display: inline\9;
     *zoom: 1;
+    padding: 0;
+    margin: 0;
 }
 
 .edui-button-fontsize-label {
@@ -32,4 +36,8 @@
     text-decoration: none;
     color:#000;
     cursor:pointer;
+}
+
+.btn-group > .btn {
+    overflow: visible;
 }

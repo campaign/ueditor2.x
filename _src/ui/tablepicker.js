@@ -97,9 +97,7 @@
 
             });
 
-            /**
-             * 行列确认
-             */
+            //行列确认
             this.root().delegate("td", "click", function( evt ){
 
                 var rowIndex = this.parentNode.rowIndex + 1,
@@ -109,13 +107,16 @@
 
                 _self.trigger( 'select', [ rowIndex, colIndex ] );
 
-
-
             });
 
-            /**
-             * 重置
-             */
+            //解决IE下关闭不了的问题
+            this.root().delegate("td", "mouseover", function( evt ){
+                evt.stopPropagation();
+                evt.preventDefault();
+            });
+
+
+            //重置
             this.on("afterhide", function(){
 
                 this.reset();
@@ -215,23 +216,6 @@
 
             this.data('label').innerHTML = '';
         }
-//        show: function(){
-//
-//            var $target = this.data('$mergeObj') || null,
-//                offset = null;
-//
-//            if( !$target ) {
-//                throw new Error('tablepicker show error, invalid target object');
-//            }
-//
-//            offset = $target.offset();
-//
-//            this.root().css( $.extend( {display:'block'},  {
-//                top : offset.top,
-//                left : offset.left + $target.outerWidth()
-//            } ) );
-//
-//        }
 
     }, 'popup');
 

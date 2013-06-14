@@ -36,6 +36,6 @@
     height: 38px;
 }
 
-#tabIconReview{position:absolute;left:445px;left:398px \9;top: 48px;z-index:65533;width:90px;height:76px;display: none;}
+#tabIconReview{position:absolute;left:445px;top: 48px;z-index:65533;width:90px;height:76px;display: none;}
 #tabIconReview.show{left:11px;display:block;}
-img.review{width:90px;height:76px;border:2px solid #9cb945;background:#FFFFFF;background-position:center;background-repeat:no-repeat;}
+.review{width:90px;height:76px;border:2px solid #9cb945;background:#FFFFFF;background-position:center;background-repeat:no-repeat;}

@@ -1,9 +1,7 @@
 .edui-modal{
     width:auto;
 }
-.edui-modal-body{
-    max-height: 100%;
-}
+
 .edui-modal-body iframe{
     border: 0;
     padding: 0;
@@ -20,7 +18,7 @@
 /*表格属性*/
 .edui-edittable-body {
     width: 700px;
-    height: 300px;
+    height: 330px;
 }
 
 /*单元格属性*/

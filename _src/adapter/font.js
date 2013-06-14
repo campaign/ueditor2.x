@@ -85,6 +85,14 @@ UE.registerUI('forecolor',
             fontIcon = null,
             $btn = null;
 
+        //querycommand
+        this.addListener('selectionchange',function(){
+
+            var state = this.queryCommandState( name );
+            $btn.edui().disabled( state == -1 ).active( state == 1 );
+
+        });
+
         $btn = $.eduisplitbutton({
             icon: 'font',
             caret: true,
