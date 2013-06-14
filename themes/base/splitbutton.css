@@ -7,6 +7,7 @@
     white-space: nowrap;
     vertical-align: middle;
     *zoom: 1;
+    overflow: visible;
 }
 .edui-splitbutton .dropdown-toggle{
     padding-left:4px!important;
