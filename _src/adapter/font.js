@@ -109,8 +109,10 @@ UE.registerUI('forecolor',
             lang_themeColor: me.getLang('themeColor') || '',
             lang_standardColor: me.getLang('standardColor') || ''
         }).eduitablepicker( "attachTo", $btn ).edui().on('pickcolor', function( evt, color ){
-                fontIcon.css("color", color);
-                me.execCommand( name, color );
+                window.setTimeout( function(){
+                    fontIcon.css("color", color);
+                    me.execCommand( name, color );
+                }, 0 );
             });
         colorPickerWidget.on('show',function(){
             UE.setActiveWidget(colorPickerWidget.root())

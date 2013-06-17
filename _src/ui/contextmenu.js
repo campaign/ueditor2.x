@@ -25,11 +25,11 @@ UE.ui.define('contextmenu',{
 
             }
         });
-        $root.children('li').mouseover(function(){
+        $root.children('li').mouseover(function( evt ){
             var $this = $(this),widget,$submenu;
             if($this.hasClass('dropdown-submenu') || (widget = $this.data('widget'))){
-                if(widget){
-                    if(!$.contains($this,widget)){
+                if(widget[0]){
+                    if(!$.contains(this,widget[0])){
                         widget.appendTo($this)
                     }
                     $submenu = widget;
@@ -43,8 +43,14 @@ UE.ui.define('contextmenu',{
                     $submenu.data('parentmenu',$this.parent());
                 }
                 if(!$this.hasClass('disabled')){
-                    $submenu.edui().show($this,'right','position',5,2);
-                    $root.data('activesubmenu',$submenu);
+
+                    if( !$.contains( this, evt.fromElement ) ) {
+
+                        $submenu.edui().show($this,'right','position',5,2);
+                        $root.data('activesubmenu',$submenu);
+
+                    }
+
                 }
 
             }else{
@@ -54,10 +60,10 @@ UE.ui.define('contextmenu',{
             }
         });
         me.register('mouseover',$root,function(){
-            var sub = $root.data('activesubmenu');
-            if(sub){
-                sub.edui().hide()
-            }
+//            var sub = $root.data('activesubmenu');
+//            if(sub){
+//                sub.edui().hide()
+//            }
         });
 
         $root.children('li[class!="disabled divider dropdown-submenu"]').click(function(){
