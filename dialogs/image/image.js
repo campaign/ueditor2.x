@@ -167,6 +167,7 @@ var imageUploader = {},
     function addOKListener() {
         $dialog.on("ok", function () {
             var currentTab = findFocus("tabHeads", "tabSrc");
+
             switch (currentTab) {
                 case "remote":
                     return insertSingle();
