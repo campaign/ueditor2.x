@@ -55,15 +55,15 @@ $(document).on("click", function(){
 
 });
 
-dialog.on('hide', function(){
+$dialog.on('beforehide', function(){
     tone.value = '';
 });
 
-dialog.on('ok', function(){
+$dialog.on('ok', function(){
     editor.execCommand("edittd", tone.value);
 });
 
-dialog.on('show', function(){
+$dialog.on('beforeshow', function(){
 
     var start = editor.selection.getStart(),
         cell = start && domUtils.findParentByTagName(start, ["td", "th"], true);
@@ -80,4 +80,4 @@ dialog.on('show', function(){
 
 });
 
-dialog.trigger('show');
+$dialog.trigger('beforeshow');

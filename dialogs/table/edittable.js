@@ -230,7 +230,7 @@
 
         var edit = new editTable();
 
-        dialog.on('ok', function(){
+        $dialog.on('ok', function(){
 
             editor.__hasEnterExecCommand = true;
 
@@ -259,11 +259,11 @@
 
         });
 
-        dialog.on('hide', function(){
+        $dialog.on('beforehide', function(){
             edit.reset();
         });
 
-        dialog.on('show', function(){
+        $dialog.on('beforeshow', function(){
            edit.updatePreview();
         });
 

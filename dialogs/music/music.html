@@ -21,12 +21,12 @@
 <script type="text/javascript" src="music.js"></script>
 <script type="text/javascript">
     var music = new Music;
-    dialog.onok = function () {
+    $dialog.on("ok",function(){
         music.exec();
-    };
-    dialog.oncancel = function () {
+    });
+    $dialog.on("beforehide",function(){
         $G('J_preview').innerHTML = "";
-    };
+    });
 </script>
 </body>
 </html>

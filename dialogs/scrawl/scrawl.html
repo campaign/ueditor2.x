@@ -83,13 +83,13 @@
     var scrawlObj = new scrawl( settings );
     scrawlObj.isCancelScrawl = false;
 
-    dialog.onok = function () {
+    $dialog.on('ok', function () {
         exec( scrawlObj );
         return false;
-    };
-    dialog.oncancel = function () {
+    });
+    $dialog.on('beforehide', function () {
         scrawlObj.isCancelScrawl = true;
-    };
+    });
 </script>
 </body>
 </html>

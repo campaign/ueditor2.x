@@ -29,13 +29,13 @@
     </div>
 </div>
 <script type="text/javascript">
-    dialog.on('ok', function(){
+    $dialog.on('ok', function(){
 
         $G("J_delRow").checked ? editr.execCommand("deleterow") : editor.execCommand("deletecol");
 
     });
 
-    dialog.on('hide', function(){
+    $dialog.on('beforehide', function(){
         $G("J_delRow").checked = true;
     });
 

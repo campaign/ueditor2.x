@@ -607,7 +607,7 @@ function removeMaskLayer() {
     var maskLayer = $G("J_maskLayer");
     maskLayer.className = "maskLayerNull";
     maskLayer.innerHTML = "";
-    dialog.buttons[0].setDisabled(false);
+    $dialog.edui().disabledBtn('[data-ok="modal"]',false);
 }
 //添加遮罩层
 function addMaskLayer(html) {
