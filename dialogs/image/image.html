@@ -137,7 +137,7 @@
                     });
                     selectedImageCount += selectFiles.length;
                     if(selectedImageCount) baidu.g("upload").style.display = "";
-                    dialog.buttons[0].setDisabled(true); //初始化时置灰确定按钮
+                    $dialog.edui().disabledBtn('[data-ok="modal"]',true);
                 },
                 // 删除文件的回调
                 deleteFileCallback: function(delFiles){
@@ -148,7 +148,7 @@
                     selectedImageCount -= delFiles.length;
                     if (!selectedImageCount) {
                         baidu.g("upload").style.display = "none";
-                        dialog.buttons[0].setDisabled(false);         //没有选择图片时重新点亮按钮
+                        $dialog.edui().disabledBtn('[data-ok="modal"]',false);//没有选择图片时重新点亮按钮
                     }
                 },
 
@@ -170,7 +170,7 @@
                 },
                 // 全部上传完成时的回调
                 allCompleteCallback: function(){
-                    dialog.buttons[0].setDisabled(false);    //上传完毕后点亮按钮
+                    $dialog.edui().disabledBtn('[data-ok="modal"]',false);//上传完毕后点亮按钮
                 },
                 // 文件超出限制的最大体积时的回调
                 //exceedFileCallback: 'exceedFileCallback',

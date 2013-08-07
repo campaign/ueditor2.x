@@ -607,7 +607,7 @@ function removeMaskLayer() {
     var maskLayer = $G("J_maskLayer");
     maskLayer.className = "maskLayerNull";
     maskLayer.innerHTML = "";
-    dialog.buttons[0].setDisabled(false);
+    $dialog.edui().disabledBtn('[data-ok="modal"]',false);
 }
 //添加遮罩层
 function addMaskLayer(html) {
@@ -635,7 +635,7 @@ function exec(scrawlObj) {
                             imgObj.src = url;
                             imgObj._src = url;
                             editor.execCommand("insertImage", imgObj);
-                            dialog.close();
+                            $dialog.edui().hide();
                         } else {
                             alert(responseObj.state);
                         }
@@ -644,7 +644,7 @@ function exec(scrawlObj) {
                 },
                 onerror:function () {
                     alert(lang.imageError);
-                    dialog.close();
+                    $dialog.edui().hide();
                 }
             });
         }

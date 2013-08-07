@@ -33,21 +33,13 @@ var video = {};
      * 监听确认和取消两个按钮事件，用户执行插入或者清空正在播放的视频实例操作
      */
     function addOkListener(){
-        dialog.onok = function(){
+        $dialog.on('ok', function(){
             $G("preview").innerHTML = "";
-            var currentTab =  findFocus("tabHeads","tabSrc");
-            switch(currentTab){
-                case "video":
-                    return insertSingle();
-                    break;
-//                case "videoSearch":
-//                    return insertSearch("searchList");
-//                    break;
-            }
-        };
-        dialog.oncancel = function(){
+            return insertSingle();
+        });
+        $dialog.on('beforehide', function(){
             $G("preview").innerHTML = "";
-        };
+        });
     }
 
     function selectTxt(node){
@@ -166,45 +158,6 @@ var video = {};
         return /(0|^[1-9]\d*$)/.test( value );
     }
 
-    /**
-     * tab切换
-     * @param tabParentId
-     * @param keepFocus   当此值为真时，切换按钮上会保留focus的样式
-     */
-    function switchTab( tabParentId,keepFocus ) {
-        var tabElements = $G( tabParentId ).children,
-                tabHeads = tabElements[0].children,
-                tabBodys = tabElements[1].children;
-        for ( var i = 0, length = tabHeads.length; i < length; i++ ) {
-            var head = tabHeads[i];
-            domUtils.on( head, "click", function () {
-                //head样式更改
-                for ( var k = 0, len = tabHeads.length; k < len; k++ ) {
-                    if(!keepFocus)tabHeads[k].className = "";
-                }
-                this.className = "focus";
-                //body显隐
-                var tabSrc = this.getAttribute( "tabSrc" );
-                for ( var j = 0, length = tabBodys.length; j < length; j++ ) {
-                    var body = tabBodys[j],
-                        id = body.getAttribute( "id" );
-
-                    if ( id == tabSrc ) {
-                        body.style.display = "";
-                        if(id=="videoSearch"){
-                            selectTxt($G("videoSearchTxt"));
-                        }
-                        if(id=="video"){
-                            selectTxt($G("videoUrl"));
-                        }
-
-                    } else {
-                        body.style.display = "none";
-                    }
-                }
-            } );
-        }
-    }
     /**
       * 创建图片浮动选择按钮
       * @param ids

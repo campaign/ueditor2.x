@@ -31,7 +31,7 @@
         (function (type, vals) {
             UE.registerUI(vals,
                 function (name, mode) {
-                    var me = this, currentRange, dialog,
+                    var me = this, currentRange, $dialog,
                         opt = {
                             title: (me.options.labelMap && me.options.labelMap[name]) || me.getLang("labelMap." + name),
                             url: me.options.UEDITOR_HOME_URL + '/dialogs/' + (me.options.iframeUrlMap[name] || iframeUrlMap[name])
@@ -42,33 +42,33 @@
                         opt.cancellabel = me.getLang('cancel');
                     }
 
-                    dialog = $.eduimodal(opt);
+                    $dialog = $.eduimodal(opt);
 
-                    dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
+                    $dialog.attr('id', 'edui-' + name).find('.modal-body').addClass('edui-' + name + '-body');
 
-                    dialog.edui().on('beforehide',function () {
+                    $dialog.edui().on('beforehide',function () {
                         var rng = me.selection.getRange();
                         if (rng.equals(currentRange)) {
                             rng.select()
                         }
                     }).on('beforeshow', function () {
                             currentRange = me.selection.getRange();
-                            UE.setActiveWidget(this.root())
+                            UE.setActiveWidget($dialog)
                         });
 
                     if (mode == 'menu') {
-                        return dialog;
+                        return $dialog;
                     }
                     else {
                         var $btn = $.eduibutton({
                             icon: name,
                             click: function () {
-                                if (!dialog.parent()[0]) {
-                                    me.$container.find('.edui-dialog-container').append(dialog);
+                                if (!$dialog.parent()[0]) {
+                                    me.$container.find('.edui-dialog-container').append($dialog);
                                 }
-                                dialog.edui().show();
+                                $dialog.edui().show();
                                 UE.setActiveEditor(me);
-                                me.$activeDialog = dialog;
+                                me.$activeDialog = $dialog;
                             },
                             title: this.getLang('labelMap')[name] || ''
                         });

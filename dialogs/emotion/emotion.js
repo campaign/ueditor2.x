@@ -86,7 +86,7 @@ function autoHeight( index ) {
 
     height += 100;
 
-    dialog.css( 'height', height + 'px' );
+    $dialog.css( 'height', height + 'px' );
 
 }
 
@@ -98,7 +98,7 @@ function InsertSmiley( url, evt ) {
     $(window.frameElement).trigger('click');
     editor.execCommand( 'insertimage', obj );
     if ( !evt.ctrlKey ) {
-        dialog.hide();
+        $dialog.hide();
     }
 }
 

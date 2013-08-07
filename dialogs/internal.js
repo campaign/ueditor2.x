@@ -2,10 +2,9 @@
     var parent = window.parent;
 
 
-    dialog = parent.UE.getActiveWidget();
+    $dialog = parent.UE.getActiveWidget();
 
-    editor = parent.UE.getActiveEditor(dialog);
-
+    editor = parent.UE.getActiveEditor($dialog);
 
     UE = parent.UE;
 
@@ -50,7 +49,7 @@
         type:"text/css",
         rel:"stylesheet"
     });
-    lang = editor.getLang(dialog.attr('id').replace(/^edui-/,''));
+    lang = editor.getLang($dialog.attr('id').replace(/^edui-/,''));
 
     domUtils.on(window,'load',function () {
 

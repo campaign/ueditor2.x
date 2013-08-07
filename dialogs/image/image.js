@@ -165,7 +165,7 @@ var imageUploader = {},
      * 绑定确认按钮
      */
     function addOKListener() {
-        dialog.onok = function () {
+        $dialog.on("ok", function () {
             var currentTab = findFocus("tabHeads", "tabSrc");
             switch (currentTab) {
                 case "remote":
@@ -181,10 +181,10 @@ var imageUploader = {},
                     return insertSearch("searchList", true);
                     break;
             }
-        };
-        dialog.oncancel = function () {
+        });
+        $dialog.on("beforehide",function () {
             hideFlash();
-        }
+        });
     }
 
     function hideFlash() {

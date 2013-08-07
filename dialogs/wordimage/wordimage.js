@@ -26,28 +26,28 @@ function hideFlash(){
     flashContainer.innerHTML = "";
 }
 function addOkListener() {
-	dialog.onok = function() {
-		if (!imageUrls.length) return;
-		var images = domUtils.getElementsByTagName(editor.document,"img");
-		for (var i = 0,img; img = images[i++];) {
-			var src = img.getAttribute("word_img");
-			if (!src) continue;
-			for (var j = 0,url; url = imageUrls[j++];) {
-				if (src.indexOf(url.original.replace(" ","")) != -1) {
-					img.src = editor.options.wordImagePath + url.url;
-					img.setAttribute("_src", editor.options.wordImagePath + url.url);  //同时修改"_src"属性
-					img.setAttribute("title",url.title);
+	$dialog.on('ok', function() {
+        if (!imageUrls.length) return;
+        var images = domUtils.getElementsByTagName(editor.document,"img");
+        for (var i = 0,img; img = images[i++];) {
+            var src = img.getAttribute("word_img");
+            if (!src) continue;
+            for (var j = 0,url; url = imageUrls[j++];) {
+                if (src.indexOf(url.original.replace(" ","")) != -1) {
+                    img.src = editor.options.wordImagePath + url.url;
+                    img.setAttribute("_src", editor.options.wordImagePath + url.url);  //同时修改"_src"属性
+                    img.setAttribute("title",url.title);
                     parent.baidu.editor.dom.domUtils.removeAttributes(img, ["word_img","style","width","height"]);
-					editor.fireEvent("selectionchange");
-					break;
-				}
-			}
-		}
+                    editor.fireEvent("selectionchange");
+                    break;
+                }
+            }
+        }
         hideFlash();
-	};
-    dialog.oncancel = function(){
+    });
+    $dialog.on('beforehide', function(){
         hideFlash();
-    }
+    });
 }
 
 /**

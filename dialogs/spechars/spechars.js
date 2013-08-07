@@ -34,7 +34,7 @@ var charsContent = [
             charSpan.innerHTML = con;
             domUtils.on(charSpan, "click", function () {
                 editor.execCommand("insertHTML", this.innerHTML);
-                dialog.close();
+                $dialog.edui().hide();
             });
             div.appendChild(charSpan);
         }

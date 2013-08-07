@@ -66,7 +66,8 @@
             file_dialog_complete_handler:function(numFilesSelected, numFilesQueued) {
                 var me = this;        //此处的this是swfupload对象
                 if (numFilesQueued > 0) {
-                    dialog.buttons[0].setDisabled(true);
+                    $dialog.edui().disabledBtn('[data-ok="modal"]',true);
+
                     var start = $G(this.customSettings.startUploadId);
                     start.style.display = "";
                     start.onclick = function(){
@@ -99,15 +100,13 @@
             upload_complete_handler:uploadComplete,
             //队列完成回调
             queue_complete_handler:function(numFilesUploaded){
-                dialog.buttons[0].setDisabled(false);
-//                var status = $G("divStatus");
-//                var num = status.innerHTML.match(/\d+/g);
-//                status.innerHTML = ((num && num[0] ?parseInt(num[0]):0) + numFilesUploaded) +lang.statusPrompt;
+                $dialog.edui().disabledBtn('[data-ok="modal"]',false);
             }
         };
+
         swfupload = new SWFUpload( settings );
         //点击OK按钮
-        dialog.onok = function(){
+        $dialog.on("ok", function(){
             var map = fileTypeMaps,
                 str="";
             for(var i=0,ci;ci=filesList[i++];){
@@ -117,10 +116,10 @@
             }
             editor.execCommand("insertHTML",str);
             swfupload.destroy();
-        };
-        dialog.oncancel = function(){
+        });
+        $dialog.on("beforehide",function(){
             swfupload.destroy();
-        }
+        });
     };
 </script>
 

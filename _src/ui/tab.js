@@ -51,14 +51,18 @@ UE.ui.define ( 'tab' , {
             } )
         } );
     } ,
-    activate : function ( element , container , callback ) {
-        var $active = container.find ( '> .active' );
+    activate: function (element, container, callback) {
+        if (element === undefined) {
+            return $(".edui-tab-item.active",this.root()).index();
+        }
 
-        $active.removeClass ( 'active' );
+        var $active = container.find('> .active');
 
-        element.addClass ( 'active' );
+        $active.removeClass('active');
 
-        callback && callback ();
+        element.addClass('active');
+
+        callback && callback();
     }
 } );
 
