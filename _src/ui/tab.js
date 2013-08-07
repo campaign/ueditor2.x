@@ -53,7 +53,7 @@ UE.ui.define ( 'tab' , {
     } ,
     activate: function (element, container, callback) {
         if (element === undefined) {
-            return $(".edui-tab-item.active",this.root());
+            return $(".nav li.active",this.data("context"));
         }
 
         var $active = container.find('> .active');
