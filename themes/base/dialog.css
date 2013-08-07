@@ -84,7 +84,8 @@
 /*特殊字符*/
 .edui-spechars-body{
     width:800px;
-    height: 650px;
+    height: 450px;
+    max-height:450px;
 }
 
 /*插入iframe*/
