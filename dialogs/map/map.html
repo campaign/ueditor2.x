@@ -88,7 +88,7 @@
             doSearch();
         }
     };
-    dialog.onok = function (){
+    $dialog.on("ok", function (){
         var center = map.getCenter();
         var zoom = map.zoomLevel;
         var size = map.getSize();
@@ -96,7 +96,7 @@
         var url = "http://api.map.baidu.com/staticimage?center=" + center.lng + ',' + center.lat +
             "&zoom=" + zoom + "&width=" + size.width + '&height=' + size.height + "&markers=" + point.lng + ',' + point.lat;
         editor.execCommand('inserthtml', '<img width="'+ size.width +'"height="'+ size.height +'" src="' + url + '"' + (imgcss ? ' style="' + imgcss + '"' :'') + '/>');
-    };
+    });
     document.getElementById("address").focus();
 </script>
 

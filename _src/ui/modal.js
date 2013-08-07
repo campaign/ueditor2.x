@@ -133,6 +133,11 @@ UE.ui.define ('modal' , {
             me.data ('$mergeObj' , $obj)
         }
     } ,
+    disabledBtn:function(sel,state){
+        var me=this,
+            $btn=$(sel,me.root());
+        $btn.toggleClass("disabled",state);
+    },
     ok: function () {
         var me = this;
         me.trigger ("ok");

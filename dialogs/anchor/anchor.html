@@ -26,14 +26,13 @@
                 evt = evt || window.event;
                 if(evt.keyCode == 13){
                     editor.execCommand('anchor', anchorInput.value);
-                    dialog.close();
+                    $dialog.hide();
                     domUtils.preventDefault(evt)
                 }
             };
-            dialog.onok = function (){
+            $dialog.on("ok",function (){
                 editor.execCommand('anchor', anchorInput.value);
-                dialog.close();
-            };
+            });
             $focus(anchorInput);
         </script>
     </body>

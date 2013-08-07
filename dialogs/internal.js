@@ -6,7 +6,6 @@
 
     editor = parent.UE.getActiveEditor($dialog);
 
-
     UE = parent.UE;
 
     domUtils = UE.dom.domUtils;

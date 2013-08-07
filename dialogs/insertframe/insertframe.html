@@ -81,9 +81,8 @@
             editor.execCommand("inserthtml",div.innerHTML);
         }
         editor._iframe = null;
-        dialog.close();
     }
-    dialog.onok = queding;
+    $dialog.on('ok',queding);
     $G("url").onkeydown = function(evt){
         evt = evt || event;
         if(evt.keyCode == 13){
