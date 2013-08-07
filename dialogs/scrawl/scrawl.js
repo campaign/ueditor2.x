@@ -635,7 +635,7 @@ function exec(scrawlObj) {
                             imgObj.src = url;
                             imgObj._src = url;
                             editor.execCommand("insertImage", imgObj);
-                            dialog.close();
+                            $dialog.edui().hide();
                         } else {
                             alert(responseObj.state);
                         }
@@ -644,7 +644,7 @@ function exec(scrawlObj) {
                 },
                 onerror:function () {
                     alert(lang.imageError);
-                    dialog.close();
+                    $dialog.edui().hide();
                 }
             });
         }
