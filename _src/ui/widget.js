@@ -76,6 +76,7 @@
             true
         );
         ClassObj.prototype.supper =  (UE.ui[supperClass]||_widget).prototype;
+        ClassObj.prototype.defaultOpt = properties.defaultOpt = $.extend( {}, ClassObj.prototype.supper.defaultOpt, properties.defaultOpt );
         return ClassObj
     }
     var _guid = 1;
