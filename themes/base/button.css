@@ -6,7 +6,7 @@
     padding:5px;
 }
 
-.edui-button-font-label, .edui-button-fontsize-label {
+.edui-button-fontfamily .edui-button-label, .edui-button-fontsize .edui-button-label {
     width: 50px;
     height: 20px;
     overflow: hidden;
@@ -16,10 +16,6 @@
     *zoom: 1;
     padding: 0;
     margin: 0;
-}
-
-.edui-button-fontsize-label {
-    width: 20px;
 }
 
 .edui-text-btn{
