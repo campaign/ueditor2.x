@@ -140,7 +140,7 @@ UE.ui.define ('modal' , {
     },
     ok: function () {
         var me = this;
-        me.trigger ("ok");
+        if(me.trigger ("ok")===false)   return;
         me.hide ();
     }
 });
