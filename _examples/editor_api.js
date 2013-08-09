@@ -85,6 +85,7 @@
             'ui/colorpicker.js',
             'ui/tablepicker.js',
             'ui/combobox.js',
+            'ui/buttoncombobox.js',
             'ui/modal.js',
             'ui/tooltip.js',
             'ui/tab.js',

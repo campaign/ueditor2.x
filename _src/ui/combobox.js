@@ -33,9 +33,6 @@
 
             },
             defaultOpt: {
-                //按钮初始文字
-                label: '',
-                title: '',
                 //记录栈初始列表
                 recordStack: [],
                 //可用项列表
@@ -46,45 +43,24 @@
                 //自动记录
                 autoRecord: true,
                 //最多记录条数
-                recordCount: 5
+                recordCount: 5,
+                autowidthitem: []
             },
             init: function( options ){
 
                 var me = this;
 
-                var btnWidget = $.eduibutton({
-                    caret: true,
-                    title: options.title,
-                    mode: options.mode,
-                    text: options.label,
-                    click: $.proxy( me.open, me )
-                });
-
                 //参数适配转换一下
-                optionAdaptation( options );
-
-                options.itemCount = options.items.length;
+                options = optionAdaptation( options );
 
                 $.extend( options, createItemMapping( options.recordStack, options.items ) );
 
                 me.root( $( $.parseTmpl( me.tpl(options), options ) ) );
 
-                me.attachTo( btnWidget );
-
                 this.data( 'options', options );
-                this.data( 'box', btnWidget );
 
                 this.initEvent();
 
-            },
-            box: function(){
-                return this.data( 'box' );
-            },
-            open: function(){
-                this.show();
-            },
-            close: function(){
-                this.hide();
             },
             initEvent: function(){
 
@@ -102,7 +78,7 @@
                     } );
 
                     me.selectItem( index );
-                    me.close();
+                    me.hide();
 
                     return false;
 
@@ -136,9 +112,10 @@
 
                 if( currentItem.length ) {
 
+                    this.trigger( 'beforechange', items[ index ] );
                     //更改按钮标签内容
-                    this.box().eduibutton('label', items[ index ] );
                     this.selectByItemNode( currentItem[0] );
+                    this.trigger( 'beforechange', items[ index ] );
 
                     return currentItem[0];
 
@@ -204,47 +181,16 @@
 
         function optionAdaptation( options ) {
 
-            switch( options.mode ) {
-                case 'fontFamily':
-                    //字体参数适配
-                    fontFamilyAdaptation( options );
-                    break;
-                case 'fontSize':
-                    fontSizeAdaption( options );
-                    break;
-                default:
-                    commonAdaptation( options );
+            options.itemStyles = [];
 
+            for( var i = 0, len = options.items.length; i < len; i++ ) {
+                options.itemStyles.push('');
+                options.autowidthitem.push( wordCountAdaptive( options.items[ i ] ) );
             }
 
-            options.autowidthitem = options.autowidthitem || options.items;
+            options.itemCount = options.items.length;
 
             return options;
-
-        }
-
-        function fontFamilyAdaptation( options ) {
-
-            var fontFamily = options.items,
-                temp = null,
-                tempItems = [];
-
-            options.itemStyles = [];
-            options.value = [];
-
-            options.autowidthitem = [];
-
-            for( var i = 0, len = fontFamily.length; i < len; i++ ) {
-
-                temp = fontFamily[ i ].val;
-                tempItems.push( temp.split(/\s*,\s*/)[0] );
-                options.itemStyles.push('font-family: ' + temp);
-                options.value.push( temp );
-                options.autowidthitem.push( wordCountAdaptive( tempItems[ i ] ) );
-
-            }
-
-            options.items = tempItems;
 
         }
 
@@ -283,38 +229,6 @@
 
             }
 
-
-        }
-
-        function fontSizeAdaption( options ) {
-
-            var fontSize = options.items,
-                temp = null,
-                tempItems = [];
-
-            options.itemStyles = [];
-            options.value = [];
-
-            for( var i = 0, len = fontSize.length; i < len; i++ ) {
-
-                temp = fontSize[ i ];
-                tempItems.push( temp );
-                options.itemStyles.push('font-size: ' + temp +'px');
-
-            }
-
-            options.value = options.items;
-            options.items = tempItems;
-
-        }
-
-        function commonAdaptation( options ) {
-
-            options.itemStyles = [];
-
-            for( var i = 0, len = options.items.length; i < len; i++ ) {
-                options.itemStyles.push('');
-            }
 
         }
 
