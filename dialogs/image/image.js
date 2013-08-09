@@ -16,6 +16,7 @@ var imageUploader = {},
 
     var flagImg = null, flashContainer;
     imageUploader.init = function (opt, callbacks) {
+        switchTab("imageTab");
         createAlignButton(["remoteFloat", "localFloat"]);
         createFlash(opt, callbacks);
         var srcImg = editor.selection.getRange().getClosedNode();
@@ -166,8 +167,7 @@ var imageUploader = {},
      */
     function addOKListener() {
         $dialog.on("ok", function () {
-            var currentTab = findFocus("tabHeads", "tabSrc");
-
+            var currentTab = $tab.edui().activate().find('a').attr('href').slice(1);
             switch (currentTab) {
                 case "remote":
                     return insertSingle();
@@ -544,6 +544,89 @@ var imageUploader = {},
         if (flashContainer && browser.webkit) {
             flashContainer.style.left = show ? "0" : "-10000px";
         }
+    }
+
+    /**
+     * tab点击处理事件
+     * @param tabHeads
+     * @param tabBodys
+     * @param obj
+     */
+    function clickHandler(tabName) {
+        //当切换到本地图片上传时，隐藏遮罩用的iframe
+        if (tabName == "local") {
+            toggleFlash(true);
+            maskIframe.style.display = "none";
+            //处理确定按钮的状态
+            if (selectedImageCount) {
+                $dialog.edui().disabledBtn('[data-ok="modal"]',true);
+            }
+        } else {
+            toggleFlash(false);
+            maskIframe.style.display = "";
+            $dialog.edui().disabledBtn('[data-ok="modal"]',false);
+        }
+        var list = g("imageList");
+        list.style.display = "none";
+        //切换到图片管理时，ajax请求后台图片列表
+        if (tabName == "imgManager") {
+            list.style.display = "";
+            //已经初始化过时不再重复提交请求
+            if (!list.children.length) {
+                ajax.request(editor.options.imageManagerUrl, {
+                    timeout:100000,
+                    action:"get",
+                    onsuccess:function (xhr) {
+                        //去除空格
+                        var tmp = utils.trim(xhr.responseText),
+                            imageUrls = !tmp ? [] : tmp.split("ue_separate_ue"),
+                            length = imageUrls.length;
+                        g("imageList").innerHTML = !length ? "&nbsp;&nbsp;" + lang.noUploadImage : "";
+                        for (var k = 0, ci; ci = imageUrls[k++];) {
+                            var img = document.createElement("img");
+
+                            var div = document.createElement("div");
+                            div.appendChild(img);
+                            div.style.display = "none";
+                            g("imageList").appendChild(div);
+                            img.onclick = function () {
+                                changeSelected(this);
+                            };
+                            img.onload = function () {
+                                this.parentNode.style.display = "";
+                                var w = this.width, h = this.height;
+                                scale(this, 100, 120, 80);
+                                this.title = lang.toggleSelect + w + "X" + h;
+                                this.onload = null;
+                            };
+                            img.setAttribute(k < 35 ? "src" : "lazy_src", editor.options.imageManagerPath + ci.replace(/\s+|\s+/ig, ""));
+                            img.setAttribute("_src", editor.options.imageManagerPath + ci.replace(/\s+|\s+/ig, ""));
+
+                        }
+                    },
+                    onerror:function () {
+                        g("imageList").innerHTML = lang.imageLoadError;
+                    }
+                });
+            }
+        }
+        if (tabName == "imgSearch") {
+            selectTxt(g("imgSearchTxt"));
+        }
+        if (tabName == "remote") {
+            $focus(g("url"));
+        }
+
+    }
+
+    /**
+     * TAB切换
+     * @param tabParentId  tab的父节点ID或者对象本身
+     */
+    function switchTab(tabParentId) {
+        $tab.on('aftershow', function () {
+            clickHandler($tab.edui().activate().find('a').attr('href').slice(1));
+        });
     }
 
     /**

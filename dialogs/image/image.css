@@ -14,7 +14,7 @@ td input {
     background: #FFF;
     border: 1px solid #d7d7d7;
 }
-#url {width: 520px;margin-bottom: 2px;}
+#url {width: 495px;margin-bottom: 2px;}
 #preview{width: 260px; height: 260px; position: absolute;top:115px; left: 341px; z-index: 9999;background-color: #eee}
 .lock{
     position: absolute;
@@ -35,6 +35,7 @@ td input {
     float: left;
 }
 .saveDir select{
+    width: 130px;
     height: 30px;
 }
 #duiqi{ width: 62px; height: 38px;float: left}

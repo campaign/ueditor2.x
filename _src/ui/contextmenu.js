@@ -28,7 +28,7 @@ UE.ui.define('contextmenu',{
         $root.children('li').mouseover(function( evt ){
             var $this = $(this),widget,$submenu;
             if($this.hasClass('dropdown-submenu') || (widget = $this.data('widget'))){
-                if(widget[0]){
+                if(widget&&widget[0]){
                     if(!$.contains(this,widget[0])){
                         widget.appendTo($this)
                     }
