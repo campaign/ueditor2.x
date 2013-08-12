@@ -178,8 +178,8 @@ UE.ui.define('scale', {
             position: 'absolute',
             width: $obj.width(),
             height: $obj.height(),
-            'left': $iframe.offset().left + imgPos.left - $eduibody.scrollLeft() - parseInt($wrap.css('border-left-width')) - parseInt($root.css('border-left-width')),
-            'top': $iframe.offset().top + imgPos.top - $eduibody.scrollTop() - parseInt($wrap.css('border-top-width')) - parseInt($root.css('border-top-width'))
+            'left': $iframe.offset().left + imgPos.left - $eduibody.scrollLeft() - parseInt($root.css('border-left-width')),
+            'top': $iframe.offset().top + imgPos.top - $eduibody.scrollTop() - parseInt($root.css('border-top-width'))
         });
     },
     setZIndex: function (x) {
