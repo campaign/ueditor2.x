@@ -65,8 +65,6 @@ UE.ui.define('scale', {
                 if (me.dragId != -1) {
                     me.dragId = -1;
                     me.updateTargetElement();
-                    var target = me.data('$scaleTarget');
-                    if (target.parentNode) me.attachTo(me.data('$scaleTarget'));
                 }
                 $doc.unbind('mousemove', $.proxy(me._eventHandler, me));
                 me.hideCover();
@@ -76,8 +74,11 @@ UE.ui.define('scale', {
         }
     },
     updateTargetElement: function () {
-        var $root = this.root();
-        this.data('$scaleTarget').css({width: $root.width(), height: $root.height()});
+        var me = this,
+            $root = this.root();
+        me.data('$scaleTarget').css({width: $root.width(), height: $root.height()});
+        var target = me.data('$scaleTarget');
+        if (target.parent()) me.attachTo(target);
     },
     updateContainerStyle: function (dir, offset) {
         var me = this,
