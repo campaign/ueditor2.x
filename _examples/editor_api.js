@@ -54,7 +54,6 @@
             'plugins/source.js',
             'plugins/enterkey.js',
             'plugins/keystrokes.js',
-            'plugins/fiximgclick.js',
             'plugins/autolink.js',
             'plugins/newdocument.js',
             'plugins/puretxtpaste.js',
@@ -82,6 +81,7 @@
             'ui/contextmenu.js',
             'ui/splitbutton.js',
             'ui/popup.js',
+            'ui/scale.js',
             'ui/colorpicker.js',
             'ui/tablepicker.js',
             'ui/combobox.js',
@@ -100,7 +100,8 @@
             'adapter/font.js',
             'adapter/elementpath.js',
             'adapter/dialog.js',
-            'adapter/emotion.js'
+            'adapter/emotion.js',
+            'adapter/imagescale.js'
         ],
         baseURL = '../_src/';
     for (var i=0,pi;pi = paths[i++];) {
