@@ -17,7 +17,12 @@ class Mail {
 //		$mail->SMTPDebug  = 1;                     // 启用SMTP调试功能
 											   // 1 = errors and messages
 											   // 2 = messages only
+		$mail->SMTPAuth   = true;                  // 启用 SMTP 验证功能
+		$mail->SMTPSecure = "ssl";                 // 安全协议
+		$mail->Host       = "MAILBOX03.internal.baidu.com";      // SMTP 服务器
+		$mail->Port       = 465;                   // SMTP服务器的端口号
 	
+		$mail->AddReplyTo("zhuwenxuan@baidu.com","邮件回复人的名称");
 		$mail->Subject    = $subject;
 		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer! - From www.jiucool.com"; // optional, comment out and test
 		$mail->MsgHTML($body);
@@ -75,8 +80,7 @@ class Mail {
         $mail->SMTPDebug = 2;
         $mail->Host     = 'smtp.126.com';
         $mail->Port = 465;
-        $mail->Username = "zhuwen_xuan@126.com";
-        $mail->Password = "zwx19840818";
+      
         $mail->SetFrom('zhuwen_xuan@126.com', 'First Last');
 
         $mail->AddReplyTo("zhuwenxuan@baidu.com","First Last");
